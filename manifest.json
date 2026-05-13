@@ -1,0 +1,17 @@
+{
+  "name": "Wordle Unlimited",
+  "short_name": "Wordle",
+  "description": "Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits.",
+  "start_url": "/Wordle-Unlimited",
+  "display": "standalone",
+  "background_color": "#121213",
+  "theme_color": "#121213",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
