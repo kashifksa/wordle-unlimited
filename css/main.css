@@ -98,17 +98,23 @@ body.theme-ocean {
     -webkit-tap-highlight-color: transparent;
 }
 
-body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-primary);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
-    overflow-y: auto;
     transition: background-color var(--transition-med), color var(--transition-med), border-color var(--transition-med);
+    background: linear-gradient(-45deg, #f8f9fa, #e9ecef, #dee2e6, #f8f9fa);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+}
+
+body.dark-mode {
+    background: linear-gradient(-45deg, #121213, #1a1a1b, #272729, #121213);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 
@@ -150,6 +156,17 @@ body {
     align-items: center;
     gap: 6px;
     margin: 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--color-text), #888, var(--color-text));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
 }
 
 .logo span {
@@ -256,10 +273,16 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     border: 2px solid var(--color-border);
-    user-select: none;
+    background: transparent;
+    border-radius: 4px;
     line-height: 1;
     padding: 0;
-    transition: transform 0.1s ease;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    border-color: var(--color-text);
 }
 
 .tile[data-state="toggled"] {

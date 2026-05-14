@@ -78,7 +78,7 @@ window.State = {
             if (data && !error) {
                 const stats = {
                     gamesPlayed: data.games_played,
-                    games_won: data.games_won,
+                    gamesWon: data.games_won,
                     currentStreak: data.current_streak,
                     maxStreak: data.max_streak,
                     guesses: data.guess_distribution || localStats.guesses,

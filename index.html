@@ -41,8 +41,10 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
-    <!-- Preload Game Data -->
+    <!-- Preload Game Data & Scripts -->
     <link rel="preload" href="data/words.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="js/game.js?v=2" as="script">
+    <link rel="preload" href="js/ui.js?v=3" as="script">
 
     <!-- Fonts -->
     <link rel="preload"
@@ -58,53 +60,7 @@
 
     <!-- Critical CSS (Inlined for speed) -->
     <style>
-        :root {
-            --color-correct: #6aaa64;
-            --color-present: #c9b458;
-            --color-absent: #787c7e;
-            --color-border: #d3d6da;
-            --color-bg: #fff;
-            --color-text: #000;
-            --color-key-bg: #d3d6da;
-            --color-key-text: #000;
-            --color-modal-bg: rgba(255, 255, 255, .9);
-            --transition-fast: .15s;
-            --transition-med: .3s;
-            --transition-slow: .6s;
-            --font-primary: 'Inter', sans-serif;
-            --font-heading: 'Outfit', sans-serif
-        }
-
-        body.dark-mode {
-            --color-bg: #121213;
-            --color-text: #fff;
-            --color-border: #3a3a3c;
-            --color-key-bg: #818384;
-            --color-key-text: #fff;
-            --color-modal-bg: rgba(18, 18, 19, .95);
-            --color-absent: #3a3a3c;
-            --color-correct: #538d4e;
-            --color-present: #b59f3b
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent
-        }
-
-        body {
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-primary);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-x: hidden;
-            transition: background-color var(--transition-med), color var(--transition-med)
-        }
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
 
         .main-header {
             display: flex;
@@ -326,340 +282,339 @@
     <section id="game-content">
         <div class="content-container">
             <h2>Wordle Unlimited: Play Endless Word Puzzles Online</h2>
-            <p>Welcome to the most addictive and flexible way to enjoy word puzzles. Our Wordle Unlimited mode was
-                specifically designed for players who find the one puzzle a day limit too restrictive. Whether you are a
-                vocabulary master or a casual gamer looking to pass the time, our platform allows you to solve an
-                infinite number of puzzles at your own pace.</p>
-            <p>We have combined the classic gameplay you love with a modern, fast loading interface. No more waiting for
-                the midnight reset, just hit New Game and keep the fun going. Our version is optimized for both desktop
-                and mobile, ensuring you get a seamless experience whether you are at home or on the go.</p>
+                <p>Welcome to the most addictive and flexible way to enjoy word puzzles. Our Wordle Unlimited mode was
+                    specifically designed for players who find the one puzzle a day limit too restrictive. Whether you are a
+                    vocabulary master or a casual gamer looking to pass the time, our platform allows you to solve an
+                    infinite number of puzzles at your own pace.</p>
+                <p>We have combined the classic gameplay you love with a modern, fast loading interface. No more waiting for
+                    the midnight reset, just hit New Game and keep the fun going. Our version is optimized for both desktop
+                    and mobile, ensuring you get a seamless experience whether you are at home or on the go.</p>
 
-            <h2>Introduction to the Unlimited Wordle Experience</h2>
-            <p>Enjoy a fun and easy puzzle experience anytime with our Unlimited Wordle game modes. We created this
-                space for players who love word challenges but hate the 24 hour wait. Whether you're looking to improve
-                your vocabulary or just need a quick brain teaser, our platform offers a clean, fast loading environment
-                for all devices.</p>
-            <p>Unlike the classic version, you can start a new round instantly. With customizable <a
-                    href="javascript:void(0)" onclick="ui.showSettings()"
-                    style="color: var(--color-correct); font-weight: 600;">themes</a> and smooth mobile controls, it’s
-                the perfect place to sharpen your thinking skills at your own pace.</p>
+                <h2>Introduction to the Unlimited Wordle Experience</h2>
+                <p>Enjoy a fun and easy puzzle experience anytime with our Unlimited Wordle game modes. We created this
+                    space for players who love word challenges but hate the 24 hour wait. Whether you're looking to improve
+                    your vocabulary or just need a quick brain teaser, our platform offers a clean, fast loading environment
+                    for all devices.</p>
+                <p>Unlike the classic version, you can start a new round instantly. With customizable <a
+                        href="javascript:void(0)" onclick="ui.showSettings()"
+                        style="color: var(--color-correct); font-weight: 600;">themes</a> and smooth mobile controls, it’s
+                    the perfect place to sharpen your thinking skills at your own pace.</p>
 
-            <h2>Experience the Ultimate Wordle Challenge</h2>
-            <div class="preview-container">
-                <div class="preview-card">
-                    <img src="assets/game-preview.webp" alt="Wordle Unlimited Gameplay Preview" class="responsive-img"
-                        loading="lazy">
-                    <div class="preview-overlay">
-                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-primary">Play
-                            Now</button>
-                    </div>
-                </div>
-                <div class="preview-text">
-                    <h3>Simple. Addictive. Unlimited.</h3>
-                    <p>Our Wordle Unlimited platform offers the most refined gaming experience. Whether you're a
-                        beginner or a word master, you'll love the smooth animations, dark mode, and endless puzzles.
-                    </p>
-                    <ul class="check-list">
-                        <li>Infinite new words every day</li>
-                        <li>100% Free with no registration</li>
-                        <li>Beautiful, responsive design</li>
-                        <li>Advanced stats and progress tracking</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h2>How to Play: Rules and Mechanics</h2>
-            <p>The goal is simple: Guess the hidden five letter word in six attempts. After every guess, the tiles
-                change color to show how close you are to the answer:</p>
-            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter
-                    is correct and in the perfect spot.</span></p>
-            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter
-                    is in the word but in a different position.</span></p>
-            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is
-                    not part of today’s secret word.</span></p>
-
-            <h3>Explore Advanced Game Modes</h3>
-            <p>For those seeking a bigger challenge, try our <a href="javascript:void(0)" onclick="ui.showSettings()"
-                    style="color: var(--color-correct); font-weight: 600;">Hard Mode</a>. In this version, any clues
-                revealed (Green or Yellow) must be used in your subsequent guesses. We also offer Multi Word modes where
-                you can solve multiple puzzles simultaneously to test your multitasking skills.</p>
-
-            <h2>Wordle vs. Unlimited: What’s the Difference?</h2>
-            <p>The core gameplay remains the same, but the freedom is much higher here.</p>
-            <div class="table-container"
-                style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
-                <table style="margin: 0; box-shadow: none; border: none;">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Classic Wordle</th>
-                            <th>Our Unlimited Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Daily Limit</td>
-                            <td>1 Puzzle per day</td>
-                            <td>Infinite Puzzles</td>
-                        </tr>
-                        <tr>
-                            <td>Word Attempt</td>
-                            <td>Fixed (6)</td>
-                            <td>Customizable</td>
-                        </tr>
-                        <tr>
-                            <td>Difficulty</td>
-                            <td>Standard</td>
-                            <td>Standard + Hard Mode</td>
-                        </tr>
-                        <tr>
-                            <td>Cost</td>
-                            <td>Free</td>
-                            <td>100% Free</td>
-                        </tr>
-                        <tr>
-                            <td>Visual Themes</td>
-                            <td>Light & Dark Only</td>
-                            <td>Cyber Neon, Retro, Ocean & More</td>
-                        </tr>
-                        <tr>
-                            <td>Time Tracking</td>
-                            <td>None</td>
-                            <td>Fastest Win & Live Timer</td>
-                        </tr>
-                        <tr>
-                            <td>Account Login</td>
-                            <td>Account Required</td>
-                            <td>Instant Play (No Login)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2>Master the Game of Wordle Unlimited</h2>
-            <p>Wordle Unlimited is a fun and challenging word puzzle game. To win consistently, you need a smart plan
-                and a strong vocabulary. Follow this guide to improve your skills and maintain a long winning streak.
-            </p>
-
-            <h3>Best Strategies for Consistent Wins</h3>
-            <p>Winning at Wordle requires more than just guessing. Use these proven methods to find the hidden word in
-                fewer attempts.</p>
-
-            <h4>Choosing Your Starting Word</h4>
-            <ul>
-                <li>Begin with words that contain many vowels like ARISE or ADIEU.</li>
-                <li>Focus on common consonants such as S, T, R, L, and N.</li>
-                <li>Avoid using double letters in your first guess to test more unique characters.</li>
-            </ul>
-
-            <h4>The Second Guess Strategy</h4>
-            <ul>
-                <li>Use your second attempt to eliminate as many remaining letters as possible.</li>
-                <li>If your first word gave no hits, choose an entirely different set of letters.</li>
-                <li>Do not repeat gray letters that have already been ruled out.</li>
-            </ul>
-
-            <h3>Understanding Wordle Colors and Logic</h3>
-            <p>The feedback system is simple but powerful. Knowing how to read the tiles is the key to solving any
-                puzzle.</p>
-
-            <h4>What the Tile Colors Mean</h4>
-            <ul>
-                <li><span class="color-box correct"
-                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Green tiles
-                    mean the letter is correct and it is in the right position.</li>
-                <li><span class="color-box present"
-                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Yellow
-                    tiles mean the letter exists in the word but it is in a different spot.</li>
-                <li><span class="color-box absent"
-                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Gray tiles
-                    mean the letter is not part of the hidden word at all.</li>
-            </ul>
-
-            <h3>Advanced Tips for Hard Mode Players</h3>
-            <ul>
-                <li>Always use the hints provided by green and yellow tiles in your next guess.</li>
-                <li>Think about common word endings like ING or ED when you have a few letters.</li>
-                <li>Practice regularly in unlimited mode to learn new five letter words and patterns.</li>
-            </ul>
-
-            <h2>Expert Wordle Strategies</h2>
-            <div class="strategy-grid">
-                <div class="strategy-card">
-                    <div class="strategy-image-container">
-                        <img src="assets/strategy-target.webp" alt="Strategy Target" class="strategy-photo"
+                <h2>Experience the Ultimate Wordle Challenge</h2>
+                <div class="preview-container">
+                    <div class="preview-card">
+                        <img src="assets/game-preview.webp" alt="Wordle Unlimited Gameplay Preview" class="responsive-img"
                             loading="lazy">
+                        <div class="preview-overlay">
+                            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-primary">Play
+                                Now</button>
+                        </div>
                     </div>
-                    <h3>Top Starting Words</h3>
-                    <p>The first guess is the most critical. Math experts and linguists suggest using words with many
-                        vowels and common consonants.</p>
-                    <ul class="tag-list">
-                        <li>ADIEU</li>
-                        <li>ARISE</li>
-                        <li>STARE</li>
-                        <li>AUDIO</li>
-                    </ul>
-                </div>
-                <div class="strategy-card">
-                    <div class="strategy-image-container">
-                        <img src="assets/strategy-hint.webp" alt="Lightbulb Hint" class="strategy-photo" loading="lazy">
-                    </div>
-                    <h3>The Vowel Hunter</h3>
-                    <p>If your first word didn't reveal vowels, use your second turn to test the remaining ones (O, U,
-                        and sometimes Y).</p>
-                </div>
-                <div class="strategy-card">
-                    <div class="strategy-image-container">
-                        <img src="assets/strategy-pattern.webp" alt="Pattern Puzzle" class="strategy-photo"
-                            loading="lazy">
-                    </div>
-                    <h3>Pattern Recognition</h3>
-                    <p>Watch out for common word endings like <strong>ING</strong>, <strong>ED</strong>, or
-                        <strong>ER</strong>. They can help you narrow down the target word quickly.</p>
-                </div>
-                <div class="strategy-card">
-                    <div class="strategy-image-container">
-                        <img src="assets/strategy-double.webp" alt="Double Letter Trick" class="strategy-photo"
-                            loading="lazy">
-                    </div>
-                    <h3>Double Letter Trick</h3>
-                    <p>Don't forget that target words can contain double letters (like <strong>E</strong> or
-                        <strong>O</strong>). If you're stuck, try repeating a vowel or common consonant.</p>
-                </div>
-            </div>
-
-            <h2>Why Our Platform is the Best Choice</h2>
-            <p>We provide a premium gaming experience for all word puzzle fans. Our platform is designed to be fast,
-                clean, and accessible on all devices.</p>
-            <ul>
-                <li>Play as many games as you want without any daily limits.</li>
-                <li>Track your personal performance with our detailed statistics system.</li>
-                <li>Choose from different <a href="javascript:void(0)" onclick="ui.showSettings()"
-                        style="color: var(--color-correct); font-weight: 600;">visual themes</a> to make your gameplay
-                    more comfortable.</li>
-                <li>Experience instant loading times on both mobile and desktop browsers.</li>
-            </ul>
-
-            <p>Whether you are a beginner or a pro, Wordle Unlimited offers a perfect mental workout. Use these
-                strategies to master the game and enjoy endless puzzles every day.</p>
-
-
-            <h2>FAQ’s</h2>
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Is Wordle Unlimited free to play?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, most Wordle Unlimited games are completely free. You can enjoy unlimited puzzles without
-                            paying or creating an account.</p>
+                    <div class="preview-text">
+                        <h3>Simple. Addictive. Unlimited.</h3>
+                        <p>Our Wordle Unlimited platform offers the most refined gaming experience. Whether you're a
+                            beginner or a word master, you'll love the smooth animations, dark mode, and endless puzzles.
+                        </p>
+                        <ul class="check-list">
+                            <li>Infinite new words every day</li>
+                            <li>100% Free with no registration</li>
+                            <li>Beautiful, responsive design</li>
+                            <li>Advanced stats and progress tracking</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can I play Wordle Unlimited every day?</h3>
-                        <span class="faq-icon">+</span>
+                <h2>How to Play: Rules and Mechanics</h2>
+                <p>The goal is simple: Guess the hidden five letter word in six attempts. After every guess, the tiles
+                    change color to show how close you are to the answer:</p>
+                <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter
+                        is correct and in the perfect spot.</span></p>
+                <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter
+                        is in the word but in a different position.</span></p>
+                <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is
+                        not part of today’s secret word.</span></p>
+
+                <h3>Explore Advanced Game Modes</h3>
+                <p>For those seeking a bigger challenge, try our <a href="javascript:void(0)" onclick="ui.showSettings()"
+                        style="color: var(--color-correct); font-weight: 600;">Hard Mode</a>. In this version, any clues
+                    revealed (Green or Yellow) must be used in your subsequent guesses. We also offer Multi Word modes where
+                    you can solve multiple puzzles simultaneously to test your multitasking skills.</p>
+
+                <h2>Wordle vs. Unlimited: What’s the Difference?</h2>
+                <p>The core gameplay remains the same, but the freedom is much higher here.</p>
+                <div class="table-container"
+                    style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                    <table style="margin: 0; box-shadow: none; border: none;">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Classic Wordle</th>
+                                <th>Our Unlimited Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Daily Limit</td>
+                                <td>1 Puzzle per day</td>
+                                <td>Infinite Puzzles</td>
+                            </tr>
+                            <tr>
+                                <td>Word Attempt</td>
+                                <td>Fixed (6)</td>
+                                <td>Customizable</td>
+                            </tr>
+                            <tr>
+                                <td>Difficulty</td>
+                                <td>Standard</td>
+                                <td>Standard + Hard Mode</td>
+                            </tr>
+                            <tr>
+                                <td>Cost</td>
+                                <td>Free</td>
+                                <td>100% Free</td>
+                            </tr>
+                            <tr>
+                                <td>Visual Themes</td>
+                                <td>Light & Dark Only</td>
+                                <td>Cyber Neon, Retro, Ocean & More</td>
+                            </tr>
+                            <tr>
+                                <td>Time Tracking</td>
+                                <td>None</td>
+                                <td>Fastest Win & Live Timer</td>
+                            </tr>
+                            <tr>
+                                <td>Account Login</td>
+                                <td>Account Required</td>
+                                <td>Instant Play (No Login)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Master the Game of Wordle Unlimited</h2>
+                <p>Wordle Unlimited is a fun and challenging word puzzle game. To win consistently, you need a smart plan
+                    and a strong vocabulary. Follow this guide to improve your skills and maintain a long winning streak.
+                </p>
+
+                <h3>Best Strategies for Consistent Wins</h3>
+                <p>Winning at Wordle requires more than just guessing. Use these proven methods to find the hidden word in
+                    fewer attempts.</p>
+
+                <h4>Choosing Your Starting Word</h4>
+                <ul>
+                    <li>Begin with words that contain many vowels like ARISE or ADIEU.</li>
+                    <li>Focus on common consonants such as S, T, R, L, and N.</li>
+                    <li>Avoid using double letters in your first guess to test more unique characters.</li>
+                </ul>
+
+                <h4>The Second Guess Strategy</h4>
+                <ul>
+                    <li>Use your second attempt to eliminate as many remaining letters as possible.</li>
+                    <li>If your first word gave no hits, choose an entirely different set of letters.</li>
+                    <li>Do not repeat gray letters that have already been ruled out.</li>
+                </ul>
+
+                <h3>Understanding Wordle Colors and Logic</h3>
+                <p>The feedback system is simple but powerful. Knowing how to read the tiles is the key to solving any
+                    puzzle.</p>
+
+                <h4>What the Tile Colors Mean</h4>
+                <ul>
+                    <li><span class="color-box correct"
+                            style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Green tiles
+                        mean the letter is correct and it is in the right position.</li>
+                    <li><span class="color-box present"
+                            style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Yellow
+                        tiles mean the letter exists in the word but it is in a different spot.</li>
+                    <li><span class="color-box absent"
+                            style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Gray tiles
+                        mean the letter is not part of the hidden word at all.</li>
+                </ul>
+
+                <h3>Advanced Tips for Hard Mode Players</h3>
+                <ul>
+                    <li>Always use the hints provided by green and yellow tiles in your next guess.</li>
+                    <li>Think about common word endings like ING or ED when you have a few letters.</li>
+                    <li>Practice regularly in unlimited mode to learn new five letter words and patterns.</li>
+                </ul>
+
+                <h2>Expert Wordle Strategies</h2>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-image-container">
+                            <img src="assets/strategy-target.webp" alt="Strategy Target" class="strategy-photo"
+                                loading="lazy">
+                        </div>
+                        <h3>Top Starting Words</h3>
+                        <p>The first guess is the most critical. Math experts and linguists suggest using words with many
+                            vowels and common consonants.</p>
+                        <ul class="tag-list">
+                            <li>ADIEU</li>
+                            <li>ARISE</li>
+                            <li>STARE</li>
+                            <li>AUDIO</li>
+                        </ul>
                     </div>
-                    <div class="faq-answer">
-                        <p>Yes, you can play anytime you want. Unlike the original daily Wordle, Wordle Unlimited gives
-                            endless new words instantly.</p>
+                    <div class="strategy-card">
+                        <div class="strategy-image-container">
+                            <img src="assets/strategy-hint.webp" alt="Lightbulb Hint" class="strategy-photo" loading="lazy">
+                        </div>
+                        <h3>The Vowel Hunter</h3>
+                        <p>If your first word didn't reveal vowels, use your second turn to test the remaining ones (O, U,
+                            and sometimes Y).</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-image-container">
+                            <img src="assets/strategy-pattern.webp" alt="Pattern Puzzle" class="strategy-photo"
+                                loading="lazy">
+                        </div>
+                        <h3>Pattern Recognition</h3>
+                        <p>Watch out for common word endings like <strong>ING</strong>, <strong>ED</strong>, or
+                            <strong>ER</strong>. They can help you narrow down the target word quickly.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-image-container">
+                            <img src="assets/strategy-double.webp" alt="Double Letter Trick" class="strategy-photo"
+                                loading="lazy">
+                        </div>
+                        <h3>Double Letter Trick</h3>
+                        <p>Don't forget that target words can contain double letters (like <strong>E</strong> or
+                            <strong>O</strong>). If you're stuck, try repeating a vowel or common consonant.</p>
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What is Infinity Mode in Wordle Unlimited?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Infinity Mode lets you play endless Wordle puzzles without any daily limits. You can continue
-                            solving new words as long as you want.</p>
-                    </div>
-                </div>
+                <h2>Why Our Platform is the Best Choice</h2>
+                <p>We provide a premium gaming experience for all word puzzle fans. Our platform is designed to be fast,
+                    clean, and accessible on all devices.</p>
+                <ul>
+                    <li>Play as many games as you want without any daily limits.</li>
+                    <li>Track your personal performance with our detailed statistics system.</li>
+                    <li>Choose from different <a href="javascript:void(0)" onclick="ui.showSettings()"
+                            style="color: var(--color-correct); font-weight: 600;">visual themes</a> to make your gameplay
+                        more comfortable.</li>
+                    <li>Experience instant loading times on both mobile and desktop browsers.</li>
+                </ul>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Is Wordle Unlimited the same as NYT Wordle?</h3>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No, Wordle Unlimited is different from the official <a
-                                href="https://www.nytimes.com/games/wordle/index.html" target="_blank"
-                                rel="noopener noreferrer">NYT Wordle</a>. NYT Wordle offers one daily puzzle, while
-                            Wordle Unlimited allows endless games anytime.</p>
-                    </div>
-                </div>
+                <p>Whether you are a beginner or a pro, Wordle Unlimited offers a perfect mental workout. Use these
+                    strategies to master the game and enjoy endless puzzles every day.</p>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can beginners enjoy Wordle Infinite?</h3>
-                        <span class="faq-icon">+</span>
+                <h2>FAQ’s</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is Wordle Unlimited free to play?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, most Wordle Unlimited games are completely free. You can enjoy unlimited puzzles without
+                                paying or creating an account.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>Absolutely. Wordle Infinite is easy to learn and suitable for beginners, students, and
-                            experienced word puzzle players.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Who Made the Original Wordle?</h3>
-                        <span class="faq-icon">+</span>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I play Wordle Unlimited every day?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can play anytime you want. Unlike the original daily Wordle, Wordle Unlimited gives
+                                endless new words instantly.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>The original Wordle game was created by Welsh software engineer <a
-                                href="https://en.wikipedia.org/wiki/Josh_Wardle" target="_blank"
-                                rel="noopener noreferrer">Josh Wardle</a> in 2021. He made the game as a fun project for
-                            his partner, who loved word puzzles. Later Wordle became a worldwide viral game and was
-                            bought by The New York Times (NYT) in 2022.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What is a Wordle Solver?</h3>
-                        <span class="faq-icon">+</span>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is Infinity Mode in Wordle Unlimited?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Infinity Mode lets you play endless Wordle puzzles without any daily limits. You can continue
+                                solving new words as long as you want.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>A Wordle Solver is a tool that helps you find the correct Wordle answer faster using your
-                            previous guesses.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Does the Hint feature give direct answers in the game?</h3>
-                        <span class="faq-icon">+</span>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is Wordle Unlimited the same as NYT Wordle?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, Wordle Unlimited is different from the official <a
+                                    href="https://www.nytimes.com/games/wordle/index.html" target="_blank"
+                                    rel="noopener noreferrer">NYT Wordle</a>. NYT Wordle offers one daily puzzle, while
+                                Wordle Unlimited allows endless games anytime.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>We currently do not offer Wordle hints, allowing every player to enjoy a fair and challenging
-                            experience.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How does the Wordle Generator create new words?</h3>
-                        <span class="faq-icon">+</span>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can beginners enjoy Wordle Infinite?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. Wordle Infinite is easy to learn and suitable for beginners, students, and
+                                experienced word puzzle players.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>Our Wordle Generator works through a smart backend system that automatically creates random
-                            words and keywords for a fresh gameplay experience every time.</p>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Why are random keywords used instead of full word answers?</h3>
-                        <span class="faq-icon">+</span>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Who Made the Original Wordle?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The original Wordle game was created by Welsh software engineer <a
+                                    href="https://en.wikipedia.org/wiki/Josh_Wardle" target="_blank"
+                                    rel="noopener noreferrer">Josh Wardle</a> in 2021. He made the game as a fun project for
+                                his partner, who loved word puzzles. Later Wordle became a worldwide viral game and was
+                                bought by The New York Times (NYT) in 2022.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>We use random keywords to make the game more fun, challenging, and interactive so players can
-                            solve puzzles by using their own logic and vocabulary skills.</p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is a Wordle Solver?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A Wordle Solver is a tool that helps you find the correct Wordle answer faster using your
+                                previous guesses.</p>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Does the Hint feature give direct answers in the game?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We currently do not offer Wordle hints, allowing every player to enjoy a fair and challenging
+                                experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How does the Wordle Generator create new words?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our Wordle Generator works through a smart backend system that automatically creates random
+                                words and keywords for a fresh gameplay experience every time.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Why are random keywords used instead of full word answers?</h3>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We use random keywords to make the game more fun, challenging, and interactive so players can
+                                solve puzzles by using their own logic and vocabulary skills.</p>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>

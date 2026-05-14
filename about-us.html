@@ -61,74 +61,67 @@
     ]
     </script>
 
+    <!-- Speed Optimizations -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Critical CSS (Inlined for speed) -->
     <style>
-        .about-section {
-            padding: 80px 20px;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-        }
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        .hero-image-container {
-            width: 100%;
-            height: 300px;
-            border-radius: 24px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-        .hero-image-container img {
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}
+        body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;position:relative}
+        
+        /* Floating 2D Shapes Background */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .shape {
+            position: absolute;
+            background: var(--color-correct);
+            opacity: 0.05;
+            border-radius: 50%;
+            animation: float-shape 20s infinite linear;
         }
-        .about-container h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 8vw, 3.5rem);
-            margin-bottom: 10px;
-            text-align: center;
+        @keyframes float-shape {
+            from { transform: translateY(100vh) rotate(0deg); }
+            to { transform: translateY(-100vh) rotate(360deg); }
         }
-        .about-subtitle {
-            text-align: center;
-            opacity: 0.6;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-        .about-container h2 {
-            font-family: var(--font-heading);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: var(--color-correct);
-        }
-        .about-container p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .mission-box {
-            background: rgba(128, 128, 128, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 5px solid var(--color-correct);
-            margin: 40px 0;
-        }
-        .mission-box p {
-            font-style: italic;
-            font-size: 1.2rem;
-            margin-bottom: 0;
-        }
+
+        .about-section{padding:80px 20px;position:relative;z-index:1}
+        .about-container{max-width:800px;margin:0 auto;line-height:1.8}
+        .hero-image-container{width:100%;height:400px;border-radius:30px;overflow:hidden;margin-bottom:60px;box-shadow:0 30px 60px rgba(0,0,0,0.4);perspective:2000px;cursor:pointer;border:1px solid rgba(255,255,255,0.1)}
+        .hero-image-container img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);transform-style:preserve-3d;filter:brightness(1.1)}
+        .hero-image-container:hover img{transform:rotateY(15deg) rotateX(10deg) scale(1.1);filter:brightness(1.2)}
+        
+        .about-card{background:rgba(128,128,128,0.03);padding:40px;border-radius:24px;margin-bottom:40px;border:1px solid rgba(128,128,128,0.1);transition:all 0.5s cubic-bezier(0.23, 1, 0.32, 1);transform-style:preserve-3d;backdrop-filter:blur(10px)}
+        .about-card:hover{transform:translateY(-15px) rotateX(2deg);border-color:var(--color-correct);box-shadow:0 25px 50px rgba(0,0,0,0.15);background:rgba(128,128,128,0.06)}
+        
+        .mission-box{background:linear-gradient(135deg, rgba(106, 170, 100, 0.1), rgba(201, 180, 88, 0.1));padding:50px;border-radius:30px;border:none;margin:60px 0;position:relative;transform-style:preserve-3d;transition:transform 0.6s ease;box-shadow:0 15px 40px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;text-align:center}
+        .mission-box::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--color-correct); border-radius: 3px; }
+        .mission-box:hover{transform:translateZ(40px) rotateY(-5deg);background:linear-gradient(135deg, rgba(106, 170, 100, 0.15), rgba(201, 180, 88, 0.15))}
+        .mission-box p{font-style:italic;font-size:1.4rem;margin-bottom:0;line-height:1.6;color:var(--color-text);font-weight:500}
+        
+        .about-container h1{font-family:var(--font-heading);font-size:clamp(3rem, 10vw, 4.5rem);margin-bottom:10px;text-align:center;background:linear-gradient(45deg, var(--color-correct), var(--color-present));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .about-subtitle{text-align:center;opacity:0.6;font-size:1.3rem;margin-bottom:60px;letter-spacing:2px;text-transform:uppercase}
+        .about-container h2{font-family:var(--font-heading);margin-top:20px;margin-bottom:25px;color:var(--color-correct);font-size:1.8rem}
+        .about-container p{margin-bottom:20px;font-size:1.15rem;opacity:0.85}
     </style>
 </head>
 <body class="theme-default dark-mode">
+    <div class="bg-shapes">
+        <div class="shape" style="width: 100px; height: 100px; left: 10%; animation-duration: 15s;"></div>
+        <div class="shape" style="width: 150px; height: 150px; left: 30%; animation-duration: 25s; animation-delay: -5s;"></div>
+        <div class="shape" style="width: 80px; height: 80px; left: 70%; animation-duration: 18s; animation-delay: -2s;"></div>
+        <div class="shape" style="width: 120px; height: 120px; left: 85%; animation-duration: 22s; animation-delay: -10s;"></div>
+    </div>
     <header class="main-header">
         <div class="header-left">
             <a href="Wordle-Unlimited" class="icon-button" aria-label="Back to Home">
@@ -152,22 +145,30 @@
                 <img src="assets/about-hero.webp" alt="Wordle Unlimited Premium Illustration" loading="lazy">
             </div>
             
-            <p>Welcome to <strong>Wordle Unlimited</strong>, your ultimate destination for endless word puzzle challenges. We are a team of passionate word game enthusiasts who believe that the joy of discovery shouldn't be limited to just one word a day.</p>
+            <div class="about-card">
+                <p>Welcome to <strong>Wordle Unlimited</strong>, your ultimate destination for endless word puzzle challenges. We are a team of passionate word game enthusiasts who believe that the joy of discovery shouldn't be limited to just one word a day.</p>
+            </div>
 
             <div class="mission-box">
                 <p>"Our mission is to provide a clean, fast, and completely free platform where players of all skill levels can sharpen their minds, expand their vocabulary, and enjoy the thrill of Wordle without boundaries."</p>
             </div>
 
-            <h2>Why We Created Wordle Unlimited</h2>
-            <p>Wordle took the world by storm with its brilliant simplicity. However, many players found themselves wanting more and more practice, more challenges, and the ability to play on their own schedule. We built this platform to fill that gap, focusing on performance, accessibility, and a premium user experience.</p>
+            <div class="about-card">
+                <h2>Why We Created Wordle Unlimited</h2>
+                <p>Wordle took the world by storm with its brilliant simplicity. However, many players found themselves wanting more and more practice, more challenges, and the ability to play on their own schedule. We built this platform to fill that gap, focusing on performance, accessibility, and a premium user experience.</p>
+            </div>
 
-            <h2>What Makes Us Different?</h2>
-            <p>Unlike many other platforms, we prioritize a "Minimalist Premium" aesthetic. We hate cluttered interfaces and intrusive ads as much as you do. Our platform is built using modern web technologies to ensure that the game loads instantly on any device, from high-end desktops to budget mobile phones.</p>
+            <div class="about-card">
+                <h2>What Makes Us Different?</h2>
+                <p>Unlike many other platforms, we prioritize a "Minimalist Premium" aesthetic. We hate cluttered interfaces and intrusive ads as much as you do. Our platform is built using modern web technologies to ensure that the game loads instantly on any device, from high-end desktops to budget mobile phones.</p>
+            </div>
 
-            <h2>Our Commitment to Quality</h2>
-            <p>We are constantly updating our word dictionary and refining our game engine to ensure fair and challenging gameplay. From "Hard Mode" for veterans to "Unlimited Mode" for casual practice, every feature is designed with the player in mind.</p>
+            <div class="about-card">
+                <h2>Our Commitment to Quality</h2>
+                <p>We are constantly updating our word dictionary and refining our game engine to ensure fair and challenging gameplay. From "Hard Mode" for veterans to "Unlimited Mode" for casual practice, every feature is designed with the player in mind.</p>
+            </div>
 
-            <p>Thank you for being part of our community. Happy puzzling!</p>
+            <p style="text-align: center; margin-top: 40px; opacity: 0.7;">Thank you for being part of our community. Happy puzzling!</p>
         </div>
     </main>
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wordle-unlimited-v5';
+const CACHE_NAME = 'wordle-unlimited-v6';
 const ASSETS = [
   '/',
   '/Wordle-Unlimited',
@@ -12,6 +12,7 @@ const ASSETS = [
   '/manifest.json',
   '/assets/icon.svg',
   '/assets/game-preview.webp',
+  '/assets/about-hero.webp',
   '/data/words.json'
 ];
 
