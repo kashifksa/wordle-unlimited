@@ -29,7 +29,7 @@ window.State = {
     },
 
     defaultSettings: {
-        darkMode: true,
+        darkMode: false,
         highContrast: false,
         hardMode: false,
         theme: 'default',

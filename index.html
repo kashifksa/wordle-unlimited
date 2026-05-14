@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wordle Unlimited Play Free Endless Word Puzzles Online</title>
-    <link rel="canonical" href="https://wordleunlimited.info/Wordle-Unlimited" />
+    <link rel="canonical" href="https://wordleunlimited.info" />
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
@@ -46,14 +46,14 @@
     <!-- Critical CSS (Inlined for speed) -->
     <style>
         :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}
-        body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c}
+        body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}
         *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
         body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
         .main-header{display:flex;justify-content:space-between;align-items:center;padding:0 16px;height:60px;border-bottom:1px solid var(--color-border)}
         .logo{font-family:var(--font-heading);font-weight:800;font-size:clamp(1.2rem,5vw,1.8rem);letter-spacing:.05em;display:flex;align-items:center;gap:6px}
         #game-container{height:calc(100vh - 60px);height:calc(100dvh - 60px);display:flex;flex-direction:column;justify-content:center;align-items:center;max-width:500px;margin:0 auto;width:100%;padding:10px}
         #board{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(6,1fr);gap:5px;padding:10px;width:100%;max-width:330px;aspect-ratio:5/6}
-        .tile{width:100%;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;font-size:clamp(1.2rem,5vh,2rem);font-weight:700;text-transform:uppercase;border:2px solid var(--color-border);transition:transform .1s ease}
+        .tile{width:100%;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;font-size:clamp(1.2rem,5vh,2rem);font-weight:700;text-transform:uppercase;border:2px solid var(--color-border);line-height:1;padding:0;transition:transform .1s ease}
     </style>
 
     <!-- Styles -->
@@ -119,10 +119,10 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Wordle Unlimited",
-        "url": "https://wordleunlimited.info/Wordle-Unlimited",
+        "url": "https://wordleunlimited.info",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://wordleunlimited.info/Wordle-Unlimited?q={search_term_string}",
+          "target": "https://wordleunlimited.info/?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       },
@@ -130,7 +130,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Wordle Unlimited Info",
-        "url": "https://wordleunlimited.info/Wordle-Unlimited",
+        "url": "https://wordleunlimited.info",
         "logo": "https://wordleunlimited.info/assets/game-preview.webp",
         "sameAs": [
           "https://x.com/Wordleinfo",
@@ -144,7 +144,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     
     <!-- Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
     
     <!-- Scripts -->
     <script src="js/state.js" defer></script>
@@ -160,7 +160,7 @@
         }
     </script>
 </head>
-<body class="theme-default dark-mode">
+<body class="theme-default">
     <header class="main-header">
         <div class="header-left">
             <button id="btn-help" class="icon-button" aria-label="Help">
@@ -227,61 +227,63 @@
 
             <h2>How to Play: Rules and Mechanics</h2>
             <p>The goal is simple: Guess the hidden five letter word in six attempts. After every guess, the tiles change color to show how close you are to the answer:</p>
-            <p>🟩 Green: The letter is correct and in the perfect spot.</p>
-            <p>🟨 Yellow: The letter is in the word but in a different position.</p>
-            <p>⬜ Gray: The letter is not part of today’s secret word.</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter is correct and in the perfect spot.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter is in the word but in a different position.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is not part of today’s secret word.</span></p>
 
             <h3>Explore Advanced Game Modes</h3>
             <p>For those seeking a bigger challenge, try our <a href="javascript:void(0)" onclick="ui.showSettings()" style="color: var(--color-correct); font-weight: 600;">Hard Mode</a>. In this version, any clues revealed (Green or Yellow) must be used in your subsequent guesses. We also offer Multi Word modes where you can solve multiple puzzles simultaneously to test your multitasking skills.</p>
 
             <h2>Wordle vs. Unlimited: What’s the Difference?</h2>
             <p>The core gameplay remains the same, but the freedom is much higher here.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Classic Wordle</th>
-                        <th>Our Unlimited Mode</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Daily Limit</td>
-                        <td>1 Puzzle per day</td>
-                        <td>Infinite Puzzles</td>
-                    </tr>
-                    <tr>
-                        <td>Word Attempt</td>
-                        <td>Fixed (6)</td>
-                        <td>Customizable</td>
-                    </tr>
-                    <tr>
-                        <td>Difficulty</td>
-                        <td>Standard</td>
-                        <td>Standard + Hard Mode</td>
-                    </tr>
-                    <tr>
-                        <td>Cost</td>
-                        <td>Free</td>
-                        <td>100% Free</td>
-                    </tr>
-                    <tr>
-                        <td>Visual Themes</td>
-                        <td>Light & Dark Only</td>
-                        <td>Cyber Neon, Retro, Ocean & More</td>
-                    </tr>
-                    <tr>
-                        <td>Time Tracking</td>
-                        <td>None</td>
-                        <td>Fastest Win & Live Timer</td>
-                    </tr>
-                    <tr>
-                        <td>Account Login</td>
-                        <td>Account Required</td>
-                        <td>Instant Play (No Login)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container" style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+                <table style="margin: 0; box-shadow: none; border: none;">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Classic Wordle</th>
+                            <th>Our Unlimited Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Daily Limit</td>
+                            <td>1 Puzzle per day</td>
+                            <td>Infinite Puzzles</td>
+                        </tr>
+                        <tr>
+                            <td>Word Attempt</td>
+                            <td>Fixed (6)</td>
+                            <td>Customizable</td>
+                        </tr>
+                        <tr>
+                            <td>Difficulty</td>
+                            <td>Standard</td>
+                            <td>Standard + Hard Mode</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>Free</td>
+                            <td>100% Free</td>
+                        </tr>
+                        <tr>
+                            <td>Visual Themes</td>
+                            <td>Light & Dark Only</td>
+                            <td>Cyber Neon, Retro, Ocean & More</td>
+                        </tr>
+                        <tr>
+                            <td>Time Tracking</td>
+                            <td>None</td>
+                            <td>Fastest Win & Live Timer</td>
+                        </tr>
+                        <tr>
+                            <td>Account Login</td>
+                            <td>Account Required</td>
+                            <td>Instant Play (No Login)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h2>Master the Game of Wordle Unlimited</h2>
             <p>Wordle Unlimited is a fun and challenging word puzzle game. To win consistently, you need a smart plan and a strong vocabulary. Follow this guide to improve your skills and maintain a long winning streak.</p>
@@ -308,9 +310,9 @@
             
             <h4>What the Tile Colors Mean</h4>
             <ul>
-                <li>Green tiles mean the letter is correct and it is in the right position.</li>
-                <li>Yellow tiles mean the letter exists in the word but it is in a different spot.</li>
-                <li>Gray tiles mean the letter is not part of the hidden word at all.</li>
+                <li><span class="color-box correct" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Green tiles mean the letter is correct and it is in the right position.</li>
+                <li><span class="color-box present" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Yellow tiles mean the letter exists in the word but it is in a different spot.</li>
+                <li><span class="color-box absent" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Gray tiles mean the letter is not part of the hidden word at all.</li>
             </ul>
 
             <h3>Advanced Tips for Hard Mode Players</h3>
@@ -489,11 +491,11 @@
                     <rect x="12.5" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
                     <rect x="21" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
                     <rect x="4" y="12.5" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
-                    <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#c9b458"/>
-                    <rect x="21" y="12.5" width="7" height="7" rx="1.5" fill="#6aaa64"/>
-                    <rect x="4" y="21" width="7" height="7" rx="1.5" fill="#6aaa64"/>
-                    <rect x="12.5" y="21" width="7" height="7" rx="1.5" fill="#6aaa64"/>
-                    <rect x="21" y="21" width="7" height="7" rx="1.5" fill="#6aaa64"/>
+                    <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#b59f3b"/>
+                    <rect x="21" y="12.5" width="7" height="7" rx="1.5" fill="#538d4e"/>
+                    <rect x="4" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
+                    <rect x="12.5" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
+                    <rect x="21" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
                 </svg>
                 <span>Wordle Unlimited © 2026</span>
             </div>

@@ -288,7 +288,6 @@ class WordleUI {
     showHelp() {
         this.showModal({
             title: 'How To Play',
-            className: 'modal-help-override',
             body: `
                 <div class="help-content">
                     <p>Guess the Wordle in 6 tries.</p>
@@ -407,25 +406,44 @@ class WordleUI {
     showSettings() {
         if (!window.game) return;
         const s = game.settings;
+        
+        // Determine selected value for the unified dropdown
+        let currentThemeVal = 'light';
+        if (s.theme === 'neon') currentThemeVal = 'neon';
+        else if (s.theme === 'retro') currentThemeVal = 'retro';
+        else if (s.theme === 'ocean') currentThemeVal = 'ocean';
+        else if (s.darkMode) currentThemeVal = 'dark';
+
         this.showModal({
             title: 'Settings',
             body: `
                 <div class="setting-item">
                     <div>
-                        <strong>Hard Mode</strong>
-                        <p>Revealed hints must be used</p>
+                        <strong>Game Difficulty</strong>
+                        <p>Hard Mode: Revealed hints must be used</p>
                     </div>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-hard" ${s.hardMode ? 'checked' : ''} onchange="ui.saveSettings()">
-                        <span class="slider"></span>
-                    </label>
+                    <select id="setting-hard" onchange="ui.saveSettings()">
+                        <option value="false" ${!s.hardMode ? 'selected' : ''}>Normal</option>
+                        <option value="true" ${s.hardMode ? 'selected' : ''}>Hard Mode</option>
+                    </select>
                 </div>
                 <div class="setting-item">
-                    <strong>Dark Mode</strong>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-dark" ${s.darkMode ? 'checked' : ''} onchange="ui.saveSettings()">
-                        <span class="slider"></span>
-                    </label>
+                    <strong>Appearance</strong>
+                    <select id="setting-appearance" onchange="ui.saveSettings()">
+                        <option value="light" ${currentThemeVal === 'light' ? 'selected' : ''}>Light Mode (Default)</option>
+                        <option value="dark" ${currentThemeVal === 'dark' ? 'selected' : ''}>Dark Mode</option>
+                        <option value="neon" ${currentThemeVal === 'neon' ? 'selected' : ''}>Cyber Neon</option>
+                        <option value="retro" ${currentThemeVal === 'retro' ? 'selected' : ''}>Retro Vintage</option>
+                        <option value="ocean" ${currentThemeVal === 'ocean' ? 'selected' : ''}>Deep Ocean</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <strong>Attempts</strong>
+                    <select id="setting-attempts" onchange="ui.saveSettings()">
+                        <option value="6" ${s.attempts === 6 ? 'selected' : ''}>6</option>
+                        <option value="7" ${s.attempts === 7 ? 'selected' : ''}>7</option>
+                        <option value="8" ${s.attempts === 8 ? 'selected' : ''}>8</option>
+                    </select>
                 </div>
                 <div class="setting-item">
                     <div>
@@ -437,65 +455,42 @@ class WordleUI {
                         <span class="slider"></span>
                     </label>
                 </div>
-                <div class="setting-item">
-                    <strong>Attempts</strong>
-                    <select id="setting-attempts" onchange="ui.saveSettings()">
-                        <option value="6" ${s.attempts === 6 ? 'selected' : ''}>6</option>
-                        <option value="7" ${s.attempts === 7 ? 'selected' : ''}>7</option>
-                        <option value="8" ${s.attempts === 8 ? 'selected' : ''}>8</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <strong>Cyber Neon Theme</strong>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-theme-neon" ${s.theme === 'neon' ? 'checked' : ''} onchange="ui.setTheme('neon')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <strong>Retro Vintage Theme</strong>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-theme-retro" ${s.theme === 'retro' ? 'checked' : ''} onchange="ui.setTheme('retro')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <strong>Deep Ocean Theme</strong>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-theme-ocean" ${s.theme === 'ocean' ? 'checked' : ''} onchange="ui.setTheme('ocean')">
-                        <span class="slider"></span>
-                    </label>
-                </div>
             `
         });
-    }
-
-    setTheme(themeName) {
-        const isChecked = document.getElementById(`setting-theme-${themeName}`).checked;
-        if (isChecked) {
-            ['neon', 'retro', 'ocean'].forEach(t => {
-                if (t !== themeName) {
-                    const el = document.getElementById(`setting-theme-${t}`);
-                    if (el) el.checked = false;
-                }
-            });
-        }
-        this.saveSettings();
     }
 
     saveSettings() {
         if (!window.game) return;
         
+        const appearanceEl = document.getElementById('setting-appearance');
+        const hardEl = document.getElementById('setting-hard');
+        const hcEl = document.getElementById('setting-hc');
+        const attemptsEl = document.getElementById('setting-attempts');
+
+        if (!appearanceEl || !hardEl || !hcEl || !attemptsEl) return;
+
+        const appearance = appearanceEl.value;
         let selectedTheme = 'default';
-        if (document.getElementById('setting-theme-neon')?.checked) selectedTheme = 'neon';
-        else if (document.getElementById('setting-theme-retro')?.checked) selectedTheme = 'retro';
-        else if (document.getElementById('setting-theme-ocean')?.checked) selectedTheme = 'ocean';
+        let isDarkMode = false;
+
+        if (appearance === 'dark') {
+            isDarkMode = true;
+        } else if (appearance === 'neon') {
+            selectedTheme = 'neon';
+            isDarkMode = true;
+        } else if (appearance === 'retro') {
+            selectedTheme = 'retro';
+            isDarkMode = false;
+        } else if (appearance === 'ocean') {
+            selectedTheme = 'ocean';
+            isDarkMode = true;
+        }
 
         const settings = {
-            hardMode: document.getElementById('setting-hard').checked,
-            darkMode: document.getElementById('setting-dark').checked,
-            highContrast: document.getElementById('setting-hc').checked,
-            attempts: parseInt(document.getElementById('setting-attempts').value),
+            hardMode: hardEl.value === 'true',
+            darkMode: isDarkMode,
+            highContrast: hcEl.checked,
+            attempts: parseInt(attemptsEl.value),
             theme: selectedTheme,
             mode: game.mode,
             soundEnabled: true

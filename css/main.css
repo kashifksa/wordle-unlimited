@@ -29,16 +29,30 @@ body.dark-mode {
     --color-key-text: #ffffff;
     --color-modal-bg: rgba(18, 18, 19, 0.95);
     --color-absent: #3a3a3c;
+    --color-correct: #538d4e;
+    --color-present: #b59f3b;
+}
+
+/* Light Mode (Explicit) */
+body.light-mode {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+    --color-border: #d3d6da;
+    --color-key-bg: #d3d6da;
+    --color-key-text: #000000;
+    --color-modal-bg: rgba(255, 255, 255, 0.9);
+    --color-absent: #787c7e;
+    --color-correct: #6aaa64;
+    --color-present: #c9b458;
 }
 
 /* High Contrast Mode Overrides */
 body.high-contrast {
-    --color-correct: #6aaa64 !important;
-    --color-present: #c9b458 !important;
-    --color-absent: #787c7e !important;
+    --color-correct: #f5793a !important;
+    --color-present: #85c0f9 !important;
 }
 
-/* Theme: Cyber Neon */
+/* Theme: Cyber Neon (Always Dark) */
 body.theme-neon {
     --color-bg: #0d0d14;
     --color-text: #00ffcc;
@@ -94,7 +108,7 @@ body {
     min-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
-    transition: background-color var(--transition-med), color var(--transition-med);
+    transition: background-color var(--transition-med), color var(--transition-med), border-color var(--transition-med);
 }
 
 
@@ -243,6 +257,8 @@ body {
     text-transform: uppercase;
     border: 2px solid var(--color-border);
     user-select: none;
+    line-height: 1;
+    padding: 0;
     transition: transform 0.1s ease;
 }
 
@@ -303,6 +319,8 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     user-select: none;
+    line-height: 1;
+    padding: 0;
     transition: all 0.1s ease;
     touch-action: manipulation;
 }
@@ -681,9 +699,9 @@ body.dark-mode .setting-item select option {
 .help-example .tile {
     width: 40px;
     height: 40px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    border: 2px solid #3a3a3c;
+    border: 2px solid var(--color-border);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -691,6 +709,8 @@ body.dark-mode .setting-item select option {
     background: transparent;
     color: #ffffff;
     text-transform: uppercase;
+    line-height: 1;
+    padding: 0;
 }
 
 .help-example .tile[data-state="correct"] {
@@ -704,8 +724,8 @@ body.dark-mode .setting-item select option {
 }
 
 .help-example .tile[data-state="absent"] {
-    background-color: #3a3a3c;
-    border-color: #3a3a3c;
+    background-color: var(--color-absent);
+    border-color: var(--color-absent);
 }
 
 .help-example p {
@@ -714,14 +734,19 @@ body.dark-mode .setting-item select option {
     opacity: 1;
 }
 
-.modal-help-override {
-    background-color: #121213 !important;
-    color: #ffffff !important;
-    border: 1px solid #3a3a3c !important;
-}
-
-.modal-help-override .close-button {
-    color: #ffffff !important;
+.modal-content {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-border);
+    animation: modalSlideIn var(--transition-med) ease-out;
 }
 
 /* Message Container */
@@ -796,6 +821,25 @@ body.dark-mode .setting-item select option {
     opacity: 0.9;
 }
 
+.help-text-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.color-box {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.color-box.correct { background-color: var(--color-correct); }
+.color-box.present { background-color: var(--color-present); }
+.color-box.absent { background-color: var(--color-absent); }
+
 #game-content ul {
     margin-bottom: 30px;
     padding-left: 20px;
@@ -824,12 +868,10 @@ table {
     font-size: 1rem;
     border-radius: 12px;
     overflow: hidden;
-    overflow-x: auto;
-    display: block; /* Makes it scrollable on mobile */
-    white-space: nowrap; /* Prevents text squishing on small screens */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
+    table-layout: auto;
 }
 
 body.dark-mode table {
@@ -838,9 +880,10 @@ body.dark-mode table {
 }
 
 th, td {
-    padding: 18px 24px;
+    padding: 18px 20px;
     text-align: left;
     border-bottom: 1px solid var(--color-border);
+    width: 33.33%;
 }
 
 th {
