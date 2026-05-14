@@ -41,8 +41,7 @@ class WordleUI {
         window.addEventListener('game-started', () => {
             console.log("WordleUI: Received game-started event.");
             this.renderBoard();
-            this.renderKeyboard();
-            this.updateKeyboard();
+            this.resetKeyboard();
             this.applySettings();
         });
 
@@ -208,6 +207,7 @@ class WordleUI {
     }
 
     renderKeyboard() {
+        if (this.keyboard.children.length > 0) return;
         console.log("WordleUI: rendering keyboard...");
         const rows = [
             'qwertyuiop'.split(''),
@@ -228,7 +228,8 @@ class WordleUI {
                     button.textContent = key;
                 }
                 button.setAttribute('data-key', key);
-                button.onclick = () => {
+                button.onclick = (e) => {
+                    e.preventDefault();
                     if (key === 'enter') this.handleEnter();
                     else if (key === 'backspace') this.handleBackspace();
                     else this.handleLetter(key);
@@ -237,6 +238,11 @@ class WordleUI {
             });
             this.keyboard.appendChild(row);
         });
+    }
+
+    resetKeyboard() {
+        const keys = this.keyboard.querySelectorAll('.key');
+        keys.forEach(key => key.removeAttribute('data-state'));
     }
 
     updateKeyboard() {
@@ -251,9 +257,13 @@ class WordleUI {
                 else if (res.state === 'absent' && current === 'absent') letterStates[res.letter] = 'absent';
             });
         });
-        Object.entries(letterStates).forEach(([letter, state]) => {
-            const key = this.keyboard.querySelector(`[data-key="${letter}"]`);
-            if (key) key.setAttribute('data-state', state);
+        
+        // Batch DOM updates
+        requestAnimationFrame(() => {
+            Object.entries(letterStates).forEach(([letter, state]) => {
+                const key = this.keyboard.querySelector(`[data-key="${letter}"]`);
+                if (key) key.setAttribute('data-state', state);
+            });
         });
     }
 
