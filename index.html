@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wordle Unlimited Play Free Endless Word Puzzles Online</title>
     <link rel="canonical" href="https://wordleunlimited.info" />
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
-    <meta name="keywords" content="Wordle, Wordle Unlimited, Daily Wordle, Word Game, Puzzle, Free Games, Hard Mode Wordle">
+    <meta name="description"
+        content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
+    <meta name="keywords"
+        content="Wordle, Wordle Unlimited, Daily Wordle, Word Game, Puzzle, Free Games, Hard Mode Wordle">
     <meta name="author" content="Wordle Unlimited">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wordleunlimited.info">
     <meta property="og:title" content="Wordle Unlimited Play Free Endless Word Puzzles Online">
-    <meta property="og:description" content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
+    <meta property="og:description"
+        content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
     <meta property="og:image" content="assets/game-preview.webp">
     <meta property="og:site_name" content="Wordle Unlimited">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
     <meta property="twitter:url" content="https://wordleunlimited.info">
     <meta property="twitter:title" content="Wordle Unlimited Play Free Endless Word Puzzles Online">
-    <meta property="twitter:description" content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
+    <meta property="twitter:description"
+        content="Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits. Improve your vocabulary and solve unlimited word games.">
     <meta property="twitter:image" content="assets/game-preview.webp">
 
     <!-- Speed Optimizations -->
@@ -34,39 +40,143 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    
+
     <!-- Preload Game Data -->
     <link rel="preload" href="data/words.json" as="fetch" crossorigin="anonymous">
-    
+
     <!-- Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"></noscript>
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
 
     <!-- Critical CSS (Inlined for speed) -->
     <style>
-        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}
-        body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}
-        *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-        body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
-        .main-header{display:flex;justify-content:space-between;align-items:center;padding:0 16px;height:60px;border-bottom:1px solid var(--color-border)}
-        .logo{font-family:var(--font-heading);font-weight:800;font-size:clamp(1.2rem,5vw,1.8rem);letter-spacing:.05em;display:flex;align-items:center;gap:6px}
-        #game-container{height:calc(100vh - 60px);height:calc(100dvh - 60px);display:flex;flex-direction:column;justify-content:center;align-items:center;max-width:500px;margin:0 auto;width:100%;padding:10px}
-        #board{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(6,1fr);gap:5px;padding:10px;width:100%;max-width:330px;aspect-ratio:5/6}
-        .tile{width:100%;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;font-size:clamp(1.2rem,5vh,2rem);font-weight:700;text-transform:uppercase;border:2px solid var(--color-border);line-height:1;padding:0;transition:transform .1s ease}
+        :root {
+            --color-correct: #6aaa64;
+            --color-present: #c9b458;
+            --color-absent: #787c7e;
+            --color-border: #d3d6da;
+            --color-bg: #fff;
+            --color-text: #000;
+            --color-key-bg: #d3d6da;
+            --color-key-text: #000;
+            --color-modal-bg: rgba(255, 255, 255, .9);
+            --transition-fast: .15s;
+            --transition-med: .3s;
+            --transition-slow: .6s;
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif
+        }
+
+        body.dark-mode {
+            --color-bg: #121213;
+            --color-text: #fff;
+            --color-border: #3a3a3c;
+            --color-key-bg: #818384;
+            --color-key-text: #fff;
+            --color-modal-bg: rgba(18, 18, 19, .95);
+            --color-absent: #3a3a3c;
+            --color-correct: #538d4e;
+            --color-present: #b59f3b
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            transition: background-color var(--transition-med), color var(--transition-med)
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .tile {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
     </style>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css?v=1.5" fetchpriority="high">
-    
+
     <!-- Favicon & PWA -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2235%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2270%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2235%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2270%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2235%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2270%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2235%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2270%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/></svg>">
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
-    
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
     [
@@ -139,13 +249,13 @@
       }
     ]
     </script>
-    
+
     <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-    
+
     <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
-    
+
     <!-- Scripts -->
     <script src="js/state.js" defer></script>
     <script src="js/game.js?v=2" defer></script>
@@ -160,14 +270,26 @@
         }
     </script>
 </head>
+
 <body class="theme-default">
     <header class="main-header">
         <div class="header-left">
             <button id="btn-help" class="icon-button" aria-label="Help">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
             </button>
             <button id="btn-give-up" class="icon-button" aria-label="Restart Game">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
             </button>
         </div>
         <div class="header-center">
@@ -175,10 +297,16 @@
         </div>
         <div class="header-right">
             <button id="btn-stats" class="icon-button" aria-label="Statistics">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path fill="currentColor" d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
             </button>
             <button id="btn-settings" class="icon-button" aria-label="Settings">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path fill="currentColor" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
             </button>
         </div>
     </header>
@@ -187,7 +315,7 @@
         <div id="board-container">
             <div id="board" role="grid" aria-label="Wordle Grid"></div>
         </div>
-        
+
         <div id="message-container"></div>
 
         <div id="keyboard-container">
@@ -198,24 +326,39 @@
     <section id="game-content">
         <div class="content-container">
             <h2>Wordle Unlimited: Play Endless Word Puzzles Online</h2>
-            <p>Welcome to the most addictive and flexible way to enjoy word puzzles. Our Wordle Unlimited mode was specifically designed for players who find the one puzzle a day limit too restrictive. Whether you are a vocabulary master or a casual gamer looking to pass the time, our platform allows you to solve an infinite number of puzzles at your own pace.</p>
-            <p>We have combined the classic gameplay you love with a modern, fast loading interface. No more waiting for the midnight reset, just hit New Game and keep the fun going. Our version is optimized for both desktop and mobile, ensuring you get a seamless experience whether you are at home or on the go.</p>
+            <p>Welcome to the most addictive and flexible way to enjoy word puzzles. Our Wordle Unlimited mode was
+                specifically designed for players who find the one puzzle a day limit too restrictive. Whether you are a
+                vocabulary master or a casual gamer looking to pass the time, our platform allows you to solve an
+                infinite number of puzzles at your own pace.</p>
+            <p>We have combined the classic gameplay you love with a modern, fast loading interface. No more waiting for
+                the midnight reset, just hit New Game and keep the fun going. Our version is optimized for both desktop
+                and mobile, ensuring you get a seamless experience whether you are at home or on the go.</p>
 
             <h2>Introduction to the Unlimited Wordle Experience</h2>
-            <p>Enjoy a fun and easy puzzle experience anytime with our Unlimited Wordle game modes. We created this space for players who love word challenges but hate the 24 hour wait. Whether you're looking to improve your vocabulary or just need a quick brain teaser, our platform offers a clean, fast loading environment for all devices.</p>
-            <p>Unlike the classic version, you can start a new round instantly. With customizable <a href="javascript:void(0)" onclick="ui.showSettings()" style="color: var(--color-correct); font-weight: 600;">themes</a> and smooth mobile controls, it’s the perfect place to sharpen your thinking skills at your own pace.</p>
+            <p>Enjoy a fun and easy puzzle experience anytime with our Unlimited Wordle game modes. We created this
+                space for players who love word challenges but hate the 24 hour wait. Whether you're looking to improve
+                your vocabulary or just need a quick brain teaser, our platform offers a clean, fast loading environment
+                for all devices.</p>
+            <p>Unlike the classic version, you can start a new round instantly. With customizable <a
+                    href="javascript:void(0)" onclick="ui.showSettings()"
+                    style="color: var(--color-correct); font-weight: 600;">themes</a> and smooth mobile controls, it’s
+                the perfect place to sharpen your thinking skills at your own pace.</p>
 
             <h2>Experience the Ultimate Wordle Challenge</h2>
             <div class="preview-container">
                 <div class="preview-card">
-                    <img src="assets/game-preview.webp" alt="Wordle Unlimited Gameplay Preview" class="responsive-img" loading="lazy">
+                    <img src="assets/game-preview.webp" alt="Wordle Unlimited Gameplay Preview" class="responsive-img"
+                        loading="lazy">
                     <div class="preview-overlay">
-                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-primary">Play Now</button>
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-primary">Play
+                            Now</button>
                     </div>
                 </div>
                 <div class="preview-text">
                     <h3>Simple. Addictive. Unlimited.</h3>
-                    <p>Our Wordle Unlimited platform offers the most refined gaming experience. Whether you're a beginner or a word master, you'll love the smooth animations, dark mode, and endless puzzles.</p>
+                    <p>Our Wordle Unlimited platform offers the most refined gaming experience. Whether you're a
+                        beginner or a word master, you'll love the smooth animations, dark mode, and endless puzzles.
+                    </p>
                     <ul class="check-list">
                         <li>Infinite new words every day</li>
                         <li>100% Free with no registration</li>
@@ -226,17 +369,25 @@
             </div>
 
             <h2>How to Play: Rules and Mechanics</h2>
-            <p>The goal is simple: Guess the hidden five letter word in six attempts. After every guess, the tiles change color to show how close you are to the answer:</p>
-            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter is correct and in the perfect spot.</span></p>
-            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter is in the word but in a different position.</span></p>
-            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is not part of today’s secret word.</span></p>
+            <p>The goal is simple: Guess the hidden five letter word in six attempts. After every guess, the tiles
+                change color to show how close you are to the answer:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter
+                    is correct and in the perfect spot.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter
+                    is in the word but in a different position.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is
+                    not part of today’s secret word.</span></p>
 
             <h3>Explore Advanced Game Modes</h3>
-            <p>For those seeking a bigger challenge, try our <a href="javascript:void(0)" onclick="ui.showSettings()" style="color: var(--color-correct); font-weight: 600;">Hard Mode</a>. In this version, any clues revealed (Green or Yellow) must be used in your subsequent guesses. We also offer Multi Word modes where you can solve multiple puzzles simultaneously to test your multitasking skills.</p>
+            <p>For those seeking a bigger challenge, try our <a href="javascript:void(0)" onclick="ui.showSettings()"
+                    style="color: var(--color-correct); font-weight: 600;">Hard Mode</a>. In this version, any clues
+                revealed (Green or Yellow) must be used in your subsequent guesses. We also offer Multi Word modes where
+                you can solve multiple puzzles simultaneously to test your multitasking skills.</p>
 
             <h2>Wordle vs. Unlimited: What’s the Difference?</h2>
             <p>The core gameplay remains the same, but the freedom is much higher here.</p>
-            <div class="table-container" style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
+            <div class="table-container"
+                style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
                 <table style="margin: 0; box-shadow: none; border: none;">
                     <thead>
                         <tr>
@@ -286,11 +437,14 @@
             </div>
 
             <h2>Master the Game of Wordle Unlimited</h2>
-            <p>Wordle Unlimited is a fun and challenging word puzzle game. To win consistently, you need a smart plan and a strong vocabulary. Follow this guide to improve your skills and maintain a long winning streak.</p>
+            <p>Wordle Unlimited is a fun and challenging word puzzle game. To win consistently, you need a smart plan
+                and a strong vocabulary. Follow this guide to improve your skills and maintain a long winning streak.
+            </p>
 
             <h3>Best Strategies for Consistent Wins</h3>
-            <p>Winning at Wordle requires more than just guessing. Use these proven methods to find the hidden word in fewer attempts.</p>
-            
+            <p>Winning at Wordle requires more than just guessing. Use these proven methods to find the hidden word in
+                fewer attempts.</p>
+
             <h4>Choosing Your Starting Word</h4>
             <ul>
                 <li>Begin with words that contain many vowels like ARISE or ADIEU.</li>
@@ -306,13 +460,20 @@
             </ul>
 
             <h3>Understanding Wordle Colors and Logic</h3>
-            <p>The feedback system is simple but powerful. Knowing how to read the tiles is the key to solving any puzzle.</p>
-            
+            <p>The feedback system is simple but powerful. Knowing how to read the tiles is the key to solving any
+                puzzle.</p>
+
             <h4>What the Tile Colors Mean</h4>
             <ul>
-                <li><span class="color-box correct" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Green tiles mean the letter is correct and it is in the right position.</li>
-                <li><span class="color-box present" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Yellow tiles mean the letter exists in the word but it is in a different spot.</li>
-                <li><span class="color-box absent" style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Gray tiles mean the letter is not part of the hidden word at all.</li>
+                <li><span class="color-box correct"
+                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Green tiles
+                    mean the letter is correct and it is in the right position.</li>
+                <li><span class="color-box present"
+                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Yellow
+                    tiles mean the letter exists in the word but it is in a different spot.</li>
+                <li><span class="color-box absent"
+                        style="width: 14px; height: 14px; display: inline-block; margin-right: 5px;"></span> Gray tiles
+                    mean the letter is not part of the hidden word at all.</li>
             </ul>
 
             <h3>Advanced Tips for Hard Mode Players</h3>
@@ -326,10 +487,12 @@
             <div class="strategy-grid">
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-target.webp" alt="Strategy Target" class="strategy-photo" loading="lazy">
+                        <img src="assets/strategy-target.webp" alt="Strategy Target" class="strategy-photo"
+                            loading="lazy">
                     </div>
                     <h3>Top Starting Words</h3>
-                    <p>The first guess is the most critical. Math experts and linguists suggest using words with many vowels and common consonants.</p>
+                    <p>The first guess is the most critical. Math experts and linguists suggest using words with many
+                        vowels and common consonants.</p>
                     <ul class="tag-list">
                         <li>ADIEU</li>
                         <li>ARISE</li>
@@ -342,34 +505,43 @@
                         <img src="assets/strategy-hint.webp" alt="Lightbulb Hint" class="strategy-photo" loading="lazy">
                     </div>
                     <h3>The Vowel Hunter</h3>
-                    <p>If your first word didn't reveal vowels, use your second turn to test the remaining ones (O, U, and sometimes Y).</p>
+                    <p>If your first word didn't reveal vowels, use your second turn to test the remaining ones (O, U,
+                        and sometimes Y).</p>
                 </div>
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-pattern.webp" alt="Pattern Puzzle" class="strategy-photo" loading="lazy">
+                        <img src="assets/strategy-pattern.webp" alt="Pattern Puzzle" class="strategy-photo"
+                            loading="lazy">
                     </div>
                     <h3>Pattern Recognition</h3>
-                    <p>Watch out for common word endings like <strong>ING</strong>, <strong>ED</strong>, or <strong>ER</strong>. They can help you narrow down the target word quickly.</p>
+                    <p>Watch out for common word endings like <strong>ING</strong>, <strong>ED</strong>, or
+                        <strong>ER</strong>. They can help you narrow down the target word quickly.</p>
                 </div>
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-double.webp" alt="Double Letter Trick" class="strategy-photo" loading="lazy">
+                        <img src="assets/strategy-double.webp" alt="Double Letter Trick" class="strategy-photo"
+                            loading="lazy">
                     </div>
                     <h3>Double Letter Trick</h3>
-                    <p>Don't forget that target words can contain double letters (like <strong>E</strong> or <strong>O</strong>). If you're stuck, try repeating a vowel or common consonant.</p>
+                    <p>Don't forget that target words can contain double letters (like <strong>E</strong> or
+                        <strong>O</strong>). If you're stuck, try repeating a vowel or common consonant.</p>
                 </div>
             </div>
 
             <h2>Why Our Platform is the Best Choice</h2>
-            <p>We provide a premium gaming experience for all word puzzle fans. Our platform is designed to be fast, clean, and accessible on all devices.</p>
+            <p>We provide a premium gaming experience for all word puzzle fans. Our platform is designed to be fast,
+                clean, and accessible on all devices.</p>
             <ul>
                 <li>Play as many games as you want without any daily limits.</li>
                 <li>Track your personal performance with our detailed statistics system.</li>
-                <li>Choose from different <a href="javascript:void(0)" onclick="ui.showSettings()" style="color: var(--color-correct); font-weight: 600;">visual themes</a> to make your gameplay more comfortable.</li>
+                <li>Choose from different <a href="javascript:void(0)" onclick="ui.showSettings()"
+                        style="color: var(--color-correct); font-weight: 600;">visual themes</a> to make your gameplay
+                    more comfortable.</li>
                 <li>Experience instant loading times on both mobile and desktop browsers.</li>
             </ul>
 
-            <p>Whether you are a beginner or a pro, Wordle Unlimited offers a perfect mental workout. Use these strategies to master the game and enjoy endless puzzles every day.</p>
+            <p>Whether you are a beginner or a pro, Wordle Unlimited offers a perfect mental workout. Use these
+                strategies to master the game and enjoy endless puzzles every day.</p>
 
 
             <h2>FAQ’s</h2>
@@ -380,97 +552,112 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, most Wordle Unlimited games are completely free. You can enjoy unlimited puzzles without paying or creating an account.</p>
+                        <p>Yes, most Wordle Unlimited games are completely free. You can enjoy unlimited puzzles without
+                            paying or creating an account.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Can I play Wordle Unlimited every day?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, you can play anytime you want. Unlike the original daily Wordle, Wordle Unlimited gives endless new words instantly.</p>
+                        <p>Yes, you can play anytime you want. Unlike the original daily Wordle, Wordle Unlimited gives
+                            endless new words instantly.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>What is Infinity Mode in Wordle Unlimited?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Infinity Mode lets you play endless Wordle puzzles without any daily limits. You can continue solving new words as long as you want.</p>
+                        <p>Infinity Mode lets you play endless Wordle puzzles without any daily limits. You can continue
+                            solving new words as long as you want.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Is Wordle Unlimited the same as NYT Wordle?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>No, Wordle Unlimited is different from the official <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">NYT Wordle</a>. NYT Wordle offers one daily puzzle, while Wordle Unlimited allows endless games anytime.</p>
+                        <p>No, Wordle Unlimited is different from the official <a
+                                href="https://www.nytimes.com/games/wordle/index.html" target="_blank"
+                                rel="noopener noreferrer">NYT Wordle</a>. NYT Wordle offers one daily puzzle, while
+                            Wordle Unlimited allows endless games anytime.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Can beginners enjoy Wordle Infinite?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely. Wordle Infinite is easy to learn and suitable for beginners, students, and experienced word puzzle players.</p>
+                        <p>Absolutely. Wordle Infinite is easy to learn and suitable for beginners, students, and
+                            experienced word puzzle players.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Who Made the Original Wordle?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The original Wordle game was created by Welsh software engineer <a href="https://en.wikipedia.org/wiki/Josh_Wardle" target="_blank" rel="noopener noreferrer">Josh Wardle</a> in 2021. He made the game as a fun project for his partner, who loved word puzzles. Later Wordle became a worldwide viral game and was bought by The New York Times (NYT) in 2022.</p>
+                        <p>The original Wordle game was created by Welsh software engineer <a
+                                href="https://en.wikipedia.org/wiki/Josh_Wardle" target="_blank"
+                                rel="noopener noreferrer">Josh Wardle</a> in 2021. He made the game as a fun project for
+                            his partner, who loved word puzzles. Later Wordle became a worldwide viral game and was
+                            bought by The New York Times (NYT) in 2022.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>What is a Wordle Solver?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>A Wordle Solver is a tool that helps you find the correct Wordle answer faster using your previous guesses.</p>
+                        <p>A Wordle Solver is a tool that helps you find the correct Wordle answer faster using your
+                            previous guesses.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Does the Hint feature give direct answers in the game?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>We currently do not offer Wordle hints, allowing every player to enjoy a fair and challenging experience.</p>
+                        <p>We currently do not offer Wordle hints, allowing every player to enjoy a fair and challenging
+                            experience.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>How does the Wordle Generator create new words?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Our Wordle Generator works through a smart backend system that automatically creates random words and keywords for a fresh gameplay experience every time.</p>
+                        <p>Our Wordle Generator works through a smart backend system that automatically creates random
+                            words and keywords for a fresh gameplay experience every time.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <h3>Why are random keywords used instead of full word answers?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>We use random keywords to make the game more fun, challenging, and interactive so players can solve puzzles by using their own logic and vocabulary skills.</p>
+                        <p>We use random keywords to make the game more fun, challenging, and interactive so players can
+                            solve puzzles by using their own logic and vocabulary skills.</p>
                     </div>
                 </div>
             </div>
@@ -485,17 +672,18 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-left">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer-logo-svg" style="border-radius: 6px; margin-right: 8px;">
-                    <rect width="32" height="32" rx="6" fill="#121213"/>
-                    <rect x="4" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
-                    <rect x="12.5" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
-                    <rect x="21" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
-                    <rect x="4" y="12.5" width="7" height="7" rx="1.5" fill="#3a3a3c"/>
-                    <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#b59f3b"/>
-                    <rect x="21" y="12.5" width="7" height="7" rx="1.5" fill="#538d4e"/>
-                    <rect x="4" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
-                    <rect x="12.5" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
-                    <rect x="21" y="21" width="7" height="7" rx="1.5" fill="#538d4e"/>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="footer-logo-svg" style="border-radius: 6px; margin-right: 8px;">
+                    <rect width="32" height="32" rx="6" fill="#121213" />
+                    <rect x="4" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
+                    <rect x="12.5" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
+                    <rect x="21" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
+                    <rect x="4" y="12.5" width="7" height="7" rx="1.5" fill="#3a3a3c" />
+                    <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#b59f3b" />
+                    <rect x="21" y="12.5" width="7" height="7" rx="1.5" fill="#538d4e" />
+                    <rect x="4" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
+                    <rect x="12.5" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
+                    <rect x="21" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
                 </svg>
                 <span>Wordle Unlimited © 2026</span>
             </div>
@@ -506,15 +694,27 @@
                     <a href="contact-us">Contact Us</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+                        class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                        </svg>
                     </a>
-                    <a href="https://www.instagram.com/wordleunlimited.info" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <a href="https://www.instagram.com/wordleunlimited.info" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
 </body>
+
 </html>
