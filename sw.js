@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wordle-unlimited-v15';
+const CACHE_NAME = 'wordle-unlimited-v16';
 const ASSETS = [
   './',
   'Wordle-Unlimited',
@@ -50,9 +50,9 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch Assets from Cache
+// Fetch Assets from Cache (Cache-First Strategy)
 self.addEventListener('fetch', event => {
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    caches.match(event.request).then(cached => cached || fetch(event.request))
   );
 });
