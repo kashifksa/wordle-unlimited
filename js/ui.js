@@ -628,6 +628,26 @@ class WordleUI {
                         <span class="slider"></span>
                     </label>
                 </div>
+                <div class="setting-item">
+                    <div>
+                        <strong>Daily Challenge</strong>
+                        <p>Play Today's Word from NYT</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-mode" ${s.mode === 'nyt' ? 'checked' : ''} onchange="ui.saveSettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div>
+                        <strong>Sound Effects</strong>
+                        <p>Enable game sound effects</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-sound" ${s.soundEnabled ? 'checked' : ''} onchange="ui.saveSettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             `
         });
     }
@@ -639,6 +659,8 @@ class WordleUI {
         const hardEl = document.getElementById('setting-hard');
         const hcEl = document.getElementById('setting-hc');
         const attemptsEl = document.getElementById('setting-attempts');
+        const modeEl = document.getElementById('setting-mode');
+        const soundEl = document.getElementById('setting-sound');
 
         if (!appearanceEl || !hardEl || !hcEl || !attemptsEl) return;
 
@@ -665,8 +687,8 @@ class WordleUI {
             highContrast: hcEl.checked,
             attempts: parseInt(attemptsEl.value),
             theme: selectedTheme,
-            mode: game.mode,
-            soundEnabled: true
+            mode: modeEl && modeEl.checked ? 'nyt' : 'unlimited',
+            soundEnabled: soundEl ? soundEl.checked : true
         };
         
         const oldAttempts = game.settings.attempts;
@@ -677,7 +699,7 @@ class WordleUI {
         game.mode = settings.mode;
         
         if (oldAttempts !== settings.attempts || oldMode !== settings.mode) {
-            game.startNewGame();
+            game.startNewGame().catch(e => console.error(e));
         }
         
         this.applySettings();

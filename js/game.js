@@ -13,7 +13,8 @@ class WordleGame {
             
             if (window.State) {
                 this.settings = State.loadSettings();
-                console.log("WordleGame: Settings loaded from State.");
+                this.mode = this.settings.mode || 'unlimited';
+                console.log("WordleGame: Settings loaded from State. Mode:", this.mode);
             } else {
                 console.error("WordleGame: State object not found!");
                 this.settings = {
@@ -22,7 +23,8 @@ class WordleGame {
                     hardMode: false,
                     theme: 'default',
                     attempts: 6,
-                    soundEnabled: true
+                    soundEnabled: true,
+                    mode: 'unlimited'
                 };
             }
             
@@ -56,7 +58,7 @@ class WordleGame {
                 }
             }
             
-            this.startNewGame();
+            await this.startNewGame();
             console.log("WordleGame: init() finished.");
         } catch (error) {
             console.error('WordleGame: init() failed:', error);
@@ -138,7 +140,7 @@ class WordleGame {
         if (window.State) {
             this.reshuffleWords();
         }
-        this.startNewGame();
+        await this.startNewGame();
         if (window.ui) {
             ui.renderBoard();
             ui.renderKeyboard(true);
@@ -159,20 +161,53 @@ class WordleGame {
         }
     }
 
-    startNewGame() {
+    async startNewGame() {
+        let transitionFromNyt = false;
+        if (this.mode === 'nyt' && this.isGameOver) {
+            transitionFromNyt = true;
+            this.mode = 'unlimited';
+            this.settings.mode = 'unlimited';
+            if (window.State) State.saveSettings(this.settings);
+        }
+
         this.isGameOver = false;
         this.guesses = [];
         this.currentGuess = '';
         this.startTime = Date.now();
         
-        this.targetWord = this.getNextWord();
+        try {
+            this.targetWord = await this.getNextWord();
+        } catch (e) {
+            console.error("Error setting target word, falling back:", e);
+            this.targetWord = 'wordle';
+        }
         if (window.State) State.clearGameState();
         
         console.log('WordleGame: New game started. Target Word:', this.targetWord);
         window.dispatchEvent(new CustomEvent('game-started'));
+
+        if (transitionFromNyt && window.ui) {
+            setTimeout(() => {
+                window.ui.showToast("Daily Challenge completed! Switched to Unlimited mode.");
+            }, 100);
+        }
     }
 
-    getNextWord() {
+    async getNextWord() {
+        if (this.mode === 'nyt') {
+            try {
+                const word = await this.loadNYTWord();
+                if (word && word.length === this.wordLength) {
+                    return word.toLowerCase();
+                }
+            } catch (e) {
+                console.error("Failed to load NYT word, falling back to local pool:", e);
+                if (window.ui) {
+                    window.ui.showToast("Connection failed. Loaded fallback word.", 3000);
+                }
+            }
+        }
+
         const shuffled = window.State ? State.loadShuffledWords() : null;
         if (!shuffled) {
             // Fallback
@@ -195,6 +230,51 @@ class WordleGame {
             State.saveCurrentIndex(index + 1);
             return word;
         }
+    }
+
+    getTodayWordApiUrl(useLocal = true) {
+        if (useLocal && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            return '/TodayWordle/wp-json/wordle/v1';
+        }
+        return 'https://todaywordlehint.com/wp-json/wordle/v1';
+    }
+
+    async loadNYTWord() {
+        const localDate = new Date();
+        const year = localDate.getFullYear();
+        const month = String(localDate.getMonth() + 1).padStart(2, '0');
+        const day = String(localDate.getDate()).padStart(2, '0');
+        const dateStr = `${year}-${month}-${day}`;
+
+        const tryFetch = async (baseUrl) => {
+            const dateUrl = `${baseUrl}/data?date=${dateStr}`;
+            let response = await fetch(dateUrl);
+            if (response.ok) {
+                const resData = await response.json();
+                if (resData && resData.success && resData.data && resData.data.word) {
+                    return resData.data.word;
+                }
+            }
+            const todayUrl = `${baseUrl}/today`;
+            response = await fetch(todayUrl);
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.word) {
+                    return data.word;
+                }
+            }
+            throw new Error("Could not find word in API responses");
+        };
+
+        try {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return await tryFetch(this.getTodayWordApiUrl(true));
+            }
+        } catch (e) {
+            console.warn("Local API fetch failed, trying production API...", e);
+        }
+
+        return await tryFetch(this.getTodayWordApiUrl(false));
     }
 
     submitGuess() {
