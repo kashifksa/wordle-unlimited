@@ -418,7 +418,7 @@ class WordleUI {
         const banner = document.getElementById('hint-banner');
         if (!banner) return;
         
-        if (window.game && game.guesses.length >= 3 && !game.isGameOver && !this.hintBannerDismissed) {
+        if (window.game && game.mode === 'nyt' && game.guesses.length >= 3 && !game.isGameOver && !this.hintBannerDismissed) {
             banner.classList.remove('hidden');
         } else {
             banner.classList.add('hidden');
