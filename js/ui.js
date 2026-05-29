@@ -739,11 +739,41 @@ class WordleUI {
 
     giveUp() {
         if (!window.game || game.isGameOver) return;
+        this.showModal({
+            title: 'Give Up?',
+            body: `
+                <div style="text-align: center; padding: 20px;">
+                    <p style="margin-bottom: 20px;">Are you sure you want to give up on this word?</p>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button class="btn-primary" onclick="ui.confirmGiveUp()">Yes, Give Up</button>
+                        <button class="btn-secondary" onclick="ui.hideModal()">No, Keep Playing</button>
+                    </div>
+                </div>
+            `
+        });
+    }
+
+    confirmGiveUp() {
+        if (!window.game || game.isGameOver) return;
         const target = game.targetWord.toUpperCase();
         game.isGameOver = true;
+        
+        let timeTaken = null;
+        if (window.game.startTime) {
+            timeTaken = Math.floor((Date.now() - game.startTime) / 1000);
+        }
+        if (window.State) {
+            State.updateStats(false, game.guesses.length, timeTaken);
+        }
+        
         this.showModal({
             title: 'Game Over',
-            body: `<div style="text-align: center; padding: 20px;"><p style="margin-bottom: 20px;">The word was: <strong style="color: var(--color-correct); font-size: 1.5rem;">${target}</strong></p><button class="btn-primary" onclick="game.startNewGame(); ui.hideModal();">New Game</button></div>`
+            body: `
+                <div style="text-align: center; padding: 20px;">
+                    <p style="margin-bottom: 20px;">The word was: <strong style="color: var(--color-correct); font-size: 1.5rem;">${target}</strong></p>
+                    <button class="btn-primary" onclick="game.startNewGame(); ui.hideModal();">New Game</button>
+                </div>
+            `
         });
     }
 }

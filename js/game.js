@@ -200,17 +200,33 @@ class WordleGame {
     submitGuess() {
         const len = this.wordLength || 5;
         if (this.currentGuess.length !== len) return { error: 'Not enough letters' };
-        if (!this.words.valid.includes(this.currentGuess.toLowerCase())) return { error: 'Not in word list' };
+        const guessLower = this.currentGuess.toLowerCase();
+        if (this.guesses.includes(guessLower)) return { error: 'Already guessed' };
+        if (!this.words.valid.includes(guessLower)) return { error: 'Not in word list' };
 
         if (this.settings.hardMode && this.guesses.length > 0) {
-            const lastEval = this.evaluateGuess(this.guesses[this.guesses.length - 1]);
-            for (let i = 0; i < len; i++) {
-                if (lastEval[i].state === 'correct' && this.currentGuess[i] !== this.targetWord[i]) {
-                    return { error: `Must use ${this.targetWord[i].toUpperCase()} in position ${i+1}` };
+            const requiredPositions = Array(len).fill(null);
+            const requiredLetters = new Set();
+            
+            for (const prevGuess of this.guesses) {
+                const evaluation = this.evaluateGuess(prevGuess);
+                for (let i = 0; i < len; i++) {
+                    if (evaluation[i].state === 'correct') {
+                        requiredPositions[i] = evaluation[i].letter;
+                        requiredLetters.add(evaluation[i].letter);
+                    } else if (evaluation[i].state === 'present') {
+                        requiredLetters.add(evaluation[i].letter);
+                    }
                 }
             }
-            const lastPresent = lastEval.filter(e => e.state === 'present').map(e => e.letter);
-            for (const letter of lastPresent) {
+            
+            for (let i = 0; i < len; i++) {
+                if (requiredPositions[i] && this.currentGuess[i] !== requiredPositions[i]) {
+                    return { error: `Must use ${requiredPositions[i].toUpperCase()} in position ${i+1}` };
+                }
+            }
+            
+            for (const letter of requiredLetters) {
                 if (!this.currentGuess.includes(letter)) {
                     return { error: `Guess must contain ${letter.toUpperCase()}` };
                 }
