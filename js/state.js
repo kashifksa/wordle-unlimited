@@ -2,7 +2,7 @@ console.log("state.js: starting initialization...");
 
 // Security Obfuscation: Keys are encoded to hide them from plain sight
 // Note: Real security depends on Supabase Row Level Security (RLS)
-const _0x5a1 = ["aHR0cHM6Ly9udmN4cndiamFsbnlkdnJocnBudC5zdXBhYmFzZS5jbw==", "c2JfcHVibGlzaGFibGVfVnBtLXVoTURMSkpuSk0ySS1zV1cxd19wTUdFNkxjTw=="];
+const _0x5a1 = ["aHR0cHM6Ly91enF5ZWtrZGhudGJwYW11cHZkei5zdXBhYmFzZS5jbw==", "ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW5WNmNYbGxhMnRrYUc1MFluQmhiWFZ3ZG1SNklpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzT0RBd05EQXdNVEVzSW1WNGNDSTZNakE1TlRZeE5qQXhNWDAuRVNNbFhBS2tsMHJ2cHZHZmVLU0tzUVBCUEt6VUhXU0EwU3lKQkZBM2NWcw=="];
 const _c = (i) => atob(_0x5a1[i]);
 
 let supabaseClient = null;
