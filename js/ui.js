@@ -56,6 +56,8 @@ class WordleUI {
 
         window.addEventListener('game-started', () => {
             console.log("WordleUI: Received game-started event.");
+            this.hintBannerDismissed = false;
+            this.hideHintBanner(false);
             this.renderBoard();
             this.renderKeyboard(true);
             this.resetKeyboard();
@@ -66,6 +68,11 @@ class WordleUI {
         document.getElementById('btn-stats').onclick = () => this.showStats();
         document.getElementById('btn-settings').onclick = () => this.showSettings();
         document.getElementById('btn-give-up').onclick = () => this.giveUp();
+
+        const closeHintBtn = document.getElementById('btn-close-hint');
+        if (closeHintBtn) {
+            closeHintBtn.onclick = () => this.hideHintBanner(true);
+        }
 
         const selectEl = document.getElementById('lang-select');
         if (selectEl) {
@@ -172,6 +179,7 @@ class WordleUI {
         if (result.success) {
             await this.revealRow(game.guesses.length - 1, result.result);
             this.updateKeyboard();
+            this.checkHintBanner();
             if (result.won) {
                 setTimeout(() => {
                     this.bounceRow(game.guesses.length - 1);
@@ -399,6 +407,27 @@ class WordleUI {
                 if (key) key.setAttribute('data-state', state);
             });
         });
+    }
+
+    checkHintBanner() {
+        const banner = document.getElementById('hint-banner');
+        if (!banner) return;
+        
+        if (window.game && game.guesses.length >= 3 && !game.isGameOver && !this.hintBannerDismissed) {
+            banner.classList.remove('hidden');
+        } else {
+            banner.classList.add('hidden');
+        }
+    }
+
+    hideHintBanner(dismissPermanent = false) {
+        const banner = document.getElementById('hint-banner');
+        if (banner) {
+            banner.classList.add('hidden');
+        }
+        if (dismissPermanent) {
+            this.hintBannerDismissed = true;
+        }
     }
 
     showToast(message, duration = 1500) {
@@ -671,7 +700,7 @@ class WordleUI {
     shareResult() {
         if (!window.game) return;
         const emojiGrid = this.generateEmojiGrid();
-        const text = `Wordle Unlimited ${game.guesses.length}/${game.settings.attempts}\n\n${emojiGrid}`;
+        const text = `Wordle Unlimited ${game.guesses.length}/${game.settings.attempts}\n\n${emojiGrid}\n\nPlay at todaywordlehint.com`;
         const encodedText = encodeURIComponent(text);
         
         this.showModal({
