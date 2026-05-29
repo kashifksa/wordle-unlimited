@@ -1577,22 +1577,37 @@ canvas {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #b59f3b, #6aaa64);
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-text);
+    padding: 12px 18px;
+    border-radius: 14px;
     margin: 0 auto 15px auto;
     width: calc(100% - 20px);
     max-width: 330px;
     font-size: 0.85rem;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    animation: slideDown 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
+}
+
+body.dark-mode .hint-banner {
+    background: rgba(30, 30, 30, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .hint-banner.hidden {
     display: none;
+}
+
+.hint-text {
+    flex: 1;
+    margin-right: 12px;
+    line-height: 1.35;
 }
 
 .hint-actions {
@@ -1602,35 +1617,44 @@ canvas {
 }
 
 .btn-hint-link {
-    background-color: #fff;
-    color: #121213;
-    padding: 6px 12px;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #6aaa64, #538d4e);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 0.8rem;
     font-weight: 700;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(106, 170, 100, 0.25);
+    border: none;
+    white-space: nowrap;
 }
 
 .btn-hint-link:hover {
-    background-color: #f1f1f1;
-    transform: scale(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(106, 170, 100, 0.35);
+    background: linear-gradient(135deg, #7bba75, #639d5e);
+}
+
+.btn-hint-link:active {
+    transform: translateY(0);
 }
 
 #btn-close-hint {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--color-text);
     font-size: 1.4rem;
     cursor: pointer;
     line-height: 1;
     padding: 0;
-    opacity: 0.8;
-    transition: opacity 0.2s;
+    opacity: 0.65;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 #btn-close-hint:hover {
     opacity: 1;
+    transform: scale(1.1);
 }
 
 @keyframes slideDown {
