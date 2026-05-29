@@ -41,7 +41,6 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <!-- Preload Game Data & Scripts -->
-    <link rel="preload" href="data/words.js" as="script">
     <link rel="preload" href="js/game.js?v=5" as="script">
     <link rel="preload" href="js/ui.js?v=6" as="script">
 
@@ -212,9 +211,9 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
     <!-- Scripts -->
-    <script src="data/words.js" defer></script>
     <script src="js/state.js?v=2" defer></script>
     <script src="js/game.js?v=5" defer></script>
+    <script src="js/sounds.js" defer></script>
     <script src="js/ui.js?v=6" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
@@ -299,6 +298,15 @@
     </header>
 
     <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">Need a hint? Get clues for today's real word!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">Get Hints</a>
+                <button id="btn-close-hint" aria-label="Close Hint Banner">&times;</button>
+            </div>
+        </div>
+
         <div id="board-container">
             <div id="board" role="grid" aria-label="Wordle Grid"></div>
         </div>
@@ -675,9 +683,9 @@
             </div>
             <div class="footer-right">
                 <div class="footer-links">
-                    <a href="about-us">About Us</a>
-                    <a href="privacy-policy">Privacy Policy</a>
-                    <a href="contact-us">Contact Us</a>
+                    <a href="/about-us/">About Us</a>
+                    <a href="/privacy-policy/">Privacy Policy</a>
+                    <a href="/contact-us/">Contact Us</a>
                 </div>
                 <div class="footer-social">
                     <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" aria-label="Twitter"

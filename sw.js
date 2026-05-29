@@ -1,20 +1,16 @@
-const CACHE_NAME = 'wordle-unlimited-v12';
+const CACHE_NAME = 'wordle-unlimited-v13';
 const ASSETS = [
   './',
   'Wordle-Unlimited',
-  'about-us',
-  'contact-us',
-  'privacy-policy',
   'css/main.css',
   'js/state.js',
   'js/game.js',
+  'js/sounds.js',
   'js/ui.js',
   'manifest.json',
   'assets/icon.svg',
   'assets/game-preview.webp',
-  'assets/about-hero.webp',
   'data/words.json',
-  'data/words.js',
   'languages/es.json',
   'languages/pt.json',
   'languages/de.json',
