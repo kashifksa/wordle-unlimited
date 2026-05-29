@@ -137,6 +137,13 @@ class WordleGame {
     async changeLanguage(lang) {
         if (window.State) State.saveLanguage(lang);
         await this.loadLanguageData(lang);
+        
+        if (lang !== 'en' && this.mode === 'nyt') {
+            this.mode = 'unlimited';
+            this.settings.mode = 'unlimited';
+            if (window.State) State.saveSettings(this.settings);
+        }
+
         if (window.State) {
             this.reshuffleWords();
         }

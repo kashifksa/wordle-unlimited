@@ -585,12 +585,25 @@ class WordleUI {
         if (!window.game) return;
         const s = game.settings;
         
-        // Determine selected value for the unified dropdown
         let currentThemeVal = 'light';
         if (s.theme === 'neon') currentThemeVal = 'neon';
         else if (s.theme === 'retro') currentThemeVal = 'retro';
         else if (s.theme === 'ocean') currentThemeVal = 'ocean';
         else if (s.darkMode) currentThemeVal = 'dark';
+
+        const isEnglish = (game.currentLanguage === 'en');
+        const dailyChallengeHtml = isEnglish ? `
+                <div class="setting-item">
+                    <div>
+                        <strong>Daily Challenge</strong>
+                        <p>Play Today's Word from NYT</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-mode" ${s.mode === 'nyt' ? 'checked' : ''} onchange="ui.saveSettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+        ` : '';
 
         this.showModal({
             title: 'Settings',
@@ -633,16 +646,7 @@ class WordleUI {
                         <span class="slider"></span>
                     </label>
                 </div>
-                <div class="setting-item">
-                    <div>
-                        <strong>Daily Challenge</strong>
-                        <p>Play Today's Word from NYT</p>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="setting-mode" ${s.mode === 'nyt' ? 'checked' : ''} onchange="ui.saveSettings()">
-                        <span class="slider"></span>
-                    </label>
-                </div>
+                ${dailyChallengeHtml}
                 <div class="setting-item">
                     <div>
                         <strong>Sound Effects</strong>
