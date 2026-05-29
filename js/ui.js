@@ -2,6 +2,11 @@ class WordleUI {
     constructor() {
         console.log("WordleUI: constructor starting...");
         try {
+            this.isEmbedded = window.self !== window.top;
+            if (this.isEmbedded) {
+                document.body.classList.add('is-embedded');
+            }
+
             this.board = document.getElementById('board');
             this.keyboard = document.getElementById('keyboard');
             this.overlay = document.getElementById('modal-overlay');
@@ -116,6 +121,8 @@ class WordleUI {
                 dropdown.classList.remove('open');
             });
         }
+
+        window.addEventListener('resize', () => this.sendResizeMessage());
     }
 
     syncCustomDropdown(lang) {
@@ -423,6 +430,7 @@ class WordleUI {
         } else {
             banner.classList.add('hidden');
         }
+        this.sendResizeMessage();
     }
 
     hideHintBanner(dismissPermanent = false) {
@@ -432,6 +440,19 @@ class WordleUI {
         }
         if (dismissPermanent) {
             this.hintBannerDismissed = true;
+        }
+        this.sendResizeMessage();
+    }
+
+    sendResizeMessage() {
+        if (this.isEmbedded) {
+            requestAnimationFrame(() => {
+                const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+                window.parent.postMessage({
+                    type: 'wordle-resize',
+                    height: height
+                }, '*');
+            });
         }
     }
 
@@ -457,10 +478,12 @@ class WordleUI {
         modal.querySelector('.close-button').onclick = () => this.hideModal();
         this.overlay.appendChild(modal);
         this.overlay.classList.remove('hidden');
+        this.sendResizeMessage();
     }
 
     hideModal() {
         this.overlay.classList.add('hidden');
+        this.sendResizeMessage();
     }
 
     showHelp() {
@@ -726,6 +749,7 @@ class WordleUI {
         }
         
         this.renderBoard();
+        this.sendResizeMessage();
     }
 
     shareResult() {

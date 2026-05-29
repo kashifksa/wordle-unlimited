@@ -1667,3 +1667,19 @@ body.dark-mode .hint-banner {
         transform: translateY(0);
     }
 }
+
+/* Embedded inside iframe optimization */
+body.is-embedded .logo {
+    display: none;
+}
+
+body.is-embedded .main-header {
+    height: 45px;
+    border-bottom: none;
+}
+
+body.is-embedded #game-container {
+    height: calc(100vh - 45px);
+    height: calc(100dvh - 45px);
+    padding-top: 5px;
+}
