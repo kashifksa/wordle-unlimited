@@ -158,12 +158,14 @@ class WordleUI {
 
     handleLetter(letter) {
         if (!window.game) return;
+        if (window.sounds) sounds.playKeyClick();
         game.addLetter(letter);
         this.updateBoard();
     }
 
     handleBackspace() {
         if (!window.game) return;
+        if (window.sounds) sounds.playKeyClick();
         game.removeLetter();
         this.updateBoard();
     }
@@ -174,6 +176,7 @@ class WordleUI {
         if (result.error) {
             this.showToast(result.error);
             this.shakeRow(game.guesses.length);
+            if (window.sounds) sounds.playError();
             return;
         }
         if (result.success) {
@@ -183,6 +186,7 @@ class WordleUI {
             if (result.won) {
                 setTimeout(() => {
                     this.bounceRow(game.guesses.length - 1);
+                    if (window.sounds) sounds.playWin();
                     const t = result.timeTaken;
                     const timeStr = t ? ` in ${t < 60 ? t + 's' : Math.floor(t/60) + 'm ' + (t%60) + 's'}` : '';
                     this.showToast(`Splendid! Finished${timeStr}`, 3000);
@@ -281,6 +285,7 @@ class WordleUI {
                 const tile = row.children[i];
                 if (tile) {
                     tile.classList.add('flip');
+                    if (window.sounds) sounds.playTileFlip(i);
                     await new Promise(r => setTimeout(r, 150));
                     tile.setAttribute('data-state', result[i].state);
                     tile.classList.remove('flip');
