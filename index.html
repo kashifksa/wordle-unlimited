@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Wordle Unlimited Play Free Endless Word Puzzles Online</title>
-    <link rel="canonical" href="https://wordle-unlimited.app" />
 
     <!-- SEO Meta Tags -->
     <meta name="description"
@@ -42,9 +41,9 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <!-- Preload Game Data & Scripts -->
-    <link rel="preload" href="data/words.json" as="fetch" crossorigin="anonymous">
-    <link rel="preload" href="js/game.js?v=2" as="script">
-    <link rel="preload" href="js/ui.js?v=3" as="script">
+    <link rel="preload" href="data/words.js" as="script">
+    <link rel="preload" href="js/game.js?v=5" as="script">
+    <link rel="preload" href="js/ui.js?v=6" as="script">
 
     <!-- Fonts -->
     <link rel="preload"
@@ -122,7 +121,7 @@
     </style>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css?v=1.5" fetchpriority="high">
+    <link rel="stylesheet" href="css/main.css?v=1.6" fetchpriority="high">
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml"
@@ -213,9 +212,10 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
     <!-- Scripts -->
-    <script src="js/state.js" defer></script>
-    <script src="js/game.js?v=2" defer></script>
-    <script src="js/ui.js?v=3" defer></script>
+    <script src="data/words.js" defer></script>
+    <script src="js/state.js?v=2" defer></script>
+    <script src="js/game.js?v=5" defer></script>
+    <script src="js/ui.js?v=6" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -252,6 +252,37 @@
             <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
         </div>
         <div class="header-right">
+            <select id="lang-select" aria-label="Select Language" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="Select Language">
+                    <span class="flag-icon flag-en"></span>
+                    <span class="lang-text">EN</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
             <button id="btn-stats" class="icon-button" aria-label="Statistics">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                     <path fill="currentColor"

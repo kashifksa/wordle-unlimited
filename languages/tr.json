@@ -1,0 +1,8 @@
+{
+  "language": "Turkish",
+  "code": "tr",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["kalem", "kitap", "masal", "güneş", "deniz", "limon", "meyve", "sebze", "yazık", "bahçe"],
+  "validGuesses": ["kalem", "kitap", "masal", "güneş", "deniz", "limon", "meyve", "sebze", "yazık", "bahçe"]
+}

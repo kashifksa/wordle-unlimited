@@ -7,6 +7,9 @@ class WordleGame {
             this.guesses = [];
             this.currentGuess = '';
             this.isGameOver = false;
+            this.languageCache = {};
+            this.currentLanguage = 'en';
+            this.wordLength = 5;
             
             if (window.State) {
                 this.settings = State.loadSettings();
@@ -35,15 +38,20 @@ class WordleGame {
     async init() {
         console.log("WordleGame: init() starting...");
         try {
-            const response = await fetch('data/words.json');
-            if (!response.ok) throw new Error("Failed to fetch words.json");
-            this.words = await response.json();
-            console.log("WordleGame: words loaded.");
+            const lang = window.State ? State.loadLanguage() : 'en';
+            await this.loadLanguageData(lang);
             
             if (window.State) {
                 await State.syncWithServer();
+                // Avoid race conditions if the user manually changed the language while sync was in progress
+                const currentLang = window.State ? State.loadLanguage() : 'en';
+                if (currentLang !== lang) {
+                    console.log(`WordleGame: init interrupted because language changed from ${lang} to ${currentLang}`);
+                    return;
+                }
                 let shuffled = State.loadShuffledWords();
-                if (!shuffled || shuffled.length !== this.words.valid.length) {
+                const isCorrectLanguage = shuffled && shuffled.length > 0 && this.words.valid.includes(shuffled[0]);
+                if (!shuffled || shuffled.length !== this.words.valid.length || !isCorrectLanguage) {
                     this.reshuffleWords();
                 }
             }
@@ -52,6 +60,90 @@ class WordleGame {
             console.log("WordleGame: init() finished.");
         } catch (error) {
             console.error('WordleGame: init() failed:', error);
+        }
+    }
+
+    async loadLanguageData(lang) {
+        this.currentLanguage = lang;
+        if (lang === 'en') {
+            if (this.languageCache['en']) {
+                this.words = this.languageCache['en'];
+            } else {
+                if (window.wordList) {
+                    this.words = window.wordList;
+                } else {
+                    const response = await fetch('data/words.json');
+                    if (!response.ok) throw new Error("Failed to fetch words.json");
+                    this.words = await response.json();
+                }
+                this.languageCache['en'] = this.words;
+            }
+            this.wordLength = 5;
+            const container = document.getElementById('game-container');
+            if (container) container.removeAttribute('dir');
+        } else {
+            if (this.languageCache[lang]) {
+                const data = this.languageCache[lang];
+                this.words = { valid: data.words || [] };
+                this.wordLength = data.wordLength || 5;
+                const container = document.getElementById('game-container');
+                if (container) {
+                    if (data.direction === 'rtl') {
+                        container.setAttribute('dir', 'rtl');
+                    } else {
+                        container.removeAttribute('dir');
+                    }
+                }
+            } else {
+                try {
+                    const response = await fetch(`languages/${lang}.json`);
+                    if (!response.ok) throw new Error(`Failed to fetch languages/${lang}.json`);
+                    const data = await response.json();
+                    this.languageCache[lang] = data;
+                    this.words = { valid: data.words || [] };
+                    this.wordLength = data.wordLength || 5;
+                    const container = document.getElementById('game-container');
+                    if (container) {
+                        if (data.direction === 'rtl') {
+                            container.setAttribute('dir', 'rtl');
+                        } else {
+                            container.removeAttribute('dir');
+                        }
+                    }
+                } catch (e) {
+                    console.error(`Error loading language ${lang}, falling back to English:`, e);
+                    this.currentLanguage = 'en';
+                    if (window.State) State.saveLanguage('en');
+                    const selectEl = document.getElementById('lang-select');
+                    if (selectEl) selectEl.value = 'en';
+                    
+                    // Show a helpful user-facing error message
+                    if (window.ui && typeof window.ui.showToast === 'function') {
+                        let errorMsg = `Failed to load ${lang.toUpperCase()} language file.`;
+                        if (window.location.protocol === 'file:') {
+                            errorMsg = `CORS Restriction: Please run the game via a local web server (e.g. localhost) to load other languages.`;
+                        }
+                        window.ui.showToast(errorMsg, 5000);
+                    }
+                    
+                    await this.loadLanguageData('en');
+                }
+            }
+        }
+    }
+
+    async changeLanguage(lang) {
+        if (window.State) State.saveLanguage(lang);
+        await this.loadLanguageData(lang);
+        if (window.State) {
+            this.reshuffleWords();
+        }
+        this.startNewGame();
+        if (window.ui) {
+            ui.renderBoard();
+            ui.renderKeyboard(true);
+            ui.resetKeyboard();
+            ui.applySettings();
         }
     }
 
@@ -106,12 +198,13 @@ class WordleGame {
     }
 
     submitGuess() {
-        if (this.currentGuess.length !== 5) return { error: 'Not enough letters' };
+        const len = this.wordLength || 5;
+        if (this.currentGuess.length !== len) return { error: 'Not enough letters' };
         if (!this.words.valid.includes(this.currentGuess.toLowerCase())) return { error: 'Not in word list' };
 
         if (this.settings.hardMode && this.guesses.length > 0) {
             const lastEval = this.evaluateGuess(this.guesses[this.guesses.length - 1]);
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < len; i++) {
                 if (lastEval[i].state === 'correct' && this.currentGuess[i] !== this.targetWord[i]) {
                     return { error: `Must use ${this.targetWord[i].toUpperCase()} in position ${i+1}` };
                 }
@@ -147,18 +240,19 @@ class WordleGame {
     }
 
     evaluateGuess(guess) {
-        const result = Array(5).fill(null).map((_, i) => ({ letter: guess[i], state: 'absent' }));
+        const len = this.wordLength || 5;
+        const result = Array(len).fill(null).map((_, i) => ({ letter: guess[i], state: 'absent' }));
         const targetArr = this.targetWord.split('');
         const guessArr = guess.split('');
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < len; i++) {
             if (guessArr[i] === targetArr[i]) {
                 result[i].state = 'correct';
                 targetArr[i] = null;
                 guessArr[i] = null;
             }
         }
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < len; i++) {
             if (guessArr[i] !== null) {
                 const targetIndex = targetArr.indexOf(guessArr[i]);
                 if (targetIndex !== -1) {
@@ -171,7 +265,8 @@ class WordleGame {
     }
 
     addLetter(letter) {
-        if (this.isGameOver || this.currentGuess.length >= 5) return;
+        const len = this.wordLength || 5;
+        if (this.isGameOver || this.currentGuess.length >= len) return;
         this.currentGuess += letter.toLowerCase();
     }
 

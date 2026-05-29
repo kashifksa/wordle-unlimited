@@ -33,14 +33,31 @@ class WordleUI {
     setupEventListeners() {
         window.addEventListener('keydown', (e) => {
             if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+            // Do not process game inputs if user is focusing a select dropdown, input, or textarea
+            const targetTag = e.target.tagName;
+            if (targetTag === 'SELECT' || targetTag === 'INPUT' || targetTag === 'TEXTAREA') {
+                return;
+            }
+
+            // Do not process game inputs if a modal or the language dropdown is open
+            if (this.overlay && !this.overlay.classList.contains('hidden')) {
+                return;
+            }
+            const dropdown = document.getElementById('lang-dropdown');
+            if (dropdown && dropdown.classList.contains('open')) {
+                return;
+            }
+
             if (e.key === 'Enter') this.handleEnter();
             else if (e.key === 'Backspace') this.handleBackspace();
-            else if (/^[a-z]$/i.test(e.key)) this.handleLetter(e.key);
+            else if (/^\p{L}$/u.test(e.key)) this.handleLetter(e.key);
         });
 
         window.addEventListener('game-started', () => {
             console.log("WordleUI: Received game-started event.");
             this.renderBoard();
+            this.renderKeyboard(true);
             this.resetKeyboard();
             this.applySettings();
         });
@@ -49,6 +66,69 @@ class WordleUI {
         document.getElementById('btn-stats').onclick = () => this.showStats();
         document.getElementById('btn-settings').onclick = () => this.showSettings();
         document.getElementById('btn-give-up').onclick = () => this.giveUp();
+
+        const selectEl = document.getElementById('lang-select');
+        if (selectEl) {
+            const savedLang = window.State ? State.loadLanguage() : 'en';
+            selectEl.value = savedLang;
+            
+            // Set initial state for custom dropdown
+            this.syncCustomDropdown(savedLang);
+
+            selectEl.addEventListener('change', async (e) => {
+                const val = e.target.value;
+                selectEl.blur(); // Blur immediately to prevent keyboard selection hijacking
+                this.syncCustomDropdown(val);
+                if (window.game) {
+                    await game.changeLanguage(val);
+                }
+            });
+        }
+
+        const dropdownTrigger = document.getElementById('lang-dropdown-trigger');
+        const dropdown = document.getElementById('lang-dropdown');
+        if (dropdownTrigger && dropdown) {
+            dropdownTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('open');
+            });
+
+            const options = document.querySelectorAll('#lang-dropdown-options li');
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    const val = opt.getAttribute('data-value');
+                    if (selectEl) {
+                        selectEl.value = val;
+                        selectEl.dispatchEvent(new Event('change'));
+                    }
+                    dropdown.classList.remove('open');
+                });
+            });
+
+            document.addEventListener('click', () => {
+                dropdown.classList.remove('open');
+            });
+        }
+    }
+
+    syncCustomDropdown(lang) {
+        const trigger = document.getElementById('lang-dropdown-trigger');
+        if (trigger) {
+            const flagSpan = trigger.querySelector('.flag-icon');
+            const textSpan = trigger.querySelector('.lang-text');
+            if (flagSpan && textSpan) {
+                flagSpan.className = `flag-icon flag-${lang}`;
+                textSpan.textContent = lang.toUpperCase();
+            }
+        }
+        const options = document.querySelectorAll('#lang-dropdown-options li');
+        options.forEach(opt => {
+            if (opt.getAttribute('data-value') === lang) {
+                opt.classList.add('selected');
+            } else {
+                opt.classList.remove('selected');
+            }
+        });
     }
 
     initAccordion() {
@@ -138,11 +218,13 @@ class WordleUI {
         this.board.innerHTML = '';
         const attempts = game.settings.attempts || 6;
         this.board.style.gridTemplateRows = `repeat(${attempts}, 1fr)`;
+        const len = game.wordLength || 5;
+        this.board.style.gridTemplateColumns = `repeat(${len}, 1fr)`;
 
         for (let i = 0; i < attempts; i++) {
             const row = document.createElement('div');
             row.className = 'row';
-            for (let j = 0; j < 5; j++) {
+            for (let j = 0; j < len; j++) {
                 const tile = document.createElement('div');
                 tile.className = 'tile';
                 tile.setAttribute('data-state', 'empty');
@@ -153,12 +235,16 @@ class WordleUI {
         
         game.guesses.forEach((guess, i) => {
             const row = this.board.children[i];
-            const evaluation = game.evaluateGuess(guess);
-            evaluation.forEach((res, j) => {
-                const tile = row.children[j];
-                tile.textContent = res.letter;
-                tile.setAttribute('data-state', res.state);
-            });
+            if (row) {
+                const evaluation = game.evaluateGuess(guess);
+                evaluation.forEach((res, j) => {
+                    const tile = row.children[j];
+                    if (tile) {
+                        tile.textContent = res.letter;
+                        tile.setAttribute('data-state', res.state);
+                    }
+                });
+            }
         });
     }
 
@@ -169,21 +255,29 @@ class WordleUI {
         const row = this.board.children[rowIndex];
         if (!row) return;
         const letters = game.currentGuess.split('');
-        for (let i = 0; i < 5; i++) {
+        const len = game.wordLength || 5;
+        for (let i = 0; i < len; i++) {
             const tile = row.children[i];
-            tile.textContent = letters[i] || '';
-            tile.setAttribute('data-state', letters[i] ? 'toggled' : 'empty');
+            if (tile) {
+                tile.textContent = letters[i] || '';
+                tile.setAttribute('data-state', letters[i] ? 'toggled' : 'empty');
+            }
         }
     }
 
     async revealRow(rowIndex, result) {
         const row = this.board.children[rowIndex];
-        for (let i = 0; i < 5; i++) {
-            const tile = row.children[i];
-            tile.classList.add('flip');
-            await new Promise(r => setTimeout(r, 150));
-            tile.setAttribute('data-state', result[i].state);
-            tile.classList.remove('flip');
+        if (row) {
+            const len = game.wordLength || 5;
+            for (let i = 0; i < len; i++) {
+                const tile = row.children[i];
+                if (tile) {
+                    tile.classList.add('flip');
+                    await new Promise(r => setTimeout(r, 150));
+                    tile.setAttribute('data-state', result[i].state);
+                    tile.classList.remove('flip');
+                }
+            }
         }
     }
 
@@ -198,22 +292,62 @@ class WordleUI {
     bounceRow(rowIndex) {
         const row = this.board.children[rowIndex];
         if (row) {
-            for (let i = 0; i < 5; i++) {
+            const len = game.wordLength || 5;
+            for (let i = 0; i < len; i++) {
                 const tile = row.children[i];
-                tile.classList.add('bounce');
-                tile.style.animationDelay = `${i * 100}ms`;
+                if (tile) {
+                    tile.classList.add('bounce');
+                    tile.style.animationDelay = `${i * 100}ms`;
+                }
             }
         }
     }
 
-    renderKeyboard() {
-        if (this.keyboard.children.length > 0) return;
-        console.log("WordleUI: rendering keyboard...");
-        const rows = [
-            'qwertyuiop'.split(''),
-            'asdfghjkl'.split(''),
-            ['enter', ...'zxcvbnm'.split(''), 'backspace']
-        ];
+    renderKeyboard(force = false) {
+        const lang = window.game ? game.currentLanguage : 'en';
+        if (!force && this.renderedLanguage === lang) return;
+        this.renderedLanguage = lang;
+        console.log("WordleUI: rendering keyboard for language: " + lang);
+        
+        let rows;
+        if (lang === 'en') {
+            rows = [
+                'qwertyuiop'.split(''),
+                'asdfghjkl'.split(''),
+                ['enter', ...'zxcvbnm'.split(''), 'backspace']
+            ];
+        } else {
+            // Generate layout dynamically from the words in the active language
+            const uniqueChars = new Set();
+            if (window.game && game.words && game.words.valid) {
+                game.words.valid.forEach(w => {
+                    w.split('').forEach(c => {
+                        const l = c.toLowerCase().trim();
+                        if (l) uniqueChars.add(l);
+                    });
+                });
+            }
+            
+            // Convert to array and sort alphabetically so users can easily find characters
+            const chars = Array.from(uniqueChars).sort((a, b) => a.localeCompare(b));
+            
+            if (chars.length === 0) {
+                rows = [
+                    'qwertyuiop'.split(''),
+                    'asdfghjkl'.split(''),
+                    ['enter', ...'zxcvbnm'.split(''), 'backspace']
+                ];
+            } else {
+                // Divide characters into 3 rows as evenly as possible
+                const rowCount = 3;
+                const perRow = Math.ceil(chars.length / rowCount);
+                const r1 = chars.slice(0, perRow);
+                const r2 = chars.slice(perRow, perRow * 2);
+                const r3 = ['enter', ...chars.slice(perRow * 2), 'backspace'];
+                rows = [r1, r2, r3];
+            }
+        }
+
         this.keyboard.innerHTML = '';
         rows.forEach(rowKeys => {
             const row = document.createElement('div');
@@ -621,3 +755,4 @@ try {
 } catch (e) {
     console.error("WordleUI: failed to create global instance:", e);
 }
+

@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=1.6">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2235%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/><rect x=%2270%22 y=%2235%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23c9b458%22/><rect x=%2235%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%23787c7e%22/><rect x=%2270%22 y=%2270%22 width=%2230%22 height=%2230%22 fill=%22%236aaa64%22/></svg>">
@@ -115,7 +115,7 @@
         .about-container p{margin-bottom:20px;font-size:1.15rem;opacity:0.85}
     </style>
 </head>
-<body class="theme-default dark-mode">
+<body class="theme-default">
     <div class="bg-shapes">
         <div class="shape" style="width: 100px; height: 100px; left: 10%; animation-duration: 15s;"></div>
         <div class="shape" style="width: 150px; height: 150px; left: 30%; animation-duration: 25s; animation-delay: -5s;"></div>
@@ -208,9 +208,18 @@
     </footer>
 
     <script>
-        const settings = JSON.parse(localStorage.getItem('wordle-settings') || '{}');
-        if (settings.darkMode === false) {
-            document.body.classList.remove('dark-mode');
+        try {
+            const settings = JSON.parse(localStorage.getItem('wordle_unlimited_settings') || '{}');
+            const isDark = settings.darkMode !== undefined ? settings.darkMode : false;
+            document.body.classList.toggle('dark-mode', isDark);
+            if (settings.highContrast) {
+                document.body.classList.add('high-contrast');
+            }
+            if (settings.theme && settings.theme !== 'default') {
+                document.body.classList.add(`theme-${settings.theme}`);
+            }
+        } catch (e) {
+            console.error("Failed to load settings:", e);
         }
     </script>
 </body>

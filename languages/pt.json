@@ -1,0 +1,8 @@
+{
+  "language": "Portuguese",
+  "code": "pt",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["amigo", "praia", "carro", "terra", "livre", "mundo", "luzes", "canto", "chama", "sabor"],
+  "validGuesses": ["amigo", "praia", "carro", "terra", "livre", "mundo", "luzes", "canto", "chama", "sabor"]
+}

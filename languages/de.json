@@ -1,0 +1,8 @@
+{
+  "language": "German",
+  "code": "de",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["apfel", "sonne", "birne", "blume", "sturm", "traum", "licht", "nacht", "feuer", "wolke"],
+  "validGuesses": ["apfel", "sonne", "birne", "blume", "sturm", "traum", "licht", "nacht", "feuer", "wolke"]
+}

@@ -1,0 +1,8 @@
+{
+  "language": "Spanish",
+  "code": "es",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["amigo", "playa", "perro", "gato", "libre", "mundo", "luces", "canto", "flama", "sabor"],
+  "validGuesses": ["amigo", "playa", "perro", "gato", "libre", "mundo", "luces", "canto", "flama", "sabor"]
+}

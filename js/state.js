@@ -25,7 +25,8 @@ window.State = {
         GAME_UNLIMITED: 'wordle_unlimited_state',
         PLAYED_WORDS: 'wordle_played_words',
         SHUFFLED_WORDS: 'wordle_shuffled_list',
-        CURRENT_INDEX: 'wordle_current_index'
+        CURRENT_INDEX: 'wordle_current_index',
+        LANGUAGE: 'wordle_unlimited_language'
     },
 
     defaultSettings: {
@@ -101,6 +102,7 @@ window.State = {
     async uploadToSupabase(userId, stats) {
         if (!supabaseClient) return;
         try {
+            const currentLang = localStorage.getItem('wordle_unlimited_language') || 'en';
             await supabaseClient
                 .from('player_stats')
                 .upsert({
@@ -113,6 +115,7 @@ window.State = {
                     fastest_win_time: stats.fastestWin,
                     avg_attempts: stats.avgAttempts,
                     total_attempts_for_wins: stats.totalAttemptsForWins,
+                    language: currentLang,
                     last_updated: new Date().toISOString()
                 });
         } catch (e) { }
@@ -184,7 +187,9 @@ window.State = {
     saveCurrentIndex(index) { try { localStorage.setItem(this.KEYS.CURRENT_INDEX, index); } catch (e) { } },
     loadCurrentIndex() { try { const saved = localStorage.getItem(this.KEYS.CURRENT_INDEX); return saved ? parseInt(saved) : 0; } catch (e) { return 0; } },
     loadGameState() { try { const saved = localStorage.getItem(this.KEYS.GAME_UNLIMITED); return saved ? JSON.parse(saved) : null; } catch (e) { return null; } },
-    clearGameState() { try { localStorage.removeItem(this.KEYS.GAME_UNLIMITED); } catch (e) { } }
+    clearGameState() { try { localStorage.removeItem(this.KEYS.GAME_UNLIMITED); } catch (e) { } },
+    saveLanguage(lang) { try { localStorage.setItem(this.KEYS.LANGUAGE, lang); } catch (e) { } },
+    loadLanguage() { try { return localStorage.getItem(this.KEYS.LANGUAGE) || 'en'; } catch (e) { return 'en'; } }
 };
 
 console.log("state.js: initialization finished.");

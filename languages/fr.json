@@ -1,0 +1,8 @@
+{
+  "language": "French",
+  "code": "fr",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["amour", "plage", "chien", "arbre", "monde", "libre", "fleur", "chant", "flame", "odeur"],
+  "validGuesses": ["amour", "plage", "chien", "arbre", "monde", "libre", "fleur", "chant", "flame", "odeur"]
+}

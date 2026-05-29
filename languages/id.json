@@ -1,0 +1,8 @@
+{
+  "language": "Indonesian",
+  "code": "id",
+  "direction": "ltr",
+  "wordLength": 5,
+  "words": ["rumah", "mobil", "pohon", "bunga", "jalan", "makan", "minum", "tidur", "pergi", "dunia"],
+  "validGuesses": ["rumah", "mobil", "pohon", "bunga", "jalan", "makan", "minum", "tidur", "pergi", "dunia"]
+}
