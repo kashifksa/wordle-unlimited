@@ -128,6 +128,47 @@ body.dark-mode {
 }
 
 
+/* Top Navigation Bar */
+.top-nav-bar {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 16px;
+    height: 38px;
+    box-sizing: border-box;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background-color var(--transition-med), border-color var(--transition-med);
+    display: flex;
+    align-items: center;
+}
+
+.top-nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.back-home-link {
+    color: var(--color-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.75;
+    transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+
+.back-home-link:hover {
+    opacity: 1;
+    color: var(--color-correct);
+}
+
+#game-container {
+    height: calc(100vh - 60px - 38px);
+    height: calc(100dvh - 60px - 38px);
+}
+
 /* Header */
 .main-header {
     display: flex;
@@ -1669,6 +1710,10 @@ body.dark-mode .hint-banner {
 }
 
 /* Embedded inside iframe optimization */
+body.is-embedded .top-nav-bar {
+    display: none;
+}
+
 body.is-embedded .logo {
     display: none;
 }

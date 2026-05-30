@@ -7,6 +7,23 @@ class WordleUI {
                 document.body.classList.add('is-embedded');
             }
 
+            // Dynamically set Back to Home href to support subfolders on localhost/live domain
+            const homeLink = document.getElementById('back-to-home-link');
+            if (homeLink) {
+                const pathname = window.location.pathname.toLowerCase();
+                const gameFolder = 'wordle-unlimited';
+                const altGameFolder = 'wordleunlimited';
+                let baseIdx = pathname.indexOf(gameFolder);
+                if (baseIdx === -1) {
+                    baseIdx = pathname.indexOf(altGameFolder);
+                }
+                if (baseIdx !== -1) {
+                    homeLink.href = window.location.pathname.substring(0, baseIdx);
+                } else {
+                    homeLink.href = '../';
+                }
+            }
+
             this.board = document.getElementById('board');
             this.keyboard = document.getElementById('keyboard');
             this.overlay = document.getElementById('modal-overlay');
