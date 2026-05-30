@@ -30,12 +30,13 @@ window.State = {
     },
 
     defaultSettings: {
-        darkMode: false,
+        darkMode: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? true : false,
         highContrast: false,
         hardMode: false,
         theme: 'default',
         attempts: 6,
-        soundEnabled: true
+        soundEnabled: true,
+        mode: 'unlimited'
     },
 
     defaultStats: {

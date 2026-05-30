@@ -13,7 +13,8 @@ class WordleGame {
             
             if (window.State) {
                 this.settings = State.loadSettings();
-                console.log("WordleGame: Settings loaded from State.");
+                this.mode = this.settings.mode || 'unlimited';
+                console.log("WordleGame: Settings loaded from State. Mode:", this.mode);
             } else {
                 console.error("WordleGame: State object not found!");
                 this.settings = {
@@ -22,7 +23,8 @@ class WordleGame {
                     hardMode: false,
                     theme: 'default',
                     attempts: 6,
-                    soundEnabled: true
+                    soundEnabled: true,
+                    mode: 'unlimited'
                 };
             }
             
@@ -56,7 +58,7 @@ class WordleGame {
                 }
             }
             
-            this.startNewGame();
+            await this.startNewGame();
             console.log("WordleGame: init() finished.");
         } catch (error) {
             console.error('WordleGame: init() failed:', error);
@@ -135,10 +137,17 @@ class WordleGame {
     async changeLanguage(lang) {
         if (window.State) State.saveLanguage(lang);
         await this.loadLanguageData(lang);
+        
+        if (lang !== 'en' && this.mode === 'nyt') {
+            this.mode = 'unlimited';
+            this.settings.mode = 'unlimited';
+            if (window.State) State.saveSettings(this.settings);
+        }
+
         if (window.State) {
             this.reshuffleWords();
         }
-        this.startNewGame();
+        await this.startNewGame();
         if (window.ui) {
             ui.renderBoard();
             ui.renderKeyboard(true);
@@ -159,20 +168,53 @@ class WordleGame {
         }
     }
 
-    startNewGame() {
+    async startNewGame() {
+        let transitionFromNyt = false;
+        if (this.mode === 'nyt' && this.isGameOver) {
+            transitionFromNyt = true;
+            this.mode = 'unlimited';
+            this.settings.mode = 'unlimited';
+            if (window.State) State.saveSettings(this.settings);
+        }
+
         this.isGameOver = false;
         this.guesses = [];
         this.currentGuess = '';
         this.startTime = Date.now();
         
-        this.targetWord = this.getNextWord();
+        try {
+            this.targetWord = await this.getNextWord();
+        } catch (e) {
+            console.error("Error setting target word, falling back:", e);
+            this.targetWord = 'wordle';
+        }
         if (window.State) State.clearGameState();
         
         console.log('WordleGame: New game started. Target Word:', this.targetWord);
         window.dispatchEvent(new CustomEvent('game-started'));
+
+        if (transitionFromNyt && window.ui) {
+            setTimeout(() => {
+                window.ui.showToast("Daily Challenge completed! Switched to Unlimited mode.");
+            }, 100);
+        }
     }
 
-    getNextWord() {
+    async getNextWord() {
+        if (this.mode === 'nyt') {
+            try {
+                const word = await this.loadNYTWord();
+                if (word && word.length === this.wordLength) {
+                    return word.toLowerCase();
+                }
+            } catch (e) {
+                console.error("Failed to load NYT word, falling back to local pool:", e);
+                if (window.ui) {
+                    window.ui.showToast("Connection failed. Loaded fallback word.", 3000);
+                }
+            }
+        }
+
         const shuffled = window.State ? State.loadShuffledWords() : null;
         if (!shuffled) {
             // Fallback
@@ -197,20 +239,147 @@ class WordleGame {
         }
     }
 
+    getTodayWordApiUrl(useLocal = true) {
+        if (useLocal && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            return '/TodayWordle/wp-json/wordle/v1';
+        }
+        return 'https://todaywordlehint.com/wp-json/wordle/v1';
+    }
+
+    getLocalDateString(offsetDays = 0) {
+        const d = new Date();
+        d.setDate(d.getDate() + offsetDays);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    async fetchNYTWordFromApi(dateStr) {
+        const tryFetch = async (baseUrl) => {
+            const url = `${baseUrl}/data?date=${dateStr}`;
+            const response = await fetch(url);
+            if (response.ok) {
+                const resData = await response.json();
+                if (resData && resData.success && resData.data && resData.data.word) {
+                    return resData.data.word.toLowerCase();
+                }
+            }
+            throw new Error(`Failed to fetch from ${baseUrl}`);
+        };
+
+        try {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return await tryFetch(this.getTodayWordApiUrl(true));
+            }
+        } catch (e) {
+            console.warn(`Local fetch failed for ${dateStr}, trying production...`, e);
+        }
+        return await tryFetch(this.getTodayWordApiUrl(false));
+    }
+
+    async loadNYTWord() {
+        const todayStr = this.getLocalDateString(0);
+        
+        let cache = null;
+        try {
+            const cachedStr = localStorage.getItem('wordle_nyt_cache');
+            if (cachedStr) {
+                cache = JSON.parse(cachedStr);
+            }
+        } catch (e) {
+            console.error("Error reading cache", e);
+        }
+
+        const now = Date.now();
+        const oneDayMs = 24 * 60 * 60 * 1000;
+
+        if (cache && cache.last_fetch && (now - cache.last_fetch < oneDayMs) && cache.words && cache.words[todayStr]) {
+            console.log("NYT Mode: Loaded word from local cache for date:", todayStr, "word:", cache.words[todayStr]);
+            return cache.words[todayStr];
+        }
+
+        console.log("NYT Mode: Cache stale or missing. Fetching 3 days data...");
+        const yesterdayStr = this.getLocalDateString(-1);
+        const tomorrowStr = this.getLocalDateString(1);
+
+        const newWords = (cache && cache.words) ? { ...cache.words } : {};
+        const fetchDates = [yesterdayStr, todayStr, tomorrowStr];
+        
+        await Promise.all(fetchDates.map(async (dStr) => {
+            try {
+                const word = await this.fetchNYTWordFromApi(dStr);
+                if (word) {
+                    newWords[dStr] = word;
+                }
+            } catch (err) {
+                console.warn(`Failed to fetch/cache NYT word for date: ${dStr}`, err);
+            }
+        }));
+
+        if (newWords[todayStr]) {
+            cache = {
+                last_fetch: now,
+                words: newWords
+            };
+            try {
+                localStorage.setItem('wordle_nyt_cache', JSON.stringify(cache));
+            } catch (e) {
+                console.error("Failed to save cache", e);
+            }
+            return newWords[todayStr];
+        }
+
+        if (cache && cache.words && cache.words[todayStr]) {
+            return cache.words[todayStr];
+        }
+
+        try {
+            const url = this.getTodayWordApiUrl(false) + '/today';
+            const response = await fetch(url);
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.word) {
+                    return data.word.toLowerCase();
+                }
+            }
+        } catch (e) {
+            console.error("Emergency fallback failed:", e);
+        }
+
+        throw new Error("Could not load today's NYT word");
+    }
+
     submitGuess() {
         const len = this.wordLength || 5;
         if (this.currentGuess.length !== len) return { error: 'Not enough letters' };
-        if (!this.words.valid.includes(this.currentGuess.toLowerCase())) return { error: 'Not in word list' };
+        const guessLower = this.currentGuess.toLowerCase();
+        if (this.guesses.includes(guessLower)) return { error: 'Already guessed' };
+        if (!this.words.valid.includes(guessLower)) return { error: 'Not in word list' };
 
         if (this.settings.hardMode && this.guesses.length > 0) {
-            const lastEval = this.evaluateGuess(this.guesses[this.guesses.length - 1]);
-            for (let i = 0; i < len; i++) {
-                if (lastEval[i].state === 'correct' && this.currentGuess[i] !== this.targetWord[i]) {
-                    return { error: `Must use ${this.targetWord[i].toUpperCase()} in position ${i+1}` };
+            const requiredPositions = Array(len).fill(null);
+            const requiredLetters = new Set();
+            
+            for (const prevGuess of this.guesses) {
+                const evaluation = this.evaluateGuess(prevGuess);
+                for (let i = 0; i < len; i++) {
+                    if (evaluation[i].state === 'correct') {
+                        requiredPositions[i] = evaluation[i].letter;
+                        requiredLetters.add(evaluation[i].letter);
+                    } else if (evaluation[i].state === 'present') {
+                        requiredLetters.add(evaluation[i].letter);
+                    }
                 }
             }
-            const lastPresent = lastEval.filter(e => e.state === 'present').map(e => e.letter);
-            for (const letter of lastPresent) {
+            
+            for (let i = 0; i < len; i++) {
+                if (requiredPositions[i] && this.currentGuess[i] !== requiredPositions[i]) {
+                    return { error: `Must use ${requiredPositions[i].toUpperCase()} in position ${i+1}` };
+                }
+            }
+            
+            for (const letter of requiredLetters) {
                 if (!this.currentGuess.includes(letter)) {
                     return { error: `Guess must contain ${letter.toUpperCase()}` };
                 }

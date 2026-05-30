@@ -2,6 +2,11 @@ class WordleUI {
     constructor() {
         console.log("WordleUI: constructor starting...");
         try {
+            this.isEmbedded = window.self !== window.top;
+            if (this.isEmbedded) {
+                document.body.classList.add('is-embedded');
+            }
+
             this.board = document.getElementById('board');
             this.keyboard = document.getElementById('keyboard');
             this.overlay = document.getElementById('modal-overlay');
@@ -56,6 +61,8 @@ class WordleUI {
 
         window.addEventListener('game-started', () => {
             console.log("WordleUI: Received game-started event.");
+            this.hintBannerDismissed = false;
+            this.hideHintBanner(false);
             this.renderBoard();
             this.renderKeyboard(true);
             this.resetKeyboard();
@@ -66,6 +73,11 @@ class WordleUI {
         document.getElementById('btn-stats').onclick = () => this.showStats();
         document.getElementById('btn-settings').onclick = () => this.showSettings();
         document.getElementById('btn-give-up').onclick = () => this.giveUp();
+
+        const closeHintBtn = document.getElementById('btn-close-hint');
+        if (closeHintBtn) {
+            closeHintBtn.onclick = () => this.hideHintBanner(true);
+        }
 
         const selectEl = document.getElementById('lang-select');
         if (selectEl) {
@@ -109,6 +121,8 @@ class WordleUI {
                 dropdown.classList.remove('open');
             });
         }
+
+        window.addEventListener('resize', () => this.sendResizeMessage());
     }
 
     syncCustomDropdown(lang) {
@@ -151,12 +165,14 @@ class WordleUI {
 
     handleLetter(letter) {
         if (!window.game) return;
+        if (window.sounds) sounds.playKeyClick();
         game.addLetter(letter);
         this.updateBoard();
     }
 
     handleBackspace() {
         if (!window.game) return;
+        if (window.sounds) sounds.playKeyClick();
         game.removeLetter();
         this.updateBoard();
     }
@@ -167,14 +183,17 @@ class WordleUI {
         if (result.error) {
             this.showToast(result.error);
             this.shakeRow(game.guesses.length);
+            if (window.sounds) sounds.playError();
             return;
         }
         if (result.success) {
             await this.revealRow(game.guesses.length - 1, result.result);
             this.updateKeyboard();
+            this.checkHintBanner();
             if (result.won) {
                 setTimeout(() => {
                     this.bounceRow(game.guesses.length - 1);
+                    if (window.sounds) sounds.playWin();
                     const t = result.timeTaken;
                     const timeStr = t ? ` in ${t < 60 ? t + 's' : Math.floor(t/60) + 'm ' + (t%60) + 's'}` : '';
                     this.showToast(`Splendid! Finished${timeStr}`, 3000);
@@ -273,6 +292,7 @@ class WordleUI {
                 const tile = row.children[i];
                 if (tile) {
                     tile.classList.add('flip');
+                    if (window.sounds) sounds.playTileFlip(i);
                     await new Promise(r => setTimeout(r, 150));
                     tile.setAttribute('data-state', result[i].state);
                     tile.classList.remove('flip');
@@ -401,6 +421,41 @@ class WordleUI {
         });
     }
 
+    checkHintBanner() {
+        const banner = document.getElementById('hint-banner');
+        if (!banner) return;
+        
+        if (window.game && game.mode === 'nyt' && game.guesses.length >= 3 && !game.isGameOver && !this.hintBannerDismissed) {
+            banner.classList.remove('hidden');
+        } else {
+            banner.classList.add('hidden');
+        }
+        this.sendResizeMessage();
+    }
+
+    hideHintBanner(dismissPermanent = false) {
+        const banner = document.getElementById('hint-banner');
+        if (banner) {
+            banner.classList.add('hidden');
+        }
+        if (dismissPermanent) {
+            this.hintBannerDismissed = true;
+        }
+        this.sendResizeMessage();
+    }
+
+    sendResizeMessage() {
+        if (this.isEmbedded) {
+            requestAnimationFrame(() => {
+                const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+                window.parent.postMessage({
+                    type: 'wordle-resize',
+                    height: height
+                }, '*');
+            });
+        }
+    }
+
     showToast(message, duration = 1500) {
         const toast = document.createElement('div');
         toast.className = 'toast';
@@ -423,10 +478,12 @@ class WordleUI {
         modal.querySelector('.close-button').onclick = () => this.hideModal();
         this.overlay.appendChild(modal);
         this.overlay.classList.remove('hidden');
+        this.sendResizeMessage();
     }
 
     hideModal() {
         this.overlay.classList.add('hidden');
+        this.sendResizeMessage();
     }
 
     showHelp() {
@@ -551,12 +608,25 @@ class WordleUI {
         if (!window.game) return;
         const s = game.settings;
         
-        // Determine selected value for the unified dropdown
         let currentThemeVal = 'light';
         if (s.theme === 'neon') currentThemeVal = 'neon';
         else if (s.theme === 'retro') currentThemeVal = 'retro';
         else if (s.theme === 'ocean') currentThemeVal = 'ocean';
         else if (s.darkMode) currentThemeVal = 'dark';
+
+        const isEnglish = (game.currentLanguage === 'en');
+        const dailyChallengeHtml = isEnglish ? `
+                <div class="setting-item">
+                    <div>
+                        <strong>Daily Challenge</strong>
+                        <p>Play Today's Word from NYT</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-mode" ${s.mode === 'nyt' ? 'checked' : ''} onchange="ui.saveSettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+        ` : '';
 
         this.showModal({
             title: 'Settings',
@@ -599,6 +669,17 @@ class WordleUI {
                         <span class="slider"></span>
                     </label>
                 </div>
+                ${dailyChallengeHtml}
+                <div class="setting-item">
+                    <div>
+                        <strong>Sound Effects</strong>
+                        <p>Enable game sound effects</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="setting-sound" ${s.soundEnabled ? 'checked' : ''} onchange="ui.saveSettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             `
         });
     }
@@ -610,6 +691,8 @@ class WordleUI {
         const hardEl = document.getElementById('setting-hard');
         const hcEl = document.getElementById('setting-hc');
         const attemptsEl = document.getElementById('setting-attempts');
+        const modeEl = document.getElementById('setting-mode');
+        const soundEl = document.getElementById('setting-sound');
 
         if (!appearanceEl || !hardEl || !hcEl || !attemptsEl) return;
 
@@ -636,8 +719,8 @@ class WordleUI {
             highContrast: hcEl.checked,
             attempts: parseInt(attemptsEl.value),
             theme: selectedTheme,
-            mode: game.mode,
-            soundEnabled: true
+            mode: modeEl && modeEl.checked ? 'nyt' : 'unlimited',
+            soundEnabled: soundEl ? soundEl.checked : true
         };
         
         const oldAttempts = game.settings.attempts;
@@ -648,7 +731,7 @@ class WordleUI {
         game.mode = settings.mode;
         
         if (oldAttempts !== settings.attempts || oldMode !== settings.mode) {
-            game.startNewGame();
+            game.startNewGame().catch(e => console.error(e));
         }
         
         this.applySettings();
@@ -666,12 +749,13 @@ class WordleUI {
         }
         
         this.renderBoard();
+        this.sendResizeMessage();
     }
 
     shareResult() {
         if (!window.game) return;
         const emojiGrid = this.generateEmojiGrid();
-        const text = `Wordle Unlimited ${game.guesses.length}/${game.settings.attempts}\n\n${emojiGrid}`;
+        const text = `Wordle Unlimited ${game.guesses.length}/${game.settings.attempts}\n\n${emojiGrid}\n\nPlay at todaywordlehint.com`;
         const encodedText = encodeURIComponent(text);
         
         this.showModal({
@@ -739,11 +823,41 @@ class WordleUI {
 
     giveUp() {
         if (!window.game || game.isGameOver) return;
+        this.showModal({
+            title: 'Give Up?',
+            body: `
+                <div style="text-align: center; padding: 20px;">
+                    <p style="margin-bottom: 20px;">Are you sure you want to give up on this word?</p>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button class="btn-primary" onclick="ui.confirmGiveUp()">Yes, Give Up</button>
+                        <button class="btn-secondary" onclick="ui.hideModal()">No, Keep Playing</button>
+                    </div>
+                </div>
+            `
+        });
+    }
+
+    confirmGiveUp() {
+        if (!window.game || game.isGameOver) return;
         const target = game.targetWord.toUpperCase();
         game.isGameOver = true;
+        
+        let timeTaken = null;
+        if (window.game.startTime) {
+            timeTaken = Math.floor((Date.now() - game.startTime) / 1000);
+        }
+        if (window.State) {
+            State.updateStats(false, game.guesses.length, timeTaken);
+        }
+        
         this.showModal({
             title: 'Game Over',
-            body: `<div style="text-align: center; padding: 20px;"><p style="margin-bottom: 20px;">The word was: <strong style="color: var(--color-correct); font-size: 1.5rem;">${target}</strong></p><button class="btn-primary" onclick="game.startNewGame(); ui.hideModal();">New Game</button></div>`
+            body: `
+                <div style="text-align: center; padding: 20px;">
+                    <p style="margin-bottom: 20px;">The word was: <strong style="color: var(--color-correct); font-size: 1.5rem;">${target}</strong></p>
+                    <button class="btn-primary" onclick="game.startNewGame(); ui.hideModal();">New Game</button>
+                </div>
+            `
         });
     }
 }
