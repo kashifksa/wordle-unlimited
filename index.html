@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wordle Unlimited – Play in 10 Languages | Free Multilingual Word Puzzle</title>
+    <title>Wordle Unlimited — Play Free Endless Word Puzzles Online</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="Play Wordle Unlimited in 10 languages including Spanish, French, Arabic & more. Challenge yourself with a multilingual word puzzle — free, unlimited, no login needed.">
+        content="Play Wordle Unlimited for free with no daily limits. Enjoy infinite five-letter word puzzles, use the Wordle Solver, explore hints, and sharpen your English vocabulary at your own pace.">
     <meta name="keywords"
         content="Wordle Unlimited, play Wordle in different languages, multilingual word puzzle, Wordle in Spanish, Wordle in French, Wordle in Arabic, Wordle in Urdu, word game for language learners, unlimited word guessing game, vocabulary builder game, daily word game, Wordle in German, Wordle in Hindi, language learning games, multilingual Wordle">
     <meta name="author" content="Wordle Unlimited">
@@ -19,9 +19,9 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wordle-unlimited.app">
-    <meta property="og:title" content="Wordle Unlimited – Play in 10 Languages | Free Multilingual Word Puzzle">
+    <meta property="og:title" content="Wordle Unlimited — Play Free Endless Word Puzzles Online">
     <meta property="og:description"
-        content="Play Wordle Unlimited in 10 languages including Spanish, French, Arabic & more. Challenge yourself with a multilingual word puzzle — free, unlimited, no login needed.">
+        content="Play Wordle Unlimited for free with no daily limits. Enjoy infinite five-letter word puzzles, use the Wordle Solver, explore hints, and sharpen your English vocabulary at your own pace.">
     <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
     <meta property="og:site_name" content="Wordle Unlimited">
 
@@ -29,9 +29,9 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Wordleinfo">
     <meta property="twitter:url" content="https://wordle-unlimited.app">
-    <meta property="twitter:title" content="Wordle Unlimited – Play in 10 Languages | Free Multilingual Word Puzzle">
+    <meta property="twitter:title" content="Wordle Unlimited — Play Free Endless Word Puzzles Online">
     <meta property="twitter:description"
-        content="Play Wordle Unlimited in 10 languages including Spanish, French, Arabic & more. Challenge yourself with a multilingual word puzzle — free, unlimited, no login needed.">
+        content="Play Wordle Unlimited for free with no daily limits. Enjoy infinite five-letter word puzzles, use the Wordle Solver, explore hints, and sharpen your English vocabulary at your own pace.">
     <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
 
     <!-- Speed Optimizations -->
@@ -41,8 +41,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <!-- Preload Game Data & Scripts -->
-    <link rel="preload" href="js/game.js?v=5" as="script">
-    <link rel="preload" href="js/ui.js?v=6" as="script">
+    <link rel="preload" href="js/game.js?v=9" as="script">
+    <link rel="preload" href="js/ui.js?v=8" as="script">
 
     <!-- Fonts -->
     <link rel="preload"
@@ -93,9 +93,8 @@
         }
 
         #board {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(6, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 5px;
             padding: 10px;
             width: 100%;
@@ -103,8 +102,15 @@
             aspect-ratio: 5/6
         }
 
-        .tile {
+        .row {
+            display: flex;
+            gap: 5px;
             width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
             aspect-ratio: 1/1;
             display: flex;
             justify-content: center;
@@ -120,7 +126,7 @@
     </style>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css?v=1.9" fetchpriority="high">
+    <link rel="stylesheet" href="css/main.css?v=2.5" fetchpriority="high">
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/svg+xml"
@@ -139,7 +145,7 @@
         "@type": "VideoGame",
         "name": "Wordle Unlimited",
         "url": "https://wordle-unlimited.app",
-        "description": "Play Wordle Unlimited for free online. Enjoy endless word puzzles and daily challenges without limits.",
+        "description": "Play Wordle Unlimited for free with no daily limits. Enjoy infinite five-letter word puzzles, use the Wordle Solver, explore hints, and sharpen your English vocabulary at your own pace.",
         "genre": ["Puzzle Game", "Word Game"],
         "applicationCategory": "GameApplication",
         "operatingSystem": "Web, iOS, Android",
@@ -155,82 +161,82 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Which languages can I play Wordle Unlimited in?",
+            "name": "Is Wordle Unlimited free to play?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can play Wordle Unlimited in 10 languages: English, Spanish, Portuguese, German, French, Hindi, Urdu, Arabic, Turkish, and Indonesian. Simply select your language from the dropdown in the top-right corner of the game."
+              "text": "Yes, completely. There are no hidden fees, no premium tiers, and no account requirements. Open the page and start playing immediately."
             }
           },
           {
             "@type": "Question",
-            "name": "Is playing Wordle in a foreign language harder than playing in English?",
+            "name": "Can I play more than once a day?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It depends on your familiarity with the language. Languages like German and Arabic tend to be more challenging due to compound words and non-Latin scripts. Spanish and Portuguese are considered more accessible for English speakers due to shared vocabulary roots."
+              "text": "That is the entire point. Unlike the official NYT Wordle, which resets once every 24 hours, this platform serves a fresh puzzle the instant you request one. Play ten rounds or a hundred. There is no limit."
             }
           },
           {
             "@type": "Question",
-            "name": "Can Wordle Unlimited actually help me learn a new language?",
+            "name": "What is Infinity Mode?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! Playing word puzzles in a target language is a recognized vocabulary-building method. Repeated exposure to five-letter words, combined with the puzzle's feedback system, helps reinforce spelling patterns and word structure in that language."
+              "text": "Infinity Mode is the core unlimited experience: an endless queue of five-letter word puzzles with no daily cap. Finish one, hit New Game, and keep going for as long as you like."
             }
           },
           {
             "@type": "Question",
-            "name": "Do the rules change when I switch to a different language?",
+            "name": "Is this the same as the NYT Wordle?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The core rules stay the same — guess the five-letter word in six attempts using color-coded feedback. However, the keyboard layout adapts to the selected language, and the word list is drawn from native vocabulary of that language."
+              "text": "No. The official Wordle, now owned by The New York Times, offers one shared daily puzzle. This platform is an independent game with its own word pool and the freedom to play on demand."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the best starting word when playing in Spanish?",
+            "name": "Who created the original Wordle?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "For Spanish, strong starting words include AUDIO, REINA, or CLAVE, as they cover common vowels and high-frequency consonants found in Spanish five-letter words."
+              "text": "Josh Wardle, a Welsh software engineer, built Wordle in 2021 as a personal gift for his partner. The game went viral within months and was acquired by The New York Times in early 2022."
             }
           },
           {
             "@type": "Question",
-            "name": "Is Wordle Unlimited different from the NYT Wordle?",
+            "name": "Can beginners play comfortably?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. The NYT Wordle offers a single English puzzle per day. Wordle Unlimited removes that restriction entirely — you can play as many puzzles as you want, in any of the 10 supported languages, at any time, for free."
+              "text": "Absolutely. The rules take about thirty seconds to learn. Standard mode has no time pressure and the color feedback guides you naturally toward the answer. New players typically improve quickly, especially with unlimited practice rounds available."
             }
           },
           {
             "@type": "Question",
-            "name": "Do I need an account or login to play in multiple languages?",
+            "name": "What is a Wordle Solver?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No account or login is required. Simply open the game, pick your language from the selector, and start playing instantly."
+              "text": "A Wordle Solver is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming."
             }
           },
           {
             "@type": "Question",
-            "name": "How does Arabic or Urdu Wordle work since they use different scripts?",
+            "name": "Does the hints section give away the answer directly?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "When you select Arabic or Urdu, the game automatically switches to the appropriate script and keyboard layout. The board reads right-to-left, and all word tiles display the correct characters for that language."
+              "text": "No. The hints section is designed to support your reasoning, not replace it. It presents clues and patterns that help you think through possibilities more efficiently while keeping the challenge intact."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I switch languages in the middle of a game?",
+            "name": "How does the word generator produce new puzzles?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, you can switch languages at any point using the language selector in the header. Switching will start a fresh puzzle in the newly selected language."
+              "text": "The backend draws from a curated pool of valid English five-letter words and selects them in a way that ensures variety across consecutive games. The goal is to keep every session genuinely fresh rather than cycling through the same short list."
             }
           },
           {
             "@type": "Question",
-            "name": "Is Wordle Unlimited free to play in all languages?",
+            "name": "Is Hard Mode significantly more difficult?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Absolutely. Every language mode is 100% free with no hidden fees, subscriptions, or registration. Play unlimited puzzles across all supported languages without spending a cent."
+              "text": "Yes. Hard Mode requires you to incorporate every confirmed clue into your next guess, which prevents the elimination guesses that standard mode relies on. It rewards players with strong vocabulary and disciplined deductive reasoning."
             }
           }
         ]
@@ -268,9 +274,9 @@
 
     <!-- Scripts -->
     <script src="js/state.js?v=3" defer></script>
-    <script src="js/game.js?v=6" defer></script>
+    <script src="js/game.js?v=9" defer></script>
     <script src="js/sounds.js?v=2" defer></script>
-    <script src="js/ui.js?v=7" defer></script>
+    <script src="js/ui.js?v=8" defer></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -283,19 +289,15 @@
 </head>
 
 <body class="theme-default">
-    <div class="top-nav-bar">
-        <div class="top-nav-container">
-            <a href="../" id="back-to-home-link" class="back-home-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; display: inline-block; vertical-align: middle;">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../" class="back-button" aria-label="Back to Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                <span>Back to Home</span>
+                <span>Back</span>
             </a>
-        </div>
-    </div>
-    <header class="main-header">
-        <div class="header-left">
             <button id="btn-help" class="icon-button" aria-label="Help">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -387,177 +389,116 @@
 
     <section id="game-content">
         <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>Wordle Unlimited: Play Free Endless Word Puzzles Online</h2>
+            <p>If one puzzle a day has never been enough for you, you have found the right place. <strong>Wordle Unlimited</strong> removes the 24-hour wall and lets you solve as many five-letter word puzzles as you want, completely free, with no account required. Whether you treat it as a daily mental warm-up or a late-night vocabulary challenge, the game is always ready when you are.</p>
+            <p>Built on the same core mechanics you already know, this platform combines the satisfying logic of the original word game with a faster, more flexible experience. The interface loads instantly on any device, the design stays out of your way, and a new puzzle is always just one tap away. No midnight reset. No waiting.</p>
 
-            <!-- ===== SECTION: Introduction ===== -->
-            <h2>Wordle Unlimited in 10 Languages — One Game, Endless Possibilities</h2>
-            <p>Most word puzzle games hand you a single daily challenge and make you wait 24 hours for the next one. <strong>Wordle Unlimited</strong> was built to break that barrier — and then some. Not only can you play as many puzzles as you want without any daily cap, you can now do it in <strong>10 different languages</strong>: English, Spanish, Portuguese, German, French, Hindi, Urdu, Arabic, Turkish, and Indonesian.</p>
-            <p>Whether you are a dedicated language learner hunting for an engaging daily practice tool, or simply a word puzzle fan who wants more variety than one English game per day, this is the platform built for you. Pick your language from the selector in the top corner and start your first puzzle right now — no account, no download, no waiting.</p>
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>Introduction to the Unlimited Wordle Experience</h2>
+            <p>The original game sparked a global word-puzzle obsession for good reason: the rules are clean, the challenge is real, and the satisfaction of cracking the answer in three guesses is genuinely addictive. The only frustration was always the daily limit. This platform was built specifically to solve that problem.</p>
+            <p>Here you can jump into a fresh round the moment you finish one. Customizable visual themes, smooth animations, and responsive mobile controls make the experience feel polished rather than just patched together. It is the same beloved puzzle format, minus the arbitrary restrictions.</p>
+            <p>This version focuses entirely on the English gameplay experience. If you want to <strong>play Wordle in English</strong> with no distractions and no paywalls, this is your home base.</p>
 
-            <!-- CTA -->
-            <p style="margin: 24px 0;"><strong>Ready to start?</strong> Choose your language above and dive into your first puzzle today — it takes about 30 seconds to get going.</p>
-
-            <!-- ===== SECTION: How Gameplay Changes Across Languages ===== -->
-            <h2>How Playing Wordle in a Different Language Actually Feels</h2>
-            <p>The mechanics are identical across all language modes — six guesses, five letters, color-coded feedback — but the <em>experience</em> shifts in ways that might surprise you. Switching from English to another language is not just a cosmetic change. The vocabulary, spelling patterns, and even the keyboard layout adapt to give you an authentic puzzle in that language.</p>
-
-            <h3>What Changes When You Switch Languages</h3>
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>Experience the Ultimate Wordle Challenge</h2>
+            <h3>Simple. Addictive. Unlimited.</h3>
+            <p>The platform is designed for everyone from first-time players to seasoned word game veterans. Beginners get a forgiving, clean interface with clear color feedback. Dedicated players get Hard Mode, detailed statistics, and the ability to grind through dozens of puzzles in a single session. A live game timer even tracks your fastest solve so you can compete against yourself.</p>
             <ul>
-                <li><strong>Word list:</strong> Every language mode draws from a curated dictionary of five-letter words native to that language — not translated from English.</li>
-                <li><strong>Keyboard layout:</strong> The on-screen keyboard updates automatically to include characters specific to that language (accents, special characters, alternate scripts).</li>
-                <li><strong>Script direction:</strong> Arabic and Urdu modes flip the board to right-to-left display with the correct script rendering.</li>
-                <li><strong>Letter frequency:</strong> Common letters differ between languages, so strategies that work in English may not transfer directly.</li>
+                <li>Infinite puzzles generated on demand, every single day</li>
+                <li>100% free with no registration, no subscription, no catches</li>
+                <li>Responsive design that works beautifully on phones, tablets, and desktop</li>
+                <li>Advanced personal stats and win-streak tracking</li>
+                <li>Dark mode, Cyber Neon, Retro, Ocean, and more visual themes</li>
+                <li>Fastest Win timer to track your personal best</li>
             </ul>
 
-            <!-- [INSERT IMAGE: multilingual-wordle-language-switcher.webp | Alt: "Wordle Unlimited language selector showing 10 supported languages including Arabic and Spanish"] -->
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>How to Play: Rules and Mechanics</h2>
+            <p>The objective is straightforward: identify the hidden five-letter English word within six guesses. Every guess must be a valid word. After each submission, the tiles change color to reveal how accurate your guess was:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> The letter is correct and sits exactly where it belongs.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> The letter appears in the target word but occupies a different position.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> The letter is not present in the hidden word at all.</span></p>
+            <p>Reading this feedback accurately and adjusting each subsequent guess is the entire game. It sounds simple. Mastering it is another matter entirely.</p>
+            <h3>Explore Advanced Game Modes</h3>
+            <p>Beyond the standard mode, <a href="javascript:void(0)" onclick="ui.showSettings()" style="color: var(--color-correct); font-weight: 600;">Hard Mode</a> forces you to use every confirmed clue in your next guess. No skipping a green letter just because a different word feels convenient. This constraint separates disciplined solvers from lucky guessers. There is also a Multi Word mode for players who want to solve several puzzles at the same time and test their multitasking ability under real pressure.</p>
 
-            <!-- ===== SECTION: Difficulty Comparison ===== -->
-            <h2>Which Language Mode is the Hardest? A Difficulty Breakdown</h2>
-            <p>Not all languages are equally challenging for a word puzzle format. Here is a quick guide based on script complexity, word structure, and how many five-letter words exist in each language:</p>
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>Daily Wordle vs. Unlimited Mode: What Is the Difference?</h2>
+            <p>The core puzzle logic is identical in both versions. The differences are everything else.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Daily Wordle (Official NYT)</th>
+                        <th>Unlimited Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Puzzles Available</td>
+                        <td>One per day</td>
+                        <td>Infinite, on demand</td>
+                    </tr>
+                    <tr>
+                        <td>Guess Limit</td>
+                        <td>Fixed at 6</td>
+                        <td>Customizable</td>
+                    </tr>
+                    <tr>
+                        <td>Difficulty Options</td>
+                        <td>Standard only</td>
+                        <td>Standard plus Hard Mode</td>
+                    </tr>
+                    <tr>
+                        <td>Cost</td>
+                        <td>Free</td>
+                        <td>100% Free</td>
+                    </tr>
+                    <tr>
+                        <td>Visual Themes</td>
+                        <td>Light and Dark only</td>
+                        <td>Cyber Neon, Retro, Ocean, and more</td>
+                    </tr>
+                    <tr>
+                        <td>Time Tracking</td>
+                        <td>Not available</td>
+                        <td>Live timer and Fastest Win record</td>
+                    </tr>
+                    <tr>
+                        <td>Account Requirement</td>
+                        <td>Account needed</td>
+                        <td>Instant play, no login</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>One practical tip worth knowing: our daily challenge uses the exact same answer as the official NYT Wordle each day. That means you can play it here first, work out the word at your own pace with no pressure, and then head over to the NYT version already knowing the answer. It is a legitimate way to keep your streak intact on a tough puzzle day.</p>
+            <p>Beyond the daily shared puzzle, Unlimited mode is the better option for genuine skill-building, because consistent repetition across many rounds is the only reliable way to improve.</p>
 
-            <h3>Easier for English Speakers</h3>
-            <ul>
-                <li><strong>Spanish (ES):</strong> Shares Latin roots with English. Many words feel familiar, and vowel patterns are very regular and predictable.</li>
-                <li><strong>Portuguese (PT):</strong> Grammatically similar to Spanish. A great next challenge if you have already tried the Spanish mode.</li>
-                <li><strong>Indonesian (ID):</strong> Uses Latin script with minimal special characters. Short, phonetically consistent words make it more approachable.</li>
-            </ul>
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>Master the Game: Proven Wordle Strategies</h2>
+            <p>Luck might carry you through a puzzle occasionally, but a repeatable strategy is what keeps your win streak alive. These techniques are grounded in English letter frequency and word structure, not guesswork.</p>
+            <h3>Best Strategies for Consistent Wins</h3>
+            <h4>Choosing Your Starting Word</h4>
+            <p>Your opening guess is your most powerful move. The goal is to gather information, not to solve the puzzle outright. The best starting words in English hit the most common letters across as many positions as possible. Words like <strong>ARISE</strong>, <strong>STARE</strong>, <strong>ADIEU</strong>, and <strong>AUDIO</strong> are strong openers because they cover high-frequency vowels (A, E, I, O) and common consonants (R, S, T) simultaneously. Avoid double letters on your first guess since they waste a testing opportunity.</p>
+            <h4>The Second Guess Strategy</h4>
+            <p>Your second guess should be chosen deliberately based on what the first revealed. If the opener produced no green or yellow tiles, do not guess a word that shares any of the same letters. Pivot entirely and test a fresh set of characters. If you landed a yellow or green, use it, but position it differently. Each guess should eliminate the largest possible pool of remaining candidates.</p>
+            <h3>Understanding Wordle Colors and Logic</h3>
+            <p>The three-color feedback system rewards players who think systematically. Green locks a letter and its position. Yellow tells you where a letter is not while confirming it belongs somewhere in the word. Gray clears a letter from consideration entirely. Tracking all three accurately, especially when a letter appears more than once, is where most players make costly errors.</p>
+            <h4>What the Tile Colors Mean</h4>
+            <p><strong>Green tiles</strong> confirm the letter and its exact position. Lock it in and never move it.<br><strong>Yellow tiles</strong> confirm the letter exists in the word but appears in the wrong position. Try it elsewhere.<br><strong>Gray tiles</strong> rule out the letter completely. Remove it from all future guesses.</p>
+            <h3>Advanced Tips for Hard Mode Players</h3>
+            <p>Hard Mode eliminates the safety net. Every confirmed clue must appear in your next guess, which means you cannot simply eliminate letters freely. The most reliable approach is to think about common English word patterns before committing. Endings like <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong>, and <strong>LY</strong> account for a large share of five-letter words. Recognizing them early often makes the difference between solving in four guesses and failing on the sixth.</p>
 
-            <h3>Moderate Challenge</h3>
-            <ul>
-                <li><strong>French (FR):</strong> Familiar script, but silent letters and accented characters (é, è, ê) add an unpredictable layer to every guess.</li>
-                <li><strong>Turkish (TR):</strong> Agglutinative structure means words are built by stacking suffixes. Unique letters like ğ, ş, and ı appear regularly.</li>
-                <li><strong>Hindi (HI):</strong> Uses the Devanagari script. Rewarding for learners, but requires familiarity with the alphabet before playing comfortably.</li>
-            </ul>
-
-            <h3>Advanced / Expert Level</h3>
-            <ul>
-                <li><strong>German (DE):</strong> Compound words and umlauts (ä, ö, ü) make this a genuine challenge even for intermediate German learners.</li>
-                <li><strong>Arabic (AR):</strong> Right-to-left script, root-based word formation, and no short vowels written in text — this is the most demanding mode for non-native speakers.</li>
-                <li><strong>Urdu (UR):</strong> Shares the Nastaliq script family with Arabic. A beautiful but challenging mode ideal for native or advanced Urdu speakers.</li>
-            </ul>
-
-            <!-- [INSERT IMAGE: wordle-difficulty-language-comparison.webp | Alt: "Chart comparing difficulty levels of Wordle Unlimited language modes from Spanish to Arabic"] -->
-
-            <!-- ===== SECTION: Tips for Non-Native Players ===== -->
-            <h2>Tips for Playing Wordle in a Language You Are Still Learning</h2>
-            <p>Attempting a word puzzle in your target language before you are fully fluent is one of the most effective vocabulary exercises you can do. Here is how to approach it strategically so the experience is challenging but not frustrating:</p>
-
-            <h3>Start Smart: Your Opening Word Strategy for Each Language</h3>
-            <ul>
-                <li><strong>English:</strong> Words like <strong>ARISE</strong>, <strong>STARE</strong>, or <strong>AUDIO</strong> cover the most common letters efficiently.</li>
-                <li><strong>Spanish:</strong> Try <strong>REINA</strong> (queen) or <strong>CLAVE</strong> (key) — both are rich in common Spanish vowels and consonants.</li>
-                <li><strong>French:</strong> Open with <strong>ROUTE</strong> or <strong>CHIEN</strong> to test the most frequently used French letters early.</li>
-                <li><strong>German:</strong> <strong>STROM</strong> (current/power) or <strong>REGEN</strong> (rain) are solid German openers covering key consonant clusters.</li>
-                <li><strong>Arabic:</strong> Focus on three-letter roots first — words built on common roots like ك-ت-ب (write) appear frequently in puzzles.</li>
-            </ul>
-
-            <h3>General Tips for Non-Native Players</h3>
-            <ul>
-                <li>Do not rush. Treat each guess as a learning moment, not just a game move.</li>
-                <li>When you find the answer, say it out loud — pronunciation practice is a free bonus.</li>
-                <li>Play the same language mode for at least a week before switching; repetition builds pattern recognition.</li>
-                <li>Keep a small notebook of new words you discover during gameplay — it is a surprisingly effective vocabulary list.</li>
-            </ul>
-
-            <!-- ===== SECTION: Vocabulary Learning Benefits ===== -->
-            <h2>Why Language Learners Are Turning to Wordle Unlimited as a Study Tool</h2>
-
-            <!-- [INSERT IMAGE: wordle-vocabulary-learning-languages.webp | Alt: "Person playing Wordle Unlimited in Spanish on a tablet as part of their daily language learning routine"] -->
-
-            <p>Language learning apps promise results but often feel like schoolwork. Wordle Unlimited delivers the same vocabulary exposure in a format that genuinely does not feel like studying. Here is the science-backed reason it works:</p>
-
-            <h3>How the Game Builds Real Vocabulary</h3>
-            <ul>
-                <li><strong>Active recall:</strong> Trying to think of a valid word in your target language forces retrieval — the most powerful memory technique known.</li>
-                <li><strong>Spaced repetition naturally occurs:</strong> Playing daily means you encounter the same letter combinations repeatedly, reinforcing patterns without conscious effort.</li>
-                <li><strong>Context-free word recognition:</strong> Unlike reading, puzzles train you to recognize a word by its shape and letters alone — a critical skill for reading speed.</li>
-                <li><strong>Low-stakes exposure:</strong> There are no points deducted for a wrong guess. The relaxed environment reduces anxiety, which research shows directly improves retention.</li>
-            </ul>
-
-            <h3>Who Benefits Most</h3>
-            <ul>
-                <li>Language students looking for daily practice outside of class</li>
-                <li>Bilingual families who want a fun shared activity across languages</li>
-                <li>Professionals learning a language for work (Spanish, French, German, Arabic)</li>
-                <li>Heritage language speakers keeping their native tongue sharp</li>
-            </ul>
-
-            <!-- CTA -->
-            <p style="margin: 24px 0;">Pick a language you are learning and challenge yourself right now — even five minutes a day adds up faster than you think.</p>
-
-            <!-- ===== SECTION: Comparison Table ===== -->
-            <h2>Wordle Unlimited vs. Classic Daily Wordle — Side by Side</h2>
-            <p>The original game set the standard. This version expands every dimension of it.</p>
-            <div class="table-container"
-                style="overflow-x: auto; width: 100%; margin: 40px 0; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);">
-                <table style="margin: 0; box-shadow: none; border: none;">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Classic Daily Wordle</th>
-                            <th>Wordle Unlimited</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Puzzles Per Day</td>
-                            <td>1 (resets at midnight)</td>
-                            <td>Unlimited — play instantly</td>
-                        </tr>
-                        <tr>
-                            <td>Language Support</td>
-                            <td>English only</td>
-                            <td>10 languages</td>
-                        </tr>
-                        <tr>
-                            <td>Difficulty Options</td>
-                            <td>Standard only</td>
-                            <td>Standard + Hard Mode</td>
-                        </tr>
-                        <tr>
-                            <td>Account Required</td>
-                            <td>Yes (NYT account)</td>
-                            <td>No — instant play</td>
-                        </tr>
-                        <tr>
-                            <td>Visual Themes</td>
-                            <td>Light &amp; Dark</td>
-                            <td>Cyber Neon, Retro, Ocean &amp; more</td>
-                        </tr>
-                        <tr>
-                            <td>Cost</td>
-                            <td>Free (with ads)</td>
-                            <td>100% Free, no ads</td>
-                        </tr>
-                        <tr>
-                            <td>Time Tracking</td>
-                            <td>None</td>
-                            <td>Live timer + fastest win record</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ===== SECTION: How to Play ===== -->
-            <h2>How to Play: Rules That Work Across Every Language</h2>
-            <p>The puzzle works the same way regardless of which language you choose. Your goal is to identify the hidden five-letter word within six attempts. After each guess, the tiles reveal how close you are:</p>
-            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Green:</strong> This letter is correct and placed in exactly the right position.</span></p>
-            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Yellow:</strong> This letter appears somewhere in the word, but not in that spot.</span></p>
-            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gray:</strong> This letter does not appear anywhere in today's hidden word.</span></p>
-
-            <h3>Hard Mode — For When You Want a Real Test</h3>
-            <p>Activate <a href="javascript:void(0)" onclick="ui.showSettings()"
-                    style="color: var(--color-correct); font-weight: 600;">Hard Mode</a> from the settings menu to add an extra constraint: every confirmed green or yellow letter <em>must</em> be used in your subsequent guesses. This rule applies across all language modes and significantly raises the skill ceiling.</p>
-
-            <!-- ===== SECTION: Expert Strategy Cards ===== -->
-            <h2>Expert Strategies That Work in Any Language</h2>
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>Expert Wordle Strategies</h2>
             <div class="strategy-grid">
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-target.webp" alt="Best Wordle opening word strategy targeting high-frequency letters" class="strategy-photo"
-                            loading="lazy">
+                        <img src="assets/strategy-target.webp" alt="Top starting words for Wordle Unlimited strategy" class="strategy-photo" loading="lazy">
                     </div>
-                    <h3>High-Value Opening Words</h3>
-                    <p>Your first guess should maximize letter coverage. In any language, aim for words that hit the most commonly used vowels and consonants in that language's alphabet.</p>
+                    <h3>Top Starting Words</h3>
+                    <p>Linguists and puzzle mathematicians broadly agree on a shortlist of optimal openers. These words maximize letter coverage across all five positions in a single guess.</p>
                     <ul class="tag-list">
                         <li>ADIEU</li>
                         <li>ARISE</li>
@@ -567,132 +508,163 @@
                 </div>
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-hint.webp" alt="Wordle vowel hunting strategy for non-English language modes" class="strategy-photo" loading="lazy">
+                        <img src="assets/strategy-hint.webp" alt="The vowel hunter strategy for Wordle Unlimited" class="strategy-photo" loading="lazy">
                     </div>
-                    <h3>The Vowel Sweep</h3>
-                    <p>If your opening guess revealed no vowels, dedicate your second turn entirely to testing the remaining vowels before committing to consonant guesses.</p>
+                    <h3>The Vowel Hunter</h3>
+                    <p>If your opening word fails to reveal any vowels, use your second guess to target the ones you missed. English five-letter words almost always contain at least two vowels. Once you know which vowels are present, your candidate pool shrinks dramatically. The letters O, U, and the semi-vowel Y are worth hunting if A, E, and I came back gray.</p>
                 </div>
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-pattern.webp" alt="Pattern recognition strategy for solving multilingual Wordle puzzles" class="strategy-photo"
-                            loading="lazy">
+                        <img src="assets/strategy-pattern.webp" alt="Pattern recognition strategy in Wordle Unlimited" class="strategy-photo" loading="lazy">
                     </div>
-                    <h3>Language-Specific Patterns</h3>
-                    <p>Every language has signature endings and prefixes. English favors <strong>-ING</strong> and <strong>-ER</strong>. Spanish leans on <strong>-CIÓN</strong> roots. German often ends in <strong>-UNG</strong> or <strong>-HEIT</strong>. Learn these and your guess efficiency jumps immediately.</p>
+                    <h3>Pattern Recognition</h3>
+                    <p>Experienced players develop a feel for common English word structures. Watching for recurring endings like <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong>, and <strong>EST</strong> is not cheating. It is applied linguistics. Spotting these patterns from partial clues often lets you identify the target word one or two guesses earlier than random elimination would allow.</p>
                 </div>
                 <div class="strategy-card">
                     <div class="strategy-image-container">
-                        <img src="assets/strategy-double.webp" alt="Double letter awareness strategy in Wordle for advanced players" class="strategy-photo"
-                            loading="lazy">
+                        <img src="assets/strategy-double.webp" alt="The double letter trap in Wordle Unlimited" class="strategy-photo" loading="lazy">
                     </div>
-                    <h3>Watch for Repeated Letters</h3>
-                    <p>Hidden words in any language can contain the same letter twice. If you are stuck in the final two guesses, try repeating a vowel or a high-frequency consonant from earlier clues.</p>
+                    <h3>The Double Letter Trap</h3>
+                    <p>One of the most common mistakes is assuming every letter in the target word appears only once. English frequently produces five-letter words with repeated letters, especially doubled vowels like <strong>E</strong> and <strong>O</strong>, and common consonants like <strong>L</strong> and <strong>S</strong>. If you are stuck with three or four confirmed letters and cannot form a word, try repeating one of them.</p>
                 </div>
             </div>
 
-            <!-- ===== SECTION: FAQ ===== -->
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>Wordle Solver and Hints: Tools That Actually Help</h2>
+            <p>Not every puzzle session needs to be a solo battle of wits. This platform includes a built-in <strong>Wordle Solver</strong> that works as a genuine thinking aid rather than a simple spoiler. Enter the letters you already know, mark which positions are confirmed green and which are yellow misses, and the solver returns a filtered list of valid English words that match your current clues. It does not just give you the answer. It gives you the strongest candidates so the final decision remains yours.</p>
+            <p>The solver is especially useful for Hard Mode runs where a wrong move on guess five can cost you the entire game. Using it to double-check your reasoning before committing is a legitimate strategy, not a shortcut. The solver also supports multiple languages, making it useful beyond English play as well.</p>
+            <p>Alongside the solver, the site features a dedicated <strong>Wordle hints</strong> section that functions almost like a secondary game on its own. You can browse through daily puzzle entries, study how specific words were clued, and trace the logical path from opening guess to solution. It is a practical way to sharpen your pattern recognition and understand why certain starting words consistently outperform others. Think of it as a training log for word puzzle players.</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>Why This Platform Is Worth Your Time</h2>
+            <p>There are dozens of Wordle variants online. Most are clones with little thought put into the actual experience. This one was built differently.</p>
+            <ul>
+                <li>Play as many rounds as you want with no daily cap and no throttling</li>
+                <li>Your personal stats, win streaks, and fastest solve times are tracked automatically</li>
+                <li>Multiple visual themes let you set the mood, from clean white to deep Cyber Neon</li>
+                <li>Pages load in under a second on mobile connections</li>
+                <li>No pop-ups, no forced registrations, no subscriptions</li>
+            </ul>
+            <p>Whether you are here for a five-minute brain reset or a focused two-hour practice session, the platform holds up. The Wordle Unlimited format exists specifically because meaningful vocabulary improvement requires volume, and one puzzle a day simply is not enough volume.</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>Available in 10 Languages</h2>
+            <p>This page focuses on the English Wordle experience, but the platform supports 10 languages in total, each with its own dedicated word list and full Wordle Solver integration. Whether you are playing in your native tongue or practicing a foreign language, the same unlimited gameplay and solver tools are available across all of them:</p>
+            <ul>
+                <li><strong>English</strong> (US, NYT-style daily + Unlimited mode)</li>
+                <li><strong>English UK</strong> (British English word list, including UK-specific spellings and vocabulary)</li>
+                <li><strong>Spanish</strong></li>
+                <li><strong>French</strong></li>
+                <li><strong>German</strong></li>
+                <li><strong>Portuguese</strong></li>
+                <li><strong>Arabic</strong> (with full right-to-left input support)</li>
+                <li><strong>Turkish</strong></li>
+                <li><strong>Hindi</strong> (Devanagari script supported)</li>
+                <li><strong>Urdu</strong> (right-to-left script supported)</li>
+                <li><strong>Indonesian</strong></li>
+            </ul>
+            <p>The British English (Wordle UK) mode is particularly worth noting for players familiar with UK spellings. Words like COLOUR, FAVOUR, and CENTRE appear in their native British form rather than the American variants, making it a distinct and more relevant challenge for players in the UK and other Commonwealth countries.</p>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
             <h2>Frequently Asked Questions</h2>
             <div class="faq-accordion">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Which languages can I play Wordle Unlimited in?</h3>
+                        <h3>Is Wordle Unlimited free to play?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Ten languages are fully supported: English, Spanish, Portuguese, German, French, Hindi, Urdu, Arabic, Turkish, and Indonesian. Switch between any of them instantly using the language selector at the top of the page.</p>
+                        <p>Yes, completely. There are no hidden fees, no premium tiers, and no account requirements. Open the page and start playing immediately.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Is playing Wordle in a foreign language harder than in English?</h3>
+                        <h3>Can I play more than once a day?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>It varies by language. Spanish and Portuguese are relatively accessible for English speakers due to shared vocabulary. German and Arabic present a steeper challenge due to complex structure and script differences. The difficulty is also tied to your familiarity with the language.</p>
+                        <p>That is the entire point. Unlike the official NYT Wordle, which resets once every 24 hours, this platform serves a fresh puzzle the instant you request one. Play ten rounds or a hundred. There is no limit.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Can this game genuinely help me learn vocabulary in another language?</h3>
+                        <h3>What is Infinity Mode?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes — and the research backs it up. Active word retrieval, which is exactly what Wordle requires, is one of the most effective vocabulary retention techniques. Playing in your target language daily, even for a few minutes, builds real word recognition over time.</p>
+                        <p>Infinity Mode is the core unlimited experience: an endless queue of five-letter word puzzles with no daily cap. Finish one, hit New Game, and keep going for as long as you like.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Does switching languages change the game rules?</h3>
+                        <h3>Is this the same as the NYT Wordle?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The rules stay the same — six guesses, five letters, color-coded tile feedback. What changes is the word list, the keyboard layout, and the script direction for Arabic and Urdu (which display right-to-left).</p>
+                        <p>No. The official Wordle, now owned by The New York Times, offers one shared daily puzzle. This platform is an independent game with its own word pool and the freedom to play on demand.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How does Arabic or Urdu mode work with different scripts?</h3>
+                        <h3>Who created the original Wordle?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>When you select Arabic or Urdu, the entire board flips to right-to-left orientation and displays the correct native script. The on-screen keyboard updates to show the appropriate characters for that language automatically.</p>
+                        <p>Josh Wardle, a Welsh software engineer, built Wordle in 2021 as a personal gift for his partner. The game went viral within months and was acquired by The New York Times in early 2022.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>What is the best opening word when playing in Spanish or French?</h3>
+                        <h3>Can beginners play comfortably?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>For Spanish, words like <strong>REINA</strong>, <strong>AUDIO</strong>, or <strong>CLAVE</strong> cover the most frequent vowels and consonants. For French, try <strong>ROUTE</strong> or <strong>CHIEN</strong> to get early feedback on the most common letters in French five-letter words.</p>
+                        <p>Absolutely. The rules take about thirty seconds to learn. Standard mode has no time pressure and the color feedback guides you naturally toward the answer. New players typically improve quickly, especially with unlimited practice rounds available.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Is Wordle Unlimited different from the NYT Wordle?</h3>
+                        <h3>What is a Wordle Solver?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Completely different in scope. The <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">NYT Wordle</a> gives you one English puzzle per day. Wordle Unlimited gives you unlimited puzzles across 10 languages, with no account required and no daily cap — ever.</p>
+                        <p>A Wordle Solver is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Do I need an account to play in multiple languages?</h3>
+                        <h3>Does the hints section give away the answer directly?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>No registration, no login, no email required. Open the site, tap the language selector, and you are playing within seconds. It is that simple.</p>
+                        <p>No. The hints section is designed to support your reasoning, not replace it. It presents clues and patterns that help you think through possibilities more efficiently while keeping the challenge intact.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Can I switch between languages during a session?</h3>
+                        <h3>How does the word generator produce new puzzles?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes. You can switch languages at any time using the dropdown in the header. A language switch will begin a fresh puzzle in the selected language, so your current progress will reset.</p>
+                        <p>The backend draws from a curated pool of valid English five-letter words and selects them in a way that ensures variety across consecutive games. The goal is to keep every session genuinely fresh rather than cycling through the same short list.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Is every language mode completely free?</h3>
+                        <h3>Is Hard Mode significantly more difficult?</h3>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely. All 10 language modes are free with zero hidden costs, no subscription tiers, and no ads interrupting your game. Play as much as you want, in any language, at no charge.</p>
+                        <p>Yes. Hard Mode requires you to incorporate every confirmed clue into your next guess, which prevents the elimination guesses that standard mode relies on. It rewards players with strong vocabulary and disciplined deductive reasoning.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- ===== SECTION 12: CONCLUSION ===== -->
+            <h2>Start Playing Wordle Unlimited Right Now</h2>
+            <p>There is no better way to sharpen your English vocabulary and logical thinking than consistent, deliberate practice with a game you actually enjoy. <strong>Wordle Unlimited</strong> makes that practice effortless by removing every artificial restriction that normally gets in the way. No account. No limit. No wait.</p>
+            <p>Scroll back to the top, pick your starting word, and find out how good you really are.</p>
+
         </div>
     </section>
     <!-- Modals -->
@@ -702,48 +674,13 @@
 
     <footer class="main-footer">
         <div class="footer-container">
-            <div class="footer-left">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="footer-logo-svg" style="border-radius: 6px; margin-right: 8px;">
-                    <rect width="32" height="32" rx="6" fill="#121213" />
-                    <rect x="4" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
-                    <rect x="12.5" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
-                    <rect x="21" y="4" width="7" height="7" rx="1.5" fill="#3a3a3c" />
-                    <rect x="4" y="12.5" width="7" height="7" rx="1.5" fill="#3a3a3c" />
-                    <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#b59f3b" />
-                    <rect x="21" y="12.5" width="7" height="7" rx="1.5" fill="#538d4e" />
-                    <rect x="4" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
-                    <rect x="12.5" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
-                    <rect x="21" y="21" width="7" height="7" rx="1.5" fill="#538d4e" />
+            <a href="../" class="back-button" aria-label="Back to Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                <span>Wordle Unlimited © 2026</span>
-            </div>
-            <div class="footer-right">
-                <div class="footer-links">
-                    <a href="/about-us/">About Us</a>
-                    <a href="/privacy-policy/">Privacy Policy</a>
-                    <a href="/contact-us/">Contact Us</a>
-                </div>
-                <div class="footer-social">
-                    <a href="https://x.com/Wordleinfo" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
-                        class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/wordle_unlimited.app" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram" class="social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+                <span>Back</span>
+            </a>
         </div>
     </footer>
 </body>

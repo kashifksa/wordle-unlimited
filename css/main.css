@@ -128,45 +128,54 @@ body.dark-mode {
 }
 
 
-/* Top Navigation Bar */
-.top-nav-bar {
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    padding: 10px 16px;
-    height: 38px;
-    box-sizing: border-box;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: background-color var(--transition-med), border-color var(--transition-med);
-    display: flex;
-    align-items: center;
-}
-
-.top-nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.back-home-link {
-    color: var(--color-text);
-    text-decoration: none;
+/* Back Button in Header */
+.back-button {
     display: inline-flex;
     align-items: center;
-    opacity: 0.75;
-    transition: opacity var(--transition-fast), color var(--transition-fast);
+    justify-content: center;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    gap: 6px;
+    letter-spacing: 0.05em;
 }
 
-.back-home-link:hover {
-    opacity: 1;
+.back-button:hover {
+    background: rgba(128, 128, 128, 0.1);
     color: var(--color-correct);
 }
 
+.back-button:active {
+    transform: scale(0.95);
+}
+
+.back-button svg {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.back-button:hover svg {
+    transform: translateX(-2px);
+}
+
+@media (max-width: 420px) {
+    .back-button span {
+        display: none;
+    }
+    .back-button {
+        padding: 8px;
+    }
+}
+
 #game-container {
-    height: calc(100vh - 60px - 38px);
-    height: calc(100dvh - 60px - 38px);
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
 }
 
 /* Header */
@@ -298,9 +307,8 @@ body.dark-mode {
 }
 
 #board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 5px;
     padding: 10px;
     box-sizing: border-box;
@@ -311,11 +319,14 @@ body.dark-mode {
 }
 
 .row {
-    display: contents; /* Letting the parent grid handle the children */
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    flex: 1;
 }
 
 .tile {
-    width: 100%;
+    flex: 1;
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -1710,7 +1721,7 @@ body.dark-mode .hint-banner {
 }
 
 /* Embedded inside iframe optimization */
-body.is-embedded .top-nav-bar {
+body.is-embedded .back-button {
     display: none;
 }
 

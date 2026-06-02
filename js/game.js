@@ -239,9 +239,23 @@ class WordleGame {
         }
     }
 
+    getLocalWordPressApiUrl() {
+        const pathname = window.location.pathname;
+        const gameFolder = 'wordle-unlimited';
+        const altGameFolder = 'wordleunlimited';
+        let baseIdx = pathname.toLowerCase().indexOf(gameFolder);
+        if (baseIdx === -1) {
+            baseIdx = pathname.toLowerCase().indexOf(altGameFolder);
+        }
+        if (baseIdx !== -1) {
+            return pathname.substring(0, baseIdx) + 'wp-json/wordle/v1';
+        }
+        return '/TodayWordle/wp-json/wordle/v1';
+    }
+
     getTodayWordApiUrl(useLocal = true) {
-        if (useLocal && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-            return '/TodayWordle/wp-json/wordle/v1';
+        if (useLocal) {
+            return this.getLocalWordPressApiUrl();
         }
         return 'https://todaywordlehint.com/wp-json/wordle/v1';
     }
@@ -261,86 +275,147 @@ class WordleGame {
             const response = await fetch(url);
             if (response.ok) {
                 const resData = await response.json();
-                if (resData && resData.success && resData.data && resData.data.word) {
-                    return resData.data.word.toLowerCase();
+                if (resData && resData.success) {
+                    if (resData.word) {
+                        return resData.word.toLowerCase();
+                    } else if (resData.data && resData.data.word) {
+                        return resData.data.word.toLowerCase();
+                    }
                 }
             }
             throw new Error(`Failed to fetch from ${baseUrl}`);
         };
 
         try {
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                return await tryFetch(this.getTodayWordApiUrl(true));
-            }
+            // 1. Try dynamically determined local folder path (case and subfolder preserved)
+            return await tryFetch(this.getLocalWordPressApiUrl());
         } catch (e) {
-            console.warn(`Local fetch failed for ${dateStr}, trying production...`, e);
+            // Ignore
         }
-        return await tryFetch(this.getTodayWordApiUrl(false));
+        try {
+            // 2. Try default root-relative camelcase path
+            return await tryFetch('/TodayWordle/wp-json/wordle/v1');
+        } catch (e) {
+            // Ignore
+        }
+        try {
+            // 3. Try directory-relative parent path
+            return await tryFetch('../wp-json/wordle/v1');
+        } catch (e) {
+            // Ignore
+        }
+        // 4. Fall back to production absolute URL
+        return await tryFetch('https://todaywordlehint.com/wp-json/wordle/v1');
     }
 
     async loadNYTWord() {
         const todayStr = this.getLocalDateString(0);
-        
-        let cache = null;
+        const now = Date.now();
+        const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+
+        // 1. Load cache from localStorage
+        let cache = { last_fetch: 0, last_fetch_date: '', words: {} };
         try {
             const cachedStr = localStorage.getItem('wordle_nyt_cache');
             if (cachedStr) {
-                cache = JSON.parse(cachedStr);
+                const parsed = JSON.parse(cachedStr);
+                if (parsed && typeof parsed === 'object') {
+                    if (parsed.words) cache.words = parsed.words;
+                    if (parsed.last_fetch) cache.last_fetch = parsed.last_fetch;
+                    if (parsed.last_fetch_date) cache.last_fetch_date = parsed.last_fetch_date;
+                }
             }
         } catch (e) {
             console.error("Error reading cache", e);
         }
 
-        const now = Date.now();
-        const oneDayMs = 24 * 60 * 60 * 1000;
-
-        if (cache && cache.last_fetch && (now - cache.last_fetch < oneDayMs) && cache.words && cache.words[todayStr]) {
-            console.log("NYT Mode: Loaded word from local cache for date:", todayStr, "word:", cache.words[todayStr]);
-            return cache.words[todayStr];
-        }
-
-        console.log("NYT Mode: Cache stale or missing. Fetching 3 days data...");
-        const yesterdayStr = this.getLocalDateString(-1);
-        const tomorrowStr = this.getLocalDateString(1);
-
-        const newWords = (cache && cache.words) ? { ...cache.words } : {};
-        const fetchDates = [yesterdayStr, todayStr, tomorrowStr];
-        
-        await Promise.all(fetchDates.map(async (dStr) => {
-            try {
-                const word = await this.fetchNYTWordFromApi(dStr);
-                if (word) {
-                    newWords[dStr] = word;
+        // 2. Clean up old cache entries (keep past 7 days and all future days)
+        const cleanOldCache = (wordsObj) => {
+            const cleaned = {};
+            const cutoffDate = new Date(now - sevenDaysMs);
+            for (const [dateKey, val] of Object.entries(wordsObj)) {
+                const itemDate = new Date(dateKey);
+                if (!isNaN(itemDate.getTime()) && (itemDate >= cutoffDate || dateKey >= todayStr)) {
+                    cleaned[dateKey] = val;
                 }
-            } catch (err) {
-                console.warn(`Failed to fetch/cache NYT word for date: ${dStr}`, err);
             }
-        }));
+            return cleaned;
+        };
 
-        if (newWords[todayStr]) {
-            cache = {
-                last_fetch: now,
-                words: newWords
-            };
-            try {
-                localStorage.setItem('wordle_nyt_cache', JSON.stringify(cache));
-            } catch (e) {
-                console.error("Failed to save cache", e);
+        cache.words = cleanOldCache(cache.words);
+
+        // 3. Helper to fetch rolling window (yesterday + today + next 7 days) and update cache
+        const fetchWindow = async () => {
+            const yesterdayStr = this.getLocalDateString(-1);
+            const fetchDates = [yesterdayStr];
+            for (let i = 0; i <= 7; i++) {
+                fetchDates.push(this.getLocalDateString(i));
             }
-            return newWords[todayStr];
-        }
+            let updated = false;
 
-        if (cache && cache.words && cache.words[todayStr]) {
+            await Promise.all(fetchDates.map(async (dStr) => {
+                if (!cache.words[dStr] || cache.words[dStr].length !== this.wordLength) {
+                    try {
+                        const word = await this.fetchNYTWordFromApi(dStr);
+                        if (word && word.length === this.wordLength) {
+                            cache.words[dStr] = word;
+                            updated = true;
+                        }
+                    } catch (err) {
+                        console.warn(`Failed to fetch/cache NYT word for date: ${dStr}`, err);
+                    }
+                }
+            }));
+
+            if (updated || cache.last_fetch_date !== todayStr) {
+                cache.last_fetch = Date.now();
+                cache.last_fetch_date = todayStr;
+                try {
+                    localStorage.setItem('wordle_nyt_cache', JSON.stringify(cache));
+                } catch (e) {
+                    console.error("Failed to save cache", e);
+                }
+            }
+        };
+
+        // 4. If today's word is already cached, return it instantly and refresh in background if a calendar day has passed
+        if (cache.words[todayStr] && cache.words[todayStr].length === this.wordLength) {
+            console.log("NYT Mode: Instant load from local cache for date:", todayStr, "word:", cache.words[todayStr]);
+            if (cache.last_fetch_date !== todayStr) {
+                console.log("NYT Mode: Calendar day changed. Refreshing rolling window in background...");
+                fetchWindow();
+            }
             return cache.words[todayStr];
         }
 
+        // 5. If missing, fetch synchronously
+        console.log("NYT Mode: Word missing for date:", todayStr, ". Fetching synchronously...");
+        await fetchWindow();
+
+        if (cache.words[todayStr] && cache.words[todayStr].length === this.wordLength) {
+            return cache.words[todayStr];
+        }
+
+        // 6. Emergency fallback
         try {
-            const url = this.getTodayWordApiUrl(false) + '/today';
-            const response = await fetch(url);
+            // Try relative local paths first
+            let response = await fetch(this.getLocalWordPressApiUrl() + '/today');
+            if (!response.ok) {
+                response = await fetch('/TodayWordle/wp-json/wordle/v1/today');
+            }
+            if (!response.ok) {
+                response = await fetch('../wp-json/wordle/v1/today');
+            }
+            if (!response.ok) {
+                response = await fetch('https://todaywordlehint.com/wp-json/wordle/v1/today');
+            }
             if (response.ok) {
                 const data = await response.json();
-                if (data && data.word) {
-                    return data.word.toLowerCase();
+                if (data) {
+                    const word = data.word || (data.data && data.data.word);
+                    if (word && word.length === this.wordLength) {
+                        return word.toLowerCase();
+                    }
                 }
             }
         } catch (e) {

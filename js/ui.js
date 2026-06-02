@@ -8,8 +8,8 @@ class WordleUI {
             }
 
             // Dynamically set Back to Home href to support subfolders on localhost/live domain
-            const homeLink = document.getElementById('back-to-home-link');
-            if (homeLink) {
+            const homeLinks = document.querySelectorAll('.back-button');
+            homeLinks.forEach(homeLink => {
                 const pathname = window.location.pathname.toLowerCase();
                 const gameFolder = 'wordle-unlimited';
                 const altGameFolder = 'wordleunlimited';
@@ -22,7 +22,7 @@ class WordleUI {
                 } else {
                     homeLink.href = '../';
                 }
-            }
+            });
 
             this.board = document.getElementById('board');
             this.keyboard = document.getElementById('keyboard');
