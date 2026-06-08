@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wordle-unlimited-v29';
+const CACHE_NAME = 'wordle-unlimited-v31';
 const ASSETS = [
   './',
   'Wordle-Unlimited',
@@ -8,7 +8,10 @@ const ASSETS = [
   'js/sounds.js',
   'js/ui.js',
   'manifest.json',
-  'assets/icon.svg',
+  '../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png',
+  '../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png',
+  '../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png',
+  '../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png',
   'assets/game-preview.webp',
   'data/words.json',
   'languages/es.json',
