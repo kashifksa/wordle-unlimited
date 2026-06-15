@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wordle Unlimited — Juega Gratis a Puzzles de Palabras Sin Límite</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Juega a Wordle Unlimited gratis y sin límites diarios. Disfruta de infinitos puzzles de cinco letras, usa el Solucionador de Wordle, explora pistas y mejora tu vocabulario en español a tu propio ritmo.">
+    <meta name="keywords"
+        content="Wordle Unlimited, jugar Wordle en diferentes idiomas, puzzle de palabras multilingüe, Wordle en español, Wordle en francés, Wordle en árabe, Wordle en urdu, juego de palabras para aprender idiomas, juego ilimitado de adivinar palabras, juego para ampliar vocabulario, juego de palabras diario, Wordle en alemán, Wordle en hindi, juegos de aprendizaje de idiomas, Wordle multilingüe">
+    <meta name="author" content="Wordle Unlimited">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="/wordle-unlimited/" />
+    <link rel="alternate" hreflang="ar" href="/wordle-unlimited/ar/" />
+    <link rel="alternate" hreflang="de" href="/wordle-unlimited/de/" />
+    <link rel="alternate" hreflang="es" href="/wordle-unlimited/es/" />
+    <link rel="alternate" hreflang="fr" href="/wordle-unlimited/fr/" />
+    <link rel="alternate" hreflang="hi" href="/wordle-unlimited/hi/" />
+    <link rel="alternate" hreflang="id" href="/wordle-unlimited/id/" />
+    <link rel="alternate" hreflang="pt" href="/wordle-unlimited/pt/" />
+    <link rel="alternate" hreflang="tr" href="/wordle-unlimited/tr/" />
+    <link rel="alternate" hreflang="ur" href="/wordle-unlimited/ur/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wordle-unlimited.app">
+    <meta property="og:title" content="Wordle Unlimited — Juega Gratis a Puzzles de Palabras Sin Límite">
+    <meta property="og:description"
+        content="Juega a Wordle Unlimited gratis y sin límites diarios. Disfruta de infinitos puzzles de cinco letras, usa el Solucionador de Wordle, explora pistas y mejora tu vocabulario en español a tu propio ritmo.">
+    <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+    <meta property="og:site_name" content="Wordle Unlimited">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
+    <meta property="twitter:url" content="https://wordle-unlimited.app">
+    <meta property="twitter:title" content="Wordle Unlimited — Juega Gratis a Puzzles de Palabras Sin Límite">
+    <meta property="twitter:description"
+        content="Juega a Wordle Unlimited gratis y sin límites diarios. Disfruta de infinitos puzzles de cinco letras, usa el Solucionador de Wordle, explora pistas y mejora tu vocabulario en español a tu propio ritmo.">
+    <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Game Data & Scripts -->
+    <link rel="preload" href="../js/game.js?v=9" as="script">
+    <link rel="preload" href="../js/ui.js?v=8" as="script">
+
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
+
+    <!-- Critical CSS (Inlined for speed) -->
+    <style>
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css?v=2.6" fetchpriority="high">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Wordle Unlimited — Puzzles de Palabras Sin Límite",
+        "url": "https://wordle-unlimited.app",
+        "description": "Juega a Wordle Unlimited gratis y sin límites diarios. Disfruta de infinitos puzzles de cinco letras, usa el Solucionador de Wordle, explora pistas y mejora tu vocabulario en español a tu propio ritmo.",
+        "genre": ["Puzzle Game", "Word Game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Es gratis jugar a Wordle Unlimited?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, completamente. No hay costes ocultos, ni niveles premium, ni necesidad de crear una cuenta. Abre la página y empieza a jugar de inmediato."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo jugar más de una vez al día?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Esa es precisamente la idea. A diferencia del Wordle oficial del NYT, que se renueva cada 24 horas, esta plataforma te ofrece un puzzle nuevo en el instante en que lo pidas. Juega diez partidas o cien. No hay límite."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué es el Modo Infinito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El Modo Infinito es la experiencia ilimitada principal: una cola interminable de puzzles de palabras de cinco letras sin tope diario. Termina uno, pulsa Nueva Partida y sigue jugando todo el tiempo que quieras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Es esto lo mismo que el Wordle del NYT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. El Wordle oficial, ahora propiedad de The New York Times, ofrece un único puzzle diario compartido. Esta plataforma es un juego independiente con su propio repertorio de palabras y la libertad de jugar cuando quieras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Quién creó el Wordle original?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Josh Wardle, un ingeniero de software galés, creó Wordle en 2021 como un regalo personal para su pareja. El juego se hizo viral en pocos meses y fue adquirido por The New York Times a principios de 2022."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Pueden jugar cómodamente los principiantes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Por supuesto. Las reglas se aprenden en unos treinta segundos. El modo estándar no tiene presión de tiempo y los colores te guían de forma natural hacia la respuesta. Los nuevos jugadores suelen mejorar rápidamente, especialmente con las rondas de práctica ilimitadas disponibles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué es un Solucionador de Wordle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Un <a href=\"http://localhost/todaywordle/wordle-solver/\">Solucionador de Wordle</a> es una herramienta que toma tus letras confirmadas, sus posiciones y las letras descartadas, y te devuelve una lista de palabras válidas que encajan. Te ayuda a identificar tu mejor siguiente intento cuando las opciones resultan abrumadoras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La sección de pistas revela la respuesta directamente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. La sección de pistas está diseñada para apoyar tu razonamiento, no para reemplazarlo. Presenta indicios y patrones que te ayudan a pensar en las posibilidades de forma más eficiente sin quitarle el desafío."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo genera nuevos puzzles el generador de palabras?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El sistema extrae palabras de un repertorio seleccionado de palabras válidas de cinco letras y las selecciona de forma que se garantice la variedad entre partidas consecutivas. El objetivo es que cada sesión sea genuinamente nueva en lugar de repetir la misma lista corta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Es el Modo Difícil considerablemente más complicado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. El Modo Difícil te obliga a incorporar cada pista confirmada en tu siguiente intento, lo que impide los intentos de eliminación en los que se apoya el modo estándar. Recompensa a los jugadores con un vocabulario amplio y un razonamiento deductivo disciplinado."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordle-unlimited.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wordle Unlimited App",
+        "url": "https://wordle-unlimited.app",
+        "logo": "https://wordle-unlimited.app/assets/game-preview.webp",
+        "sameAs": [
+          "https://x.com/Wordleinfo",
+          "https://www.instagram.com/wordle_unlimited.app"
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Scripts -->
+    <script src="../js/state.js?v=3" defer></script>
+    <script src="../js/game.js?v=9" defer></script>
+    <script src="../js/sounds.js?v=2" defer></script>
+    <script src="../js/ui.js?v=8" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker: Error', err));
+            });
+        }
+    </script>
+</head>
+
+<body class="theme-default">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../../" class="back-button" aria-label="Volver al inicio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver</span>
+            </a>
+            <button id="btn-help" class="icon-button" aria-label="Ayuda">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </button>
+            <button id="btn-give-up" class="icon-button" aria-label="Reiniciar Juego">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
+        </div>
+        <div class="header-right">
+            <select id="lang-select" aria-label="Seleccionar Idioma" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="Seleccionar Idioma">
+                    <span class="flag-icon flag-es"></span>
+                    <span class="lang-text">ES</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
+            <button id="btn-stats" class="icon-button" aria-label="Estadísticas">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
+            </button>
+            <button id="btn-settings" class="icon-button" aria-label="Ajustes">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">¿Necesitas una pista? ¡Obtén pistas para la palabra real de hoy!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">Ver Pistas</a>
+                <button id="btn-close-hint" aria-label="Cerrar banner de pistas">&times;</button>
+            </div>
+        </div>
+
+        <div id="board-container">
+            <div id="board" role="grid" aria-label="Tablero de Wordle"></div>
+        </div>
+
+        <div id="message-container"></div>
+
+        <div id="keyboard-container">
+            <div id="keyboard" role="group" aria-label="Teclado Virtual"></div>
+        </div>
+    </main>
+
+    <!-- Solver CTA Section -->
+    <section id="solver-cta">
+        <div class="content-container">
+            <h2>¿Atascado con una palabra? Prueba nuestro Solucionador de Wordle</h2>
+            <p>Si te has quedado atascado con un puzzle complicado, usa nuestro Solucionador de Wordle gratuito para encontrar posibles respuestas al instante. Introduce las letras que conoces y obtén sugerencias inteligentes en segundos.</p>
+            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">Abrir Solucionador de Wordle</a>
+        </div>
+    </section>
+
+    <section id="game-content">
+        <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>Wordle Unlimited: Juega Gratis a Puzzles de Palabras Sin Límite</h2>
+            <p>Si un puzzle al día nunca ha sido suficiente para ti, has llegado al lugar indicado. <strong>Wordle Unlimited</strong> elimina el muro de las 24 horas y te permite resolver tantos puzzles de cinco letras como quieras, completamente gratis y sin bloqueos, sin necesidad de crear una cuenta. Ya lo uses como calentamiento mental diario o como desafío de vocabulario nocturno, el juego siempre está listo cuando tú lo estés.</p>
+            <p>Construido sobre las mismas mecánicas que ya conoces, esta plataforma combina la satisfactoria lógica del juego de palabras original con una experiencia más rápida y flexible. La interfaz carga al instante en cualquier dispositivo, el diseño no se interpone en tu camino y un nuevo puzzle está siempre a un solo toque de distancia. Sin reinicio a medianoche. Sin esperas.</p>
+
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>Introducción a la Experiencia Wordle Ilimitada</h2>
+            <p>El juego original desató una obsesión mundial por los puzzles de palabras por una buena razón: las reglas son limpias, el desafío es real y la satisfacción de adivinar la respuesta en tres intentos es genuinamente adictiva. La única frustración siempre fue el límite diario. Esta plataforma se creó específicamente para resolver ese problema.</p>
+            <p>Aquí puedes empezar una nueva partida en el momento en que termines la anterior. Temas visuales personalizables, animaciones fluidas y controles táctiles responsivos hacen que la experiencia se sienta pulida, no improvisada. Es el mismo formato de puzzle que tanto gusta, sin las restricciones arbitrarias.</p>
+            <p>Esta versión se centra por completo en la experiencia de juego en español. Si quieres <strong>jugar a Wordle en español</strong> sin distracciones y sin muros de pago, esta es tu base de operaciones.</p>
+
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>Vive el Desafío Wordle Definitivo</h2>
+            <h3>Simple. Adictivo. Ilimitado.</h3>
+            <p>La plataforma está diseñada para todos, desde jugadores primerizos hasta veteranos experimentados de los juegos de palabras. Los principiantes disponen de una interfaz limpia e intuitiva con colores claros de retroalimentación. Los jugadores más dedicados cuentan con el Modo Difícil, estadísticas detalladas y la posibilidad de encadenar decenas de puzzles en una sola sesión. Un cronómetro en tiempo real incluso registra tu resolución más rápida para que compitas contra ti mismo.</p>
+            <ul>
+                <li>Puzzles infinitos generados a demanda, todos los días</li>
+                <li>100% gratis, sin registro, sin suscripción, sin trucos</li>
+                <li>Diseño responsivo que funciona a la perfección en móviles, tablets y escritorio</li>
+                <li>Estadísticas personales avanzadas y seguimiento de rachas de victorias</li>
+                <li>Modo oscuro, Cyber Neon, Retro, Ocean y más temas visuales</li>
+                <li>Cronómetro de Victoria Más Rápida para registrar tu mejor marca</li>
+            </ul>
+
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>Cómo Jugar: Reglas y Mecánicas</h2>
+            <p>El objetivo es sencillo: identificar la palabra oculta de cinco letras en un máximo de seis intentos. Cada intento debe ser una palabra válida. Después de cada envío, las casillas cambian de color para revelar la precisión de tu intento:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Verde:</strong> La letra es correcta y está exactamente en su posición.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Amarillo:</strong> La letra aparece en la palabra objetivo pero ocupa una posición diferente.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gris:</strong> La letra no está presente en la palabra oculta en absoluto.</span></p>
+            <p>Leer esta retroalimentación con precisión y ajustar cada intento posterior es la esencia del juego. Suena simple. Dominarlo es otra historia.</p>
+            <h3>Explora los Modos de Juego Avanzados</h3>
+            <p>Más allá del modo estándar, el <a href="javascript:void(0)" onclick="ui.showSettings()" class="content-link">Modo Difícil</a> te obliga a usar cada pista confirmada en tu siguiente intento. Nada de saltarse una letra verde solo porque otra palabra parece más cómoda. Esta restricción separa a los resolutores disciplinados de los que dependen de la suerte. También hay un modo Multi Palabra para quienes quieran resolver varios puzzles a la vez y poner a prueba su capacidad multitarea bajo presión real.</p>
+
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>Wordle Diario vs. Modo Ilimitado: ¿Cuál Es la Diferencia?</h2>
+            <p>La lógica del puzzle es idéntica en ambas versiones. Las diferencias están en todo lo demás.</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Wordle Diario (NYT Oficial)</th>
+                            <th>Modo Ilimitado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Puzzles Disponibles</td>
+                            <td>Uno al día</td>
+                            <td>Infinitos, a demanda</td>
+                        </tr>
+                        <tr>
+                            <td>Límite de Intentos</td>
+                            <td>Fijo en 6</td>
+                            <td>Personalizable</td>
+                        </tr>
+                        <tr>
+                            <td>Opciones de Dificultad</td>
+                            <td>Solo estándar</td>
+                            <td>Estándar más Modo Difícil</td>
+                        </tr>
+                        <tr>
+                            <td>Coste</td>
+                            <td>Gratis</td>
+                            <td>100% Gratis</td>
+                        </tr>
+                        <tr>
+                            <td>Temas Visuales</td>
+                            <td>Solo Claro y Oscuro</td>
+                            <td>Cyber Neon, Retro, Ocean y más</td>
+                        </tr>
+                        <tr>
+                            <td>Seguimiento de Tiempo</td>
+                            <td>No disponible</td>
+                            <td>Cronómetro en vivo y récord de Victoria Más Rápida</td>
+                        </tr>
+                        <tr>
+                            <td>Requisito de Cuenta</td>
+                            <td>Cuenta necesaria</td>
+                            <td>Juego instantáneo, sin inicio de sesión</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Un consejo práctico que merece la pena conocer: nuestro desafío diario utiliza exactamente la misma respuesta que el Wordle oficial del NYT cada día. Eso significa que puedes jugarlo aquí primero, descifrar la palabra a tu ritmo sin presión, y luego ir a la versión del NYT sabiendo ya la respuesta. Es una forma legítima de mantener tu racha en un día de puzzle complicado.</p>
+            <p>Más allá del puzzle diario compartido, el modo Ilimitado es la mejor opción para mejorar tus habilidades de verdad, porque la repetición constante a lo largo de muchas partidas es la única forma fiable de progresar.</p>
+
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>Domina el Juego: Estrategias Probadas para Wordle</h2>
+            <p>La suerte puede sacarte de apuros en algún puzzle ocasionalmente, pero una estrategia consistente es lo que mantiene viva tu racha de victorias. Estas técnicas se basan en la frecuencia de letras y la estructura de palabras en español, no en conjeturas.</p>
+
+
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>Estrategias Expertas para Wordle</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-target.png" alt="Mejores palabras iniciales para la estrategia de Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Mejores Palabras Iniciales</h3>
+                    <p>Lingüistas y matemáticos de puzzles coinciden ampliamente en una lista corta de aperturas óptimas. Estas palabras maximizan la cobertura de letras en las cinco posiciones con un solo intento.</p>
+                    <ul class="tag-list">
+                        <li>ADIEU</li>
+                        <li>ARISE</li>
+                        <li>STARE</li>
+                        <li>AUDIO</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-hint.png" alt="La estrategia del cazador de vocales en Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>El Cazador de Vocales</h3>
+                    <p>Si tu palabra inicial no revela ninguna vocal, usa tu segundo intento para buscar las que te faltan. Las palabras de cinco letras casi siempre contienen al menos dos vocales. Una vez que sepas cuáles están presentes, el número de candidatos se reduce drásticamente. Las letras O, U y la semivocal Y merecen ser buscadas si la A, la E y la I salieron grises.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-pattern.png" alt="Estrategia de reconocimiento de patrones en Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Reconocimiento de Patrones</h3>
+                    <p>Los jugadores experimentados desarrollan un instinto para las estructuras comunes de palabras. Detectar terminaciones recurrentes como <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong> y <strong>EST</strong> no es hacer trampa. Es lingüística aplicada. Identificar estos patrones a partir de pistas parciales a menudo te permite descubrir la palabra objetivo uno o dos intentos antes de lo que permitiría la eliminación aleatoria.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-double.png" alt="La trampa de las letras dobles en Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>La Trampa de las Letras Dobles</h3>
+                    <p>Uno de los errores más comunes es suponer que cada letra de la palabra objetivo aparece solo una vez. Con frecuencia se producen palabras de cinco letras con letras repetidas, especialmente vocales dobles como la <strong>E</strong> y la <strong>O</strong>, y consonantes comunes como la <strong>L</strong> y la <strong>S</strong>. Si estás atascado con tres o cuatro letras confirmadas y no logras formar una palabra, prueba a repetir una de ellas.</p>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>Solucionador y Pistas de Wordle: Herramientas Que Realmente Ayudan</h2>
+            <p>No todas las sesiones de juego tienen que ser una batalla en solitario de ingenio. Esta plataforma incluye un <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Solucionador de Wordle</a></strong> integrado que funciona como una verdadera ayuda para pensar, no como un simple spoiler. Introduce las letras que ya conoces, marca qué posiciones están confirmadas en verde y cuáles son fallos en amarillo, y el solucionador te devuelve una lista filtrada de palabras válidas que coinciden con tus pistas actuales. No te da simplemente la respuesta. Te da los candidatos más fuertes para que la decisión final siga siendo tuya.</p>
+            <p>El solucionador es especialmente útil en partidas en Modo Difícil, donde un movimiento equivocado en el quinto intento puede costarte toda la partida. Usarlo para verificar tu razonamiento antes de comprometerte es una estrategia legítima, no un atajo. El solucionador también soporta múltiples idiomas, lo que lo hace útil más allá del juego en español.</p>
+            <p>Junto al solucionador, el sitio cuenta con una sección dedicada de <strong><a href="http://localhost/todaywordle/" class="content-link">pistas de Wordle</a></strong> que funciona casi como un segundo juego en sí misma. Puedes navegar por las entradas de puzzles diarios, estudiar cómo se dieron pistas para palabras específicas y seguir el camino lógico desde el primer intento hasta la solución. Es una forma práctica de agudizar tu reconocimiento de patrones y entender por qué ciertas palabras iniciales superan constantemente a otras. Piensa en ello como un registro de entrenamiento para la comunidad Wordle.</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>Por Qué Esta Plataforma Merece Tu Tiempo</h2>
+            <p>Existen decenas de variantes de Wordle en línea. La mayoría son clones con poco esfuerzo puesto en la experiencia real. Esta se construyó de manera diferente.</p>
+            <ul>
+                <li>Juega tantas partidas como quieras sin tope diario ni limitaciones</li>
+                <li>Tus estadísticas personales, rachas de victorias y mejores tiempos se registran automáticamente</li>
+                <li>Múltiples temas visuales te permiten ambientar el juego, desde blanco limpio hasta Cyber Neon profundo</li>
+                <li>Las páginas cargan en menos de un segundo en conexiones móviles</li>
+                <li>Sin ventanas emergentes, sin registros obligatorios, sin suscripciones</li>
+            </ul>
+            <p>Tanto si estás aquí para un reseteo mental de cinco minutos como para una sesión de práctica concentrada de dos horas, la plataforma responde. El formato de Wordle Unlimited sin bloqueos existe específicamente porque la mejora significativa del vocabulario requiere volumen, y un puzzle al día simplemente no es suficiente volumen.</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>Disponible en 10 Idiomas</h2>
+            <p>Esta página se centra en la experiencia Wordle en español, pero la plataforma soporta 10 idiomas en total, cada uno con su propia lista de palabras dedicada y completa integración con el Solucionador de Wordle. Ya juegues en tu lengua materna o practiques un idioma extranjero, el mismo juego ilimitado y las mismas herramientas de resolución están disponibles en todos ellos:</p>
+            <ul>
+                <li><strong>Inglés</strong> (EE. UU., modo diario estilo NYT + modo Ilimitado)</li>
+                <li><strong>Español</strong></li>
+                <li><strong>Francés</strong></li>
+                <li><strong>Alemán</strong></li>
+                <li><strong>Portugués</strong></li>
+                <li><strong>Árabe</strong> (con soporte completo de escritura de derecha a izquierda)</li>
+                <li><strong>Turco</strong></li>
+                <li><strong>Hindi</strong> (compatible con escritura Devanagari)</li>
+                <li><strong>Urdu</strong> (compatible con escritura de derecha a izquierda)</li>
+                <li><strong>Indonesio</strong></li>
+            </ul>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Es gratis jugar a Wordle Unlimited?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, completamente. No hay costes ocultos, ni niveles premium, ni necesidad de crear una cuenta. Abre la página y empieza a jugar de inmediato.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Puedo jugar más de una vez al día?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Esa es precisamente la idea. A diferencia del Wordle oficial del NYT, que se renueva cada 24 horas, esta plataforma te ofrece un puzzle nuevo en el instante en que lo pidas. Juega diez partidas o cien. No hay límite.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué es el Modo Infinito?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El Modo Infinito es la experiencia ilimitada principal: una cola interminable de puzzles de palabras de cinco letras sin tope diario. Termina uno, pulsa Nueva Partida y sigue jugando todo el tiempo que quieras.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Es esto lo mismo que el Wordle del NYT?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. El Wordle oficial, ahora propiedad de The New York Times, ofrece un único puzzle diario compartido. Esta plataforma es un juego independiente con su propio repertorio de palabras y la libertad de jugar cuando quieras.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Quién creó el Wordle original?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Josh Wardle, un ingeniero de software galés, creó Wordle en 2021 como un regalo personal para su pareja. El juego se hizo viral en pocos meses y fue adquirido por The New York Times a principios de 2022.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Pueden jugar cómodamente los principiantes?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Por supuesto. Las reglas se aprenden en unos treinta segundos. El modo estándar no tiene presión de tiempo y los colores te guían de forma natural hacia la respuesta. Los nuevos jugadores suelen mejorar rápidamente, especialmente con las rondas de práctica ilimitadas disponibles.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué es un Solucionador de Wordle?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Un <a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Solucionador de Wordle</a> es una herramienta que toma tus letras confirmadas, sus posiciones y las letras descartadas, y te devuelve una lista de palabras válidas que encajan. Te ayuda a identificar tu mejor siguiente intento cuando las opciones resultan abrumadoras.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿La sección de pistas revela la respuesta directamente?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. La sección de pistas está diseñada para apoyar tu razonamiento, no para reemplazarlo. Presenta indicios y patrones que te ayudan a pensar en las posibilidades de forma más eficiente sin quitarle el desafío.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo genera nuevos puzzles el generador de palabras?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El sistema extrae palabras de un repertorio seleccionado de palabras válidas de cinco letras y las selecciona de forma que se garantice la variedad entre partidas consecutivas. El objetivo es que cada sesión sea genuinamente nueva en lugar de repetir la misma lista corta.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Es el Modo Difícil considerablemente más complicado?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí. El Modo Difícil te obliga a incorporar cada pista confirmada en tu siguiente intento, lo que impide los intentos de eliminación en los que se apoya el modo estándar. Recompensa a los jugadores con un vocabulario amplio y un razonamiento deductivo disciplinado.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden">
+        <!-- Modals will be injected here -->
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../" class="back-button" aria-label="Volver al inicio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver</span>
+            </a>
+            <div class="footer-links">
+                <a href="../../index.php/contact/">Contacto</a>
+                <a href="../../index.php/privacy-policy/">Política de Privacidad</a>
+                <a href="../../index.php/disclaimer/">Aviso Legal</a>
+                <a href="../../index.php/about-us/">Sobre Nosotros</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Language Page Redirect -->
+    <script>
+    (function() {
+        var PAGE_LANG = 'es';
+        var langUrls = {
+            en: '/todaywordle/wordle-unlimited/',
+            ar: '/todaywordle/wordle-unlimited/ar/',
+            de: '/todaywordle/wordle-unlimited/de/',
+            es: '/todaywordle/wordle-unlimited/es/',
+            fr: '/todaywordle/wordle-unlimited/fr/',
+            hi: '/todaywordle/wordle-unlimited/hi/',
+            id: '/todaywordle/wordle-unlimited/id/',
+            pt: '/todaywordle/wordle-unlimited/pt/',
+            tr: '/todaywordle/wordle-unlimited/tr/',
+            ur: '/todaywordle/wordle-unlimited/ur/'
+        };
+        window.addEventListener('load', function() {
+            if (window.State) State.saveLanguage(PAGE_LANG);
+            if (window.game && game.currentLanguage !== PAGE_LANG) {
+                game.changeLanguage(PAGE_LANG);
+            }
+            var opts = document.querySelectorAll('#lang-dropdown-options li');
+            opts.forEach(function(opt) {
+                var c = opt.cloneNode(true);
+                opt.parentNode.replaceChild(c, opt);
+                c.addEventListener('click', function() {
+                    var v = c.getAttribute('data-value');
+                    if (langUrls[v]) window.location.href = langUrls[v];
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>

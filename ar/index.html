@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>وردل بلا حدود — العب ألغاز الكلمات المجانية بلا توقف</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="العب وردل بلا حدود مجاناً دون أي قيود يومية. استمتع بألغاز كلمات من خمسة أحرف بلا نهاية، واستخدم أداة حل وردل، واستكشف التلميحات، وطوّر مفرداتك بالوتيرة التي تناسبك.">
+    <meta name="keywords"
+        content="Wordle Unlimited, play Wordle in different languages, multilingual word puzzle, Wordle in Spanish, Wordle in French, Wordle in Arabic, Wordle in Urdu, word game for language learners, unlimited word guessing game, vocabulary builder game, daily word game, Wordle in German, Wordle in Hindi, language learning games, multilingual Wordle">
+    <meta name="author" content="Wordle Unlimited">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="/wordle-unlimited/" />
+    <link rel="alternate" hreflang="ar" href="/wordle-unlimited/ar/" />
+    <link rel="alternate" hreflang="de" href="/wordle-unlimited/de/" />
+    <link rel="alternate" hreflang="es" href="/wordle-unlimited/es/" />
+    <link rel="alternate" hreflang="fr" href="/wordle-unlimited/fr/" />
+    <link rel="alternate" hreflang="hi" href="/wordle-unlimited/hi/" />
+    <link rel="alternate" hreflang="id" href="/wordle-unlimited/id/" />
+    <link rel="alternate" hreflang="pt" href="/wordle-unlimited/pt/" />
+    <link rel="alternate" hreflang="tr" href="/wordle-unlimited/tr/" />
+    <link rel="alternate" hreflang="ur" href="/wordle-unlimited/ur/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wordle-unlimited.app">
+    <meta property="og:title" content="وردل بلا حدود — العب ألغاز الكلمات المجانية بلا توقف">
+    <meta property="og:description"
+        content="العب وردل بلا حدود مجاناً دون أي قيود يومية. استمتع بألغاز كلمات من خمسة أحرف بلا نهاية، واستخدم أداة حل وردل، واستكشف التلميحات، وطوّر مفرداتك بالوتيرة التي تناسبك.">
+    <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+    <meta property="og:site_name" content="Wordle Unlimited">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
+    <meta property="twitter:url" content="https://wordle-unlimited.app">
+    <meta property="twitter:title" content="وردل بلا حدود — العب ألغاز الكلمات المجانية بلا توقف">
+    <meta property="twitter:description"
+        content="العب وردل بلا حدود مجاناً دون أي قيود يومية. استمتع بألغاز كلمات من خمسة أحرف بلا نهاية، واستخدم أداة حل وردل، واستكشف التلميحات، وطوّر مفرداتك بالوتيرة التي تناسبك.">
+    <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Game Data & Scripts -->
+    <link rel="preload" href="../js/game.js?v=9" as="script">
+    <link rel="preload" href="../js/ui.js?v=8" as="script">
+
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
+
+    <!-- Critical CSS (Inlined for speed) -->
+    <style>
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css?v=2.6" fetchpriority="high">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "وردل بلا حدود",
+        "url": "https://wordle-unlimited.app",
+        "description": "العب وردل بلا حدود مجاناً دون أي قيود يومية. استمتع بألغاز كلمات من خمسة أحرف بلا نهاية، واستخدم أداة حل وردل، واستكشف التلميحات، وطوّر مفرداتك بالوتيرة التي تناسبك.",
+        "genre": ["Puzzle Game", "Word Game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "هل لعبة وردل بلا حدود مجانية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "نعم، مجانية تماماً. لا توجد رسوم خفية ولا اشتراكات مدفوعة ولا حاجة لإنشاء حساب. افتح الصفحة وابدأ اللعب فوراً."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل يمكنني اللعب أكثر من مرة في اليوم؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "هذا هو الهدف بالضبط. بخلاف لعبة وردل الرسمية من نيويورك تايمز التي تتجدد كل 24 ساعة، تقدم هذه المنصة لغزاً جديداً فور طلبك. العب عشر جولات أو مئة. لا يوجد حد."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ما هو وضع اللانهاية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "وضع اللانهاية هو التجربة اللامحدودة الأساسية: سلسلة لا تنتهي من ألغاز الكلمات المكونة من خمسة أحرف بدون سقف يومي. أنهِ لغزاً واحداً، اضغط على لعبة جديدة، واستمر بقدر ما تشاء."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل هذه نفس لعبة وردل من نيويورك تايمز؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "لا. لعبة وردل الرسمية، المملوكة الآن لصحيفة نيويورك تايمز، تقدم لغزاً يومياً مشتركاً واحداً. هذه المنصة هي لعبة مستقلة بمجموعة كلماتها الخاصة وحرية اللعب متى شئت."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "من ابتكر لعبة وردل الأصلية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "جوش واردل، مهندس برمجيات ويلزي، صمم وردل عام 2021 كهدية شخصية لشريكته. انتشرت اللعبة بسرعة كبيرة واستحوذت عليها صحيفة نيويورك تايمز في مطلع 2022."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل يستطيع المبتدئون اللعب بسهولة؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "بالتأكيد. تعلّم القواعد لا يستغرق أكثر من ثلاثين ثانية. الوضع العادي خالٍ من ضغط الوقت، والألوان ترشدك بشكل طبيعي نحو الإجابة. يتحسن اللاعبون الجدد بسرعة، خاصة مع توفر جولات تدريبية غير محدودة."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ما هي أداة حل وردل؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<a href=\"http://localhost/todaywordle/wordle-solver/\">أداة حل وردل</a> هي أداة تأخذ الحروف المؤكدة ومواقعها والحروف المستبعدة، ثم تعرض قائمة بالكلمات الصالحة المتبقية. تساعدك في تحديد أقوى تخمين تالٍ عندما تكون الخيارات محيرة."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل يكشف قسم التلميحات الإجابة مباشرة؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "لا. قسم التلميحات مصمم لدعم تفكيرك وليس ليحل محله. يقدم أدلة وأنماطاً تساعدك على التفكير في الاحتمالات بكفاءة أكبر مع الحفاظ على التحدي."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "كيف يُنتج مولّد الكلمات ألغازاً جديدة؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "يسحب النظام من مجموعة منتقاة من الكلمات الإنجليزية الصالحة المكونة من خمسة أحرف ويختارها بطريقة تضمن التنوع بين الألعاب المتتالية. الهدف هو إبقاء كل جلسة جديدة فعلاً بدلاً من تكرار نفس القائمة القصيرة."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل الوضع الصعب أصعب بشكل ملحوظ؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "نعم. يتطلب الوضع الصعب منك تضمين كل دليل مؤكد في تخمينك التالي، مما يمنع تخمينات الاستبعاد التي يعتمد عليها الوضع العادي. يكافئ اللاعبين ذوي المفردات القوية والتفكير الاستنتاجي المنظم."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordle-unlimited.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wordle Unlimited App",
+        "url": "https://wordle-unlimited.app",
+        "logo": "https://wordle-unlimited.app/assets/game-preview.webp",
+        "sameAs": [
+          "https://x.com/Wordleinfo",
+          "https://www.instagram.com/wordle_unlimited.app"
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Scripts -->
+    <script src="../js/state.js?v=3" defer></script>
+    <script src="../js/game.js?v=9" defer></script>
+    <script src="../js/sounds.js?v=2" defer></script>
+    <script src="../js/ui.js?v=8" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker: Error', err));
+            });
+        }
+    </script>
+</head>
+
+<body class="theme-default">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../../" class="back-button" aria-label="العودة إلى الرئيسية">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>رجوع</span>
+            </a>
+            <button id="btn-help" class="icon-button" aria-label="مساعدة">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </button>
+            <button id="btn-give-up" class="icon-button" aria-label="إعادة تشغيل اللعبة">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
+        </div>
+        <div class="header-right">
+            <select id="lang-select" aria-label="اختر اللغة" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="اختر اللغة">
+                    <span class="flag-icon flag-ar"></span>
+                    <span class="lang-text">AR</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
+            <button id="btn-stats" class="icon-button" aria-label="الإحصائيات">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
+            </button>
+            <button id="btn-settings" class="icon-button" aria-label="الإعدادات">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">هل تحتاج تلميحاً؟ احصل على أدلة لكلمة اليوم الحقيقية!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">احصل على تلميحات</a>
+                <button id="btn-close-hint" aria-label="إغلاق شريط التلميحات">&times;</button>
+            </div>
+        </div>
+
+        <div id="board-container">
+            <div id="board" role="grid" aria-label="شبكة وردل"></div>
+        </div>
+
+        <div id="message-container"></div>
+
+        <div id="keyboard-container">
+            <div id="keyboard" role="group" aria-label="لوحة المفاتيح الافتراضية"></div>
+        </div>
+    </main>
+
+    <!-- Solver CTA Section -->
+    <section id="solver-cta">
+        <div class="content-container">
+            <h2>عالق في كلمة؟ جرّب أداة حل وردل</h2>
+            <p>إذا واجهتك كلمة صعبة، استخدم أداة حل وردل المجانية للعثور فوراً على الإجابات المحتملة. أدخل الحروف المعروفة واحصل على اقتراحات ذكية في ثوانٍ.</p>
+            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">افتح أداة حل وردل</a>
+        </div>
+    </section>
+
+    <section id="game-content">
+        <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>وردل بلا حدود: العب ألغاز الكلمات المجانية بلا توقف عبر الإنترنت</h2>
+            <p>إذا لم يكن لغز واحد يومياً كافياً لك يوماً ما، فقد وصلت إلى المكان الصحيح. <strong>وردل بلا حدود</strong> يزيل حاجز الـ 24 ساعة ويتيح لك حل أي عدد تريده من ألغاز الكلمات المكونة من خمسة أحرف، مجاناً تماماً وبدون حظر، ودون الحاجة لإنشاء حساب. سواء كنت تستخدمها كتمرين ذهني يومي أو تحدٍّ مفرداتي في وقت متأخر من الليل، فاللعبة جاهزة دائماً حين تكون أنت جاهزاً.</p>
+            <p>مبنية على نفس الآليات الأساسية التي تعرفها بالفعل، تجمع هذه المنصة بين المنطق الممتع للعبة الكلمات الأصلية وتجربة أسرع وأكثر مرونة. الواجهة تُحمّل فوراً على أي جهاز، والتصميم لا يعيق طريقك، ولغز جديد دائماً على بُعد نقرة واحدة. لا إعادة ضبط في منتصف الليل. لا انتظار.</p>
+
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>مقدمة عن تجربة وردل اللامحدودة</h2>
+            <p>أشعلت اللعبة الأصلية هوساً عالمياً بألغاز الكلمات لأسباب وجيهة: القواعد واضحة، والتحدي حقيقي، ومتعة حل الإجابة في ثلاث تخمينات أمر يسبب الإدمان فعلاً. الإحباط الوحيد كان دائماً الحد اليومي. هذه المنصة بُنيت تحديداً لحل هذه المشكلة.</p>
+            <p>هنا يمكنك القفز إلى جولة جديدة فور انتهائك من واحدة. سمات بصرية قابلة للتخصيص، ورسوم متحركة سلسة، وأزرار تحكم متجاوبة على الهاتف تجعل التجربة تبدو مصقولة وليست مجرد ترقيع. إنه نفس تنسيق اللغز المحبوب، بدون القيود التعسفية.</p>
+            <p>تركز هذه النسخة بالكامل على تجربة اللعب بالإنجليزية. إذا كنت تريد <strong>لعب وردل بالإنجليزية</strong> بدون مشتتات وبدون جدران دفع، فهذا هو مقرّك الأساسي.</p>
+
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>اختبر تحدي وردل المطلق</h2>
+            <h3>بسيط. يسبب الإدمان. بلا حدود.</h3>
+            <p>المنصة مصممة للجميع من اللاعبين المبتدئين إلى محترفي ألعاب الكلمات. يحصل المبتدئون على واجهة نظيفة ومتساهلة مع ملاحظات ألوان واضحة. يحصل اللاعبون المتفانون على الوضع الصعب وإحصائيات مفصلة والقدرة على خوض عشرات الألغاز في جلسة واحدة. مؤقت اللعبة المباشر يتتبع أسرع حل لديك لتتنافس مع نفسك.</p>
+            <ul>
+                <li>ألغاز لا نهائية تُولّد عند الطلب، كل يوم</li>
+                <li>مجانية 100% بدون تسجيل ولا اشتراك ولا شروط خفية</li>
+                <li>تصميم متجاوب يعمل بشكل رائع على الهواتف والأجهزة اللوحية وسطح المكتب</li>
+                <li>إحصائيات شخصية متقدمة وتتبع سلسلة الانتصارات</li>
+                <li>الوضع الداكن، سايبر نيون، ريترو، أوشن، والمزيد من السمات البصرية</li>
+                <li>مؤقت أسرع فوز لتتبع رقمك القياسي الشخصي</li>
+            </ul>
+
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>طريقة اللعب: القواعد والآليات</h2>
+            <p>الهدف واضح: اكتشف الكلمة الإنجليزية المخفية المكونة من خمسة أحرف خلال ست محاولات. كل تخمين يجب أن يكون كلمة صالحة. بعد كل إرسال، تتغير ألوان المربعات لتكشف مدى دقة تخمينك:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>أخضر:</strong> الحرف صحيح وفي مكانه الصحيح تماماً.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>أصفر:</strong> الحرف موجود في الكلمة المطلوبة لكن في موضع مختلف.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>رمادي:</strong> الحرف غير موجود في الكلمة المخفية على الإطلاق.</span></p>
+            <p>قراءة هذه الملاحظات بدقة وتعديل كل تخمين لاحق هو جوهر اللعبة. يبدو الأمر بسيطاً. لكن إتقانه أمر مختلف تماماً.</p>
+            <h3>استكشف أوضاع اللعب المتقدمة</h3>
+            <p>إلى جانب الوضع العادي، يُلزمك <a href="javascript:void(0)" onclick="ui.showSettings()" class="content-link">الوضع الصعب</a> باستخدام كل دليل مؤكد في تخمينك التالي. لا تخطي حرفاً أخضر لمجرد أن كلمة أخرى تبدو أسهل. هذا القيد يفصل بين الحالّين المنضبطين والمحظوظين. هناك أيضاً وضع الكلمات المتعددة للاعبين الذين يريدون حل عدة ألغاز في نفس الوقت واختبار قدرتهم على تعدد المهام تحت ضغط حقيقي.</p>
+
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>وردل اليومي مقابل الوضع اللامحدود: ما الفرق؟</h2>
+            <p>منطق اللغز الأساسي متطابق في كلا الإصدارين. الاختلاف يكمن في كل شيء آخر.</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الميزة</th>
+                            <th>وردل اليومي (NYT الرسمي)</th>
+                            <th>الوضع اللامحدود</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>الألغاز المتاحة</td>
+                            <td>واحد في اليوم</td>
+                            <td>لا نهائي، عند الطلب</td>
+                        </tr>
+                        <tr>
+                            <td>حد التخمينات</td>
+                            <td>ثابت عند 6</td>
+                            <td>قابل للتخصيص</td>
+                        </tr>
+                        <tr>
+                            <td>خيارات الصعوبة</td>
+                            <td>عادي فقط</td>
+                            <td>عادي بالإضافة إلى الوضع الصعب</td>
+                        </tr>
+                        <tr>
+                            <td>التكلفة</td>
+                            <td>مجاني</td>
+                            <td>مجاني 100%</td>
+                        </tr>
+                        <tr>
+                            <td>السمات البصرية</td>
+                            <td>فاتح وداكن فقط</td>
+                            <td>سايبر نيون، ريترو، أوشن، والمزيد</td>
+                        </tr>
+                        <tr>
+                            <td>تتبع الوقت</td>
+                            <td>غير متاح</td>
+                            <td>مؤقت مباشر وسجل أسرع فوز</td>
+                        </tr>
+                        <tr>
+                            <td>الحاجة لحساب</td>
+                            <td>حساب مطلوب</td>
+                            <td>لعب فوري، بدون تسجيل دخول</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>نصيحة عملية تستحق المعرفة: تحدينا اليومي يستخدم نفس الإجابة تماماً كلعبة وردل الرسمية من NYT كل يوم. هذا يعني أنه يمكنك اللعب هنا أولاً، واستنتاج الكلمة براحتك بدون ضغط، ثم التوجه إلى نسخة NYT وأنت تعرف الإجابة مسبقاً. إنها طريقة مشروعة للحفاظ على سلسلة انتصاراتك في يوم لغز صعب.</p>
+            <p>بعيداً عن اللغز اليومي المشترك، الوضع اللامحدود هو الخيار الأفضل لبناء المهارات الحقيقية، لأن التكرار المستمر عبر جولات كثيرة هو الطريقة الوحيدة الموثوقة للتحسن.</p>
+
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>أتقن اللعبة: استراتيجيات وردل المُثبتة</h2>
+            <p>الحظ قد ينقذك أحياناً في لغز ما، لكن الاستراتيجية القابلة للتكرار هي ما يبقي سلسلة انتصاراتك حية. هذه التقنيات مبنية على تكرار الحروف الإنجليزية وبنية الكلمات، وليس على التخمين العشوائي.</p>
+
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>استراتيجيات وردل للخبراء</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-target.png" alt="أفضل الكلمات الافتتاحية لاستراتيجية وردل بلا حدود" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>أفضل الكلمات الافتتاحية</h3>
+                    <p>يتفق اللغويون وعلماء رياضيات الألغاز إلى حد كبير على قائمة مختصرة من الكلمات الافتتاحية المثلى. هذه الكلمات تُعظّم تغطية الحروف عبر المواقع الخمسة في تخمين واحد.</p>
+                    <ul class="tag-list">
+                        <li>ADIEU</li>
+                        <li>ARISE</li>
+                        <li>STARE</li>
+                        <li>AUDIO</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-hint.png" alt="استراتيجية صائد حروف العلة لوردل بلا حدود" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>صائد حروف العلة</h3>
+                    <p>إذا فشلت كلمتك الافتتاحية في كشف أي حرف علة، استخدم تخمينك الثاني لاستهداف التي فاتتك. الكلمات الإنجليزية المكونة من خمسة أحرف تحتوي دائماً تقريباً على حرفي علة على الأقل. بمجرد معرفة حروف العلة الموجودة، تتقلص مجموعة الخيارات بشكل كبير. الحروف O وU وشبه حرف العلة Y تستحق البحث إذا عادت A وE وI رمادية.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-pattern.png" alt="استراتيجية التعرف على الأنماط في وردل بلا حدود" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>التعرف على الأنماط</h3>
+                    <p>يطور اللاعبون المتمرسون حساً لبنى الكلمات الإنجليزية الشائعة. مراقبة النهايات المتكررة مثل <strong>ING</strong> و<strong>ED</strong> و<strong>ER</strong> و<strong>EST</strong> ليست غشاً. إنها لغويات تطبيقية. اكتشاف هذه الأنماط من أدلة جزئية يتيح لك في كثير من الأحيان تحديد الكلمة المطلوبة بتخمين أو تخمينين أقل مما يسمح به الاستبعاد العشوائي.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-double.png" alt="فخ الحروف المكررة في وردل بلا حدود" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>فخ الحروف المكررة</h3>
+                    <p>أحد أكثر الأخطاء شيوعاً هو افتراض أن كل حرف في الكلمة المطلوبة يظهر مرة واحدة فقط. الإنجليزية تنتج بكثرة كلمات من خمسة أحرف بحروف مكررة، خاصة حروف العلة المزدوجة مثل <strong>E</strong> و<strong>O</strong>، والحروف الساكنة الشائعة مثل <strong>L</strong> و<strong>S</strong>. إذا كنت عالقاً بثلاثة أو أربعة حروف مؤكدة ولا تستطيع تكوين كلمة، جرّب تكرار أحدها.</p>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>أداة حل وردل والتلميحات: أدوات تساعد فعلاً</h2>
+            <p>ليست كل جلسة لعب يجب أن تكون معركة فردية للعقول. تتضمن هذه المنصة <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">أداة حل وردل</a></strong> مدمجة تعمل كمساعد تفكير حقيقي وليس مجرد كاشف إجابات. أدخل الحروف التي تعرفها بالفعل، وحدد المواقع المؤكدة بالأخضر والتي في غير مكانها بالأصفر، وستعرض الأداة قائمة مفلترة من الكلمات الإنجليزية الصالحة التي تتطابق مع أدلتك الحالية. لا تعطيك الإجابة ببساطة. بل تعطيك أقوى المرشحين ليبقى القرار النهائي لك.</p>
+            <p>أداة الحل مفيدة بشكل خاص في جولات الوضع الصعب حيث قد تكلفك خطوة خاطئة في التخمين الخامس اللعبة بأكملها. استخدامها للتحقق من تفكيرك قبل الالتزام هو استراتيجية مشروعة، وليس اختصاراً. تدعم الأداة أيضاً لغات متعددة، مما يجعلها مفيدة خارج نطاق اللعب بالإنجليزية أيضاً.</p>
+            <p>إلى جانب أداة الحل، يتضمن الموقع قسم <strong><a href="http://localhost/todaywordle/" class="content-link">تلميحات وردل</a></strong> مخصصاً يعمل كلعبة ثانوية بحد ذاته. يمكنك تصفح إدخالات الألغاز اليومية، ودراسة كيفية التلميح لكلمات محددة، وتتبع المسار المنطقي من التخمين الافتتاحي إلى الحل. إنها طريقة عملية لشحذ قدرتك على التعرف على الأنماط وفهم لماذا تتفوق بعض الكلمات الافتتاحية باستمرار على غيرها. فكّر فيها كسجل تدريبي لمجتمع وردل.</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>لماذا تستحق هذه المنصة وقتك</h2>
+            <p>هناك العشرات من نسخ وردل المختلفة على الإنترنت. معظمها نسخ طبق الأصل دون تفكير حقيقي في التجربة. هذه النسخة بُنيت بشكل مختلف.</p>
+            <ul>
+                <li>العب عدداً غير محدود من الجولات بدون سقف يومي وبدون اختناق</li>
+                <li>إحصائياتك الشخصية وسلاسل انتصاراتك وأوقات الحل الأسرع تُتتبع تلقائياً</li>
+                <li>سمات بصرية متعددة تتيح لك ضبط الأجواء، من الأبيض النظيف إلى سايبر نيون العميق</li>
+                <li>الصفحات تُحمّل في أقل من ثانية على اتصالات الهاتف المحمول</li>
+                <li>لا نوافذ منبثقة، لا تسجيل إجباري، لا اشتراكات</li>
+            </ul>
+            <p>سواء كنت هنا لاستراحة ذهنية مدتها خمس دقائق أو جلسة تدريب مركزة لساعتين، المنصة تصمد. تنسيق وردل بلا حدود غير المحظور موجود تحديداً لأن التحسن الحقيقي في المفردات يتطلب حجماً كبيراً من التمرين، ولغز واحد يومياً ببساطة لا يكفي.</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>متاح بـ 10 لغات</h2>
+            <p>تركز هذه الصفحة على تجربة وردل بالإنجليزية، لكن المنصة تدعم 10 لغات إجمالاً، لكل منها قائمة كلمات مخصصة وتكامل كامل مع أداة حل وردل. سواء كنت تلعب بلغتك الأم أو تتدرب على لغة أجنبية، فإن نفس اللعب غير المحدود وأدوات الحل متاحة في جميعها:</p>
+            <ul>
+                <li><strong>الإنجليزية</strong> (النمط الأمريكي، يومي بنمط NYT + الوضع اللامحدود)</li>
+                <li><strong>الإسبانية</strong></li>
+                <li><strong>الفرنسية</strong></li>
+                <li><strong>الألمانية</strong></li>
+                <li><strong>البرتغالية</strong></li>
+                <li><strong>العربية</strong> (مع دعم كامل للإدخال من اليمين إلى اليسار)</li>
+                <li><strong>التركية</strong></li>
+                <li><strong>الهندية</strong> (بدعم خط ديفاناغاري)</li>
+                <li><strong>الأردية</strong> (بدعم الكتابة من اليمين إلى اليسار)</li>
+                <li><strong>الإندونيسية</strong></li>
+            </ul>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
+            <h2>الأسئلة الشائعة</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل لعبة وردل بلا حدود مجانية؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، مجانية تماماً. لا توجد رسوم خفية ولا اشتراكات مدفوعة ولا حاجة لإنشاء حساب. افتح الصفحة وابدأ اللعب فوراً.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل يمكنني اللعب أكثر من مرة في اليوم؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>هذا هو الهدف بالضبط. بخلاف لعبة وردل الرسمية من نيويورك تايمز التي تتجدد كل 24 ساعة، تقدم هذه المنصة لغزاً جديداً فور طلبك. العب عشر جولات أو مئة. لا يوجد حد.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هو وضع اللانهاية؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>وضع اللانهاية هو التجربة اللامحدودة الأساسية: سلسلة لا تنتهي من ألغاز الكلمات المكونة من خمسة أحرف بدون سقف يومي. أنهِ لغزاً واحداً، اضغط على لعبة جديدة، واستمر بقدر ما تشاء.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل هذه نفس لعبة وردل من نيويورك تايمز؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا. لعبة وردل الرسمية، المملوكة الآن لصحيفة نيويورك تايمز، تقدم لغزاً يومياً مشتركاً واحداً. هذه المنصة هي لعبة مستقلة بمجموعة كلماتها الخاصة وحرية اللعب متى شئت.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>من ابتكر لعبة وردل الأصلية؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>جوش واردل، مهندس برمجيات ويلزي، صمم وردل عام 2021 كهدية شخصية لشريكته. انتشرت اللعبة بسرعة كبيرة واستحوذت عليها صحيفة نيويورك تايمز في مطلع 2022.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل يستطيع المبتدئون اللعب بسهولة؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>بالتأكيد. تعلّم القواعد لا يستغرق أكثر من ثلاثين ثانية. الوضع العادي خالٍ من ضغط الوقت، والألوان ترشدك بشكل طبيعي نحو الإجابة. يتحسن اللاعبون الجدد بسرعة، خاصة مع توفر جولات تدريبية غير محدودة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي أداة حل وردل؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">أداة حل وردل</a> هي أداة تأخذ الحروف المؤكدة ومواقعها والحروف المستبعدة، ثم تعرض قائمة بالكلمات الصالحة المتبقية. تساعدك في تحديد أقوى تخمين تالٍ عندما تكون الخيارات محيرة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل يكشف قسم التلميحات الإجابة مباشرة؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا. قسم التلميحات مصمم لدعم تفكيرك وليس ليحل محله. يقدم أدلة وأنماطاً تساعدك على التفكير في الاحتمالات بكفاءة أكبر مع الحفاظ على التحدي.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>كيف يُنتج مولّد الكلمات ألغازاً جديدة؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يسحب النظام من مجموعة منتقاة من الكلمات الإنجليزية الصالحة المكونة من خمسة أحرف ويختارها بطريقة تضمن التنوع بين الألعاب المتتالية. الهدف هو إبقاء كل جلسة جديدة فعلاً بدلاً من تكرار نفس القائمة القصيرة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل الوضع الصعب أصعب بشكل ملحوظ؟</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم. يتطلب الوضع الصعب منك تضمين كل دليل مؤكد في تخمينك التالي، مما يمنع تخمينات الاستبعاد التي يعتمد عليها الوضع العادي. يكافئ اللاعبين ذوي المفردات القوية والتفكير الاستنتاجي المنظم.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden">
+        <!-- Modals will be injected here -->
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../" class="back-button" aria-label="العودة إلى الرئيسية">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>رجوع</span>
+            </a>
+            <div class="footer-links">
+                <a href="../../index.php/contact/">اتصل بنا</a>
+                <a href="../../index.php/privacy-policy/">سياسة الخصوصية</a>
+                <a href="../../index.php/disclaimer/">إخلاء المسؤولية</a>
+                <a href="../../index.php/about-us/">من نحن</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Language Page Redirect -->
+    <script>
+    (function() {
+        var PAGE_LANG = 'ar';
+        var langUrls = {
+            en: '/todaywordle/wordle-unlimited/',
+            ar: '/todaywordle/wordle-unlimited/ar/',
+            de: '/todaywordle/wordle-unlimited/de/',
+            es: '/todaywordle/wordle-unlimited/es/',
+            fr: '/todaywordle/wordle-unlimited/fr/',
+            hi: '/todaywordle/wordle-unlimited/hi/',
+            id: '/todaywordle/wordle-unlimited/id/',
+            pt: '/todaywordle/wordle-unlimited/pt/',
+            tr: '/todaywordle/wordle-unlimited/tr/',
+            ur: '/todaywordle/wordle-unlimited/ur/'
+        };
+        window.addEventListener('load', function() {
+            if (window.State) State.saveLanguage(PAGE_LANG);
+            if (window.game && game.currentLanguage !== PAGE_LANG) {
+                game.changeLanguage(PAGE_LANG);
+            }
+            var opts = document.querySelectorAll('#lang-dropdown-options li');
+            opts.forEach(function(opt) {
+                var c = opt.cloneNode(true);
+                opt.parentNode.replaceChild(c, opt);
+                c.addEventListener('click', function() {
+                    var v = c.getAttribute('data-value');
+                    if (langUrls[v]) window.location.href = langUrls[v];
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>

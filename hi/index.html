@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wordle Unlimited — मुफ़्त में असीमित शब्द पहेलियाँ खेलें ऑनलाइन</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Wordle Unlimited मुफ़्त में खेलें, बिना किसी दैनिक सीमा के। पाँच अक्षरों की अनंत शब्द पहेलियों का आनंद लें, Wordle Solver का उपयोग करें, संकेत देखें, और अपनी अंग्रेज़ी शब्दावली को अपनी गति से निखारें।">
+    <meta name="keywords"
+        content="Wordle Unlimited, play Wordle in different languages, multilingual word puzzle, Wordle in Spanish, Wordle in French, Wordle in Arabic, Wordle in Urdu, word game for language learners, unlimited word guessing game, vocabulary builder game, daily word game, Wordle in German, Wordle in Hindi, language learning games, multilingual Wordle">
+    <meta name="author" content="Wordle Unlimited">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="/wordle-unlimited/" />
+    <link rel="alternate" hreflang="ar" href="/wordle-unlimited/ar/" />
+    <link rel="alternate" hreflang="de" href="/wordle-unlimited/de/" />
+    <link rel="alternate" hreflang="es" href="/wordle-unlimited/es/" />
+    <link rel="alternate" hreflang="fr" href="/wordle-unlimited/fr/" />
+    <link rel="alternate" hreflang="hi" href="/wordle-unlimited/hi/" />
+    <link rel="alternate" hreflang="id" href="/wordle-unlimited/id/" />
+    <link rel="alternate" hreflang="pt" href="/wordle-unlimited/pt/" />
+    <link rel="alternate" hreflang="tr" href="/wordle-unlimited/tr/" />
+    <link rel="alternate" hreflang="ur" href="/wordle-unlimited/ur/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wordle-unlimited.app">
+    <meta property="og:title" content="Wordle Unlimited — मुफ़्त में असीमित शब्द पहेलियाँ खेलें ऑनलाइन">
+    <meta property="og:description"
+        content="Wordle Unlimited मुफ़्त में खेलें, बिना किसी दैनिक सीमा के। पाँच अक्षरों की अनंत शब्द पहेलियों का आनंद लें, Wordle Solver का उपयोग करें, संकेत देखें, और अपनी अंग्रेज़ी शब्दावली को अपनी गति से निखारें।">
+    <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+    <meta property="og:site_name" content="Wordle Unlimited">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
+    <meta property="twitter:url" content="https://wordle-unlimited.app">
+    <meta property="twitter:title" content="Wordle Unlimited — मुफ़्त में असीमित शब्द पहेलियाँ खेलें ऑनलाइन">
+    <meta property="twitter:description"
+        content="Wordle Unlimited मुफ़्त में खेलें, बिना किसी दैनिक सीमा के। पाँच अक्षरों की अनंत शब्द पहेलियों का आनंद लें, Wordle Solver का उपयोग करें, संकेत देखें, और अपनी अंग्रेज़ी शब्दावली को अपनी गति से निखारें।">
+    <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Game Data & Scripts -->
+    <link rel="preload" href="../js/game.js?v=9" as="script">
+    <link rel="preload" href="../js/ui.js?v=8" as="script">
+
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
+
+    <!-- Critical CSS (Inlined for speed) -->
+    <style>
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css?v=2.6" fetchpriority="high">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Wordle Unlimited — असीमित वर्डल",
+        "url": "https://wordle-unlimited.app",
+        "description": "Wordle Unlimited मुफ़्त में खेलें, बिना किसी दैनिक सीमा के। पाँच अक्षरों की अनंत शब्द पहेलियों का आनंद लें, Wordle Solver का उपयोग करें, संकेत देखें, और अपनी अंग्रेज़ी शब्दावली को अपनी गति से निखारें।",
+        "genre": ["Puzzle Game", "Word Game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "क्या Wordle Unlimited मुफ़्त है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "हाँ, बिल्कुल मुफ़्त। कोई छिपी फ़ीस नहीं, कोई प्रीमियम टियर नहीं, और कोई अकाउंट बनाने की ज़रूरत नहीं। पेज खोलें और तुरंत खेलना शुरू करें।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "क्या मैं दिन में एक से ज़्यादा बार खेल सकता/सकती हूँ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "यही तो पूरा मकसद है। NYT Wordle के विपरीत, जो हर 24 घंटे में रीसेट होता है, यह प्लेटफ़ॉर्म आपके अनुरोध पर तुरंत एक नई पहेली देता है। दस राउंड खेलें या सौ। कोई सीमा नहीं है।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "इन्फिनिटी मोड क्या है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "इन्फिनिटी मोड मूल असीमित अनुभव है: पाँच अक्षरों की शब्द पहेलियों की एक अंतहीन कतार जिसमें कोई दैनिक सीमा नहीं। एक पूरी करें, New Game दबाएँ, और जब तक चाहें खेलते रहें।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "क्या यह NYT Wordle जैसा ही है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "नहीं। आधिकारिक Wordle, जो अब The New York Times के स्वामित्व में है, एक साझा दैनिक पहेली प्रदान करता है। यह प्लेटफ़ॉर्म अपनी शब्द सूची और माँग पर खेलने की स्वतंत्रता वाला एक स्वतंत्र गेम है।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "मूल Wordle किसने बनाया?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "जोश वार्डल, एक वेल्श सॉफ़्टवेयर इंजीनियर, ने 2021 में अपनी पार्टनर के लिए एक व्यक्तिगत उपहार के रूप में Wordle बनाया। कुछ ही महीनों में यह गेम वायरल हो गया और 2022 की शुरुआत में The New York Times ने इसे अधिग्रहित कर लिया।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "क्या शुरुआती खिलाड़ी आराम से खेल सकते हैं?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "बिल्कुल। नियम सीखने में लगभग तीस सेकंड लगते हैं। स्टैंडर्ड मोड में कोई समय का दबाव नहीं है और रंग फ़ीडबैक आपको स्वाभाविक रूप से जवाब की ओर मार्गदर्शित करता है। नए खिलाड़ी आम तौर पर जल्दी सुधार करते हैं, खासकर असीमित अभ्यास राउंड उपलब्ध होने के कारण।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wordle Solver क्या है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<a href=\"http://localhost/todaywordle/wordle-solver/\">Wordle Solver</a> एक ऐसा टूल है जो आपके पुष्ट अक्षरों, उनकी स्थितियों और बाहर किए गए अक्षरों को लेकर, फिर उन मान्य शब्दों की सूची देता है जो अभी भी फ़िट होते हैं। जब विकल्प बहुत ज़्यादा लगें तो यह आपके सबसे मजबूत अगले अनुमान की पहचान करने में मदद करता है।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "क्या संकेत सेक्शन सीधे जवाब बता देता है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "नहीं। संकेत सेक्शन आपके तर्क का समर्थन करने के लिए बनाया गया है, उसकी जगह लेने के लिए नहीं। यह ऐसे सुराग और पैटर्न प्रस्तुत करता है जो आपको चुनौती बनाए रखते हुए अधिक कुशलता से संभावनाओं पर विचार करने में मदद करते हैं।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "वर्ड जनरेटर नई पहेलियाँ कैसे बनाता है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "बैकएंड मान्य अंग्रेज़ी पाँच अक्षरों के शब्दों के एक संकलित पूल से चुनता है और उन्हें इस तरह चुनता है कि लगातार खेलों में विविधता सुनिश्चित हो। लक्ष्य यह है कि हर सत्र वास्तव में ताज़ा रहे, बजाय एक ही छोटी सूची को बार-बार दोहराने के।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "क्या हार्ड मोड काफ़ी ज़्यादा कठिन है?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "हाँ। हार्ड मोड में आपको हर पुष्ट सुराग को अपने अगले अनुमान में शामिल करना होता है, जो स्टैंडर्ड मोड में इस्तेमाल होने वाले एलिमिनेशन अनुमानों को रोकता है। यह मजबूत शब्दावली और अनुशासित तार्किक सोच वाले खिलाड़ियों को पुरस्कृत करता है।"
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordle-unlimited.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wordle Unlimited App",
+        "url": "https://wordle-unlimited.app",
+        "logo": "https://wordle-unlimited.app/assets/game-preview.webp",
+        "sameAs": [
+          "https://x.com/Wordleinfo",
+          "https://www.instagram.com/wordle_unlimited.app"
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Scripts -->
+    <script src="../js/state.js?v=3" defer></script>
+    <script src="../js/game.js?v=9" defer></script>
+    <script src="../js/sounds.js?v=2" defer></script>
+    <script src="../js/ui.js?v=8" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker: Error', err));
+            });
+        }
+    </script>
+</head>
+
+<body class="theme-default">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../../" class="back-button" aria-label="होम पर वापस जाएँ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>वापस</span>
+            </a>
+            <button id="btn-help" class="icon-button" aria-label="मदद">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </button>
+            <button id="btn-give-up" class="icon-button" aria-label="गेम रीस्टार्ट करें">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
+        </div>
+        <div class="header-right">
+            <select id="lang-select" aria-label="भाषा चुनें" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="भाषा चुनें">
+                    <span class="flag-icon flag-hi"></span>
+                    <span class="lang-text">HI</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
+            <button id="btn-stats" class="icon-button" aria-label="आँकड़े">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
+            </button>
+            <button id="btn-settings" class="icon-button" aria-label="सेटिंग्स">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">संकेत चाहिए? आज के असली शब्द के लिए सुराग पाएँ!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">संकेत पाएँ</a>
+                <button id="btn-close-hint" aria-label="संकेत बैनर बंद करें">&times;</button>
+            </div>
+        </div>
+
+        <div id="board-container">
+            <div id="board" role="grid" aria-label="वर्डल ग्रिड"></div>
+        </div>
+
+        <div id="message-container"></div>
+
+        <div id="keyboard-container">
+            <div id="keyboard" role="group" aria-label="वर्चुअल कीबोर्ड"></div>
+        </div>
+    </main>
+
+    <!-- Solver CTA Section -->
+    <section id="solver-cta">
+        <div class="content-container">
+            <h2>किसी शब्द पर अटक गए? हमारा Wordle Solver आज़माएँ</h2>
+            <p>अगर आप किसी मुश्किल पहेली पर अटके हैं, तो हमारे मुफ़्त Wordle Solver का उपयोग करके तुरंत संभावित जवाब खोजें। अपने ज्ञात अक्षर डालें और सेकंडों में स्मार्ट सुझाव पाएँ।</p>
+            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">Wordle Solver खोलें</a>
+        </div>
+    </section>
+
+    <section id="game-content">
+        <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>Wordle Unlimited: मुफ़्त में असीमित शब्द पहेलियाँ खेलें ऑनलाइन</h2>
+            <p>अगर दिन में एक पहेली आपके लिए कभी काफ़ी नहीं रही, तो आप सही जगह पर आ गए हैं। <strong>Wordle Unlimited</strong> 24 घंटे की दीवार हटा देता है और आपको जितनी चाहें पाँच अक्षरों की शब्द पहेलियाँ हल करने देता है — पूरी तरह मुफ़्त और अनब्लॉक्ड, बिना किसी अकाउंट की ज़रूरत। चाहे आप इसे रोज़ाना की दिमागी कसरत मानें या रात की शब्दावली चुनौती, खेल हमेशा तैयार है जब आप तैयार हों।</p>
+            <p>आपके पहले से जानी-पहचानी मूल मेकैनिक्स पर बना यह प्लेटफ़ॉर्म ओरिजिनल वर्ड गेम के संतोषजनक लॉजिक को एक तेज़ और ज़्यादा लचीले अनुभव के साथ जोड़ता है। इंटरफ़ेस किसी भी डिवाइस पर तुरंत लोड होता है, डिज़ाइन आपके रास्ते में नहीं आता, और एक नई पहेली हमेशा बस एक टैप दूर है। कोई आधी रात का रीसेट नहीं। कोई इंतज़ार नहीं।</p>
+
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>असीमित वर्डल अनुभव का परिचय</h2>
+            <p>ओरिजिनल गेम ने अच्छे कारण से एक वैश्विक शब्द पहेली जुनून पैदा किया: नियम साफ़ हैं, चुनौती असली है, और तीन अनुमानों में जवाब सुलझाने का संतोष सच में लत लगाने वाला है। एकमात्र निराशा हमेशा दैनिक सीमा थी। यह प्लेटफ़ॉर्म विशेष रूप से उस समस्या को हल करने के लिए बनाया गया था।</p>
+            <p>यहाँ आप एक राउंड खत्म करते ही तुरंत नए राउंड में कूद सकते हैं। कस्टमाइज़ेबल विज़ुअल थीम, स्मूथ एनिमेशन, और रिस्पॉन्सिव मोबाइल कंट्रोल अनुभव को पॉलिश्ड बनाते हैं, न कि सिर्फ़ जोड़-तोड़ किया हुआ। यह वही पसंदीदा पहेली फ़ॉर्मेट है, बिना मनमानी पाबंदियों के।</p>
+            <p>यह संस्करण पूरी तरह से अंग्रेज़ी गेमप्ले अनुभव पर केंद्रित है। अगर आप <strong>अंग्रेज़ी में Wordle खेलना</strong> चाहते हैं बिना किसी विचलन और बिना पेवॉल के, तो यह आपका ठिकाना है।</p>
+
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>परम वर्डल चुनौती का अनुभव करें</h2>
+            <h3>सरल। लत लगाने वाला। असीमित।</h3>
+            <p>यह प्लेटफ़ॉर्म पहली बार खेलने वालों से लेकर अनुभवी वर्ड गेम खिलाड़ियों तक सभी के लिए डिज़ाइन किया गया है। शुरुआती खिलाड़ियों को स्पष्ट रंग फ़ीडबैक के साथ एक सहज, साफ़ इंटरफ़ेस मिलता है। समर्पित खिलाड़ियों को हार्ड मोड, विस्तृत आँकड़े, और एक ही सत्र में दर्जनों पहेलियाँ हल करने की क्षमता मिलती है। एक लाइव गेम टाइमर आपके सबसे तेज़ हल को ट्रैक करता है ताकि आप अपने आप से मुकाबला कर सकें।</p>
+            <ul>
+                <li>माँग पर जनरेट होने वाली अनंत पहेलियाँ, हर रोज़</li>
+                <li>100% मुफ़्त — बिना रजिस्ट्रेशन, बिना सब्सक्रिप्शन, बिना शर्तों के</li>
+                <li>रिस्पॉन्सिव डिज़ाइन जो फ़ोन, टैबलेट और डेस्कटॉप पर ख़ूबसूरती से काम करता है</li>
+                <li>उन्नत व्यक्तिगत आँकड़े और जीत सिलसिला ट्रैकिंग</li>
+                <li>डार्क मोड, साइबर नियॉन, रेट्रो, ओशन, और ढेर सारी विज़ुअल थीम</li>
+                <li>सबसे तेज़ जीत टाइमर — अपना पर्सनल बेस्ट ट्रैक करें</li>
+            </ul>
+
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>कैसे खेलें: नियम और मेकैनिक्स</h2>
+            <p>उद्देश्य सीधा है: छिपे हुए पाँच अक्षरों के अंग्रेज़ी शब्द को छह अनुमानों में पहचानें। हर अनुमान एक मान्य शब्द होना चाहिए। हर सबमिशन के बाद, टाइल्स रंग बदलकर बताती हैं कि आपका अनुमान कितना सटीक था:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>हरा:</strong> अक्षर सही है और बिल्कुल सही जगह पर है।</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>पीला:</strong> अक्षर लक्ष्य शब्द में है लेकिन अलग स्थिति पर है।</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>ग्रे:</strong> अक्षर छिपे हुए शब्द में बिल्कुल नहीं है।</span></p>
+            <p>इस फ़ीडबैक को सही से पढ़ना और हर अगले अनुमान को उसके अनुसार समायोजित करना — यही पूरा खेल है। सुनने में आसान लगता है। इसमें महारत हासिल करना बिल्कुल अलग बात है।</p>
+            <h3>एडवांस्ड गेम मोड एक्सप्लोर करें</h3>
+            <p>स्टैंडर्ड मोड के अलावा, <a href="javascript:void(0)" onclick="ui.showSettings()" class="content-link">हार्ड मोड</a> आपको हर पुष्ट सुराग को अपने अगले अनुमान में इस्तेमाल करने के लिए मजबूर करता है। सिर्फ़ इसलिए कोई हरा अक्षर छोड़ना कि कोई और शब्द ज़्यादा सुविधाजनक लगता है — यह नहीं चलेगा। यह प्रतिबंध अनुशासित हल करने वालों को भाग्यशाली अनुमान लगाने वालों से अलग करता है। मल्टी-वर्ड मोड भी है उन खिलाड़ियों के लिए जो एक साथ कई पहेलियाँ हल करना चाहते हैं और असली दबाव में अपनी मल्टीटास्किंग क्षमता परखना चाहते हैं।</p>
+
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>डेली Wordle बनाम अनलिमिटेड मोड: क्या फ़र्क है?</h2>
+            <p>दोनों संस्करणों में मूल पहेली लॉजिक बिल्कुल एक जैसा है। फ़र्क बाकी सब में है।</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>फ़ीचर</th>
+                            <th>डेली Wordle (आधिकारिक NYT)</th>
+                            <th>अनलिमिटेड मोड</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>उपलब्ध पहेलियाँ</td>
+                            <td>प्रति दिन एक</td>
+                            <td>असीमित, माँग पर</td>
+                        </tr>
+                        <tr>
+                            <td>अनुमान सीमा</td>
+                            <td>6 पर फ़िक्स्ड</td>
+                            <td>कस्टमाइज़ेबल</td>
+                        </tr>
+                        <tr>
+                            <td>कठिनाई विकल्प</td>
+                            <td>केवल स्टैंडर्ड</td>
+                            <td>स्टैंडर्ड प्लस हार्ड मोड</td>
+                        </tr>
+                        <tr>
+                            <td>कीमत</td>
+                            <td>मुफ़्त</td>
+                            <td>100% मुफ़्त</td>
+                        </tr>
+                        <tr>
+                            <td>विज़ुअल थीम</td>
+                            <td>केवल लाइट और डार्क</td>
+                            <td>साइबर नियॉन, रेट्रो, ओशन, और बहुत कुछ</td>
+                        </tr>
+                        <tr>
+                            <td>समय ट्रैकिंग</td>
+                            <td>उपलब्ध नहीं</td>
+                            <td>लाइव टाइमर और सबसे तेज़ जीत रिकॉर्ड</td>
+                        </tr>
+                        <tr>
+                            <td>अकाउंट की ज़रूरत</td>
+                            <td>अकाउंट ज़रूरी</td>
+                            <td>तुरंत खेलें, बिना लॉगिन</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>एक काम की बात जानने लायक: हमारी डेली चैलेंज हर दिन बिल्कुल वही जवाब इस्तेमाल करती है जो आधिकारिक NYT Wordle का होता है। इसका मतलब है कि आप पहले यहाँ खेल सकते हैं, आराम से बिना दबाव के शब्द सुलझा सकते हैं, और फिर NYT वर्शन पर जाकर जवाब पहले से जानते हुए खेल सकते हैं। मुश्किल पहेली वाले दिन अपनी जीत की लय बनाए रखने का यह एक बिल्कुल जायज़ तरीका है।</p>
+            <p>डेली शेयर्ड पहेली से परे, अनलिमिटेड मोड असली कौशल निर्माण के लिए बेहतर विकल्प है, क्योंकि कई राउंड में लगातार अभ्यास ही सुधार का एकमात्र भरोसेमंद तरीका है।</p>
+
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>गेम में महारत हासिल करें: सिद्ध Wordle रणनीतियाँ</h2>
+            <p>किस्मत कभी-कभी आपको किसी पहेली में बचा सकती है, लेकिन एक दोहराई जा सकने वाली रणनीति ही आपकी जीत की लय को ज़िंदा रखती है। ये तकनीकें अंग्रेज़ी अक्षर आवृत्ति और शब्द संरचना पर आधारित हैं, अंदाज़े पर नहीं।</p>
+
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>विशेषज्ञ Wordle रणनीतियाँ</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-target.png" alt="Wordle Unlimited रणनीति के लिए बेहतरीन शुरुआती शब्द" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>सर्वश्रेष्ठ शुरुआती शब्द</h3>
+                    <p>भाषाविद और पहेली गणितज्ञ मोटे तौर पर इष्टतम ओपनर्स की एक छोटी सूची पर सहमत हैं। ये शब्द एक ही अनुमान में सभी पाँच स्थितियों में अक्षर कवरेज को अधिकतम करते हैं।</p>
+                    <ul class="tag-list">
+                        <li>ADIEU</li>
+                        <li>ARISE</li>
+                        <li>STARE</li>
+                        <li>AUDIO</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-hint.png" alt="Wordle Unlimited के लिए वॉवेल हंटर रणनीति" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>वॉवेल हंटर</h3>
+                    <p>अगर आपका शुरुआती शब्द कोई स्वर (वॉवेल) नहीं दिखाता, तो अपने दूसरे अनुमान में छूटे हुए स्वरों को निशाना बनाएँ। अंग्रेज़ी के पाँच अक्षरों के शब्दों में लगभग हमेशा कम से कम दो स्वर होते हैं। एक बार जब आपको पता चल जाए कि कौन से स्वर मौजूद हैं, तो आपके विकल्प नाटकीय रूप से सिकुड़ जाते हैं। अगर A, E, और I ग्रे आएँ तो O, U और अर्ध-स्वर Y को खोजना उचित है।</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-pattern.png" alt="Wordle Unlimited में पैटर्न पहचान रणनीति" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>पैटर्न पहचान</h3>
+                    <p>अनुभवी खिलाड़ी सामान्य अंग्रेज़ी शब्द संरचनाओं की सहज समझ विकसित करते हैं। <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong>, और <strong>EST</strong> जैसे बार-बार आने वाले अंत पर नज़र रखना धोखा नहीं है। यह व्यावहारिक भाषाविज्ञान है। आंशिक सुरागों से इन पैटर्न को पहचानने से अक्सर आप लक्ष्य शब्द को यादृच्छिक एलिमिनेशन की तुलना में एक या दो अनुमान पहले पहचान सकते हैं।</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-double.png" alt="Wordle Unlimited में डबल लेटर ट्रैप" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>डबल लेटर ट्रैप</h3>
+                    <p>सबसे आम गलतियों में से एक यह मान लेना है कि लक्ष्य शब्द में हर अक्षर केवल एक बार आता है। अंग्रेज़ी में अक्सर पाँच अक्षरों के शब्दों में दोहराए गए अक्षर होते हैं, ख़ासकर दोहरे स्वर जैसे <strong>E</strong> और <strong>O</strong>, और सामान्य व्यंजन जैसे <strong>L</strong> और <strong>S</strong>। अगर आप तीन या चार पुष्ट अक्षरों के साथ अटके हैं और शब्द नहीं बना पा रहे, तो उनमें से एक को दोहराकर देखें।</p>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>Wordle Solver और संकेत: ऐसे टूल जो सच में काम आते हैं</h2>
+            <p>हर पहेली सत्र को बुद्धि की एकल लड़ाई होना ज़रूरी नहीं है। इस प्लेटफ़ॉर्म में एक बिल्ट-इन <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Solver</a></strong> शामिल है जो एक सच्चे सोचने के सहायक के रूप में काम करता है, न कि सिर्फ़ एक स्पॉइलर। वो अक्षर डालें जो आप पहले से जानते हैं, हरे रंग से पुष्ट और पीले रंग से गलत जगह वाले अक्षर चिह्नित करें, और सॉल्वर आपके मौजूदा सुरागों से मेल खाने वाले मान्य अंग्रेज़ी शब्दों की फ़िल्टर्ड सूची दिखाएगा। यह आपको सीधे जवाब नहीं देता। बल्कि सबसे मजबूत उम्मीदवार देता है ताकि अंतिम निर्णय आपका रहे।</p>
+            <p>सॉल्वर हार्ड मोड रन में विशेष रूप से उपयोगी है जहाँ पाँचवें अनुमान पर गलत कदम आपकी पूरी गेम की कीमत चुका सकता है। प्रतिबद्ध होने से पहले अपने तर्क की दोबारा जाँच करने के लिए इसका उपयोग करना एक वैध रणनीति है, शॉर्टकट नहीं। सॉल्वर कई भाषाओं को भी सपोर्ट करता है, जिससे यह अंग्रेज़ी से परे भी उपयोगी हो जाता है।</p>
+            <p>सॉल्वर के साथ-साथ, साइट में एक समर्पित <strong><a href="http://localhost/todaywordle/" class="content-link">Wordle संकेत</a></strong> सेक्शन है जो अपने आप में एक सेकंडरी गेम की तरह काम करता है। आप डेली पहेली एंट्रीज़ ब्राउज़ कर सकते हैं, अध्ययन कर सकते हैं कि विशिष्ट शब्दों के लिए सुराग कैसे दिए गए, और शुरुआती अनुमान से समाधान तक के तार्किक मार्ग को ट्रेस कर सकते हैं। यह आपकी पैटर्न पहचान क्षमता को तेज़ करने और यह समझने का एक व्यावहारिक तरीका है कि कुछ शुरुआती शब्द लगातार दूसरों से बेहतर क्यों प्रदर्शन करते हैं। इसे Wordle समुदाय के लिए एक ट्रेनिंग लॉग की तरह समझें।</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>यह प्लेटफ़ॉर्म आपके समय के लायक क्यों है</h2>
+            <p>ऑनलाइन दर्जनों Wordle वेरिएंट हैं। ज़्यादातर बिना किसी सोच-विचार के बनाई गई कॉपी हैं। यह वाला अलग तरीके से बनाया गया था।</p>
+            <ul>
+                <li>जितने चाहें राउंड खेलें — बिना दैनिक सीमा और बिना थ्रॉटलिंग</li>
+                <li>आपके व्यक्तिगत आँकड़े, जीत सिलसिले, और सबसे तेज़ हल के समय अपने आप ट्रैक होते हैं</li>
+                <li>कई विज़ुअल थीम आपको माहौल सेट करने देती हैं, साफ़ सफ़ेद से लेकर गहरे साइबर नियॉन तक</li>
+                <li>पेज मोबाइल कनेक्शन पर एक सेकंड से भी कम में लोड होते हैं</li>
+                <li>कोई पॉप-अप नहीं, कोई जबरन रजिस्ट्रेशन नहीं, कोई सब्सक्रिप्शन नहीं</li>
+            </ul>
+            <p>चाहे आप यहाँ पाँच मिनट के दिमागी ब्रेक के लिए हों या दो घंटे के फ़ोकस्ड अभ्यास सत्र के लिए, प्लेटफ़ॉर्म टिका रहता है। Wordle Unlimited का अनब्लॉक्ड फ़ॉर्मेट ख़ास तौर पर इसलिए मौजूद है क्योंकि शब्दावली में सच्चा सुधार बड़ी मात्रा में अभ्यास माँगता है, और दिन में एक पहेली बस काफ़ी नहीं है।</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>10 भाषाओं में उपलब्ध</h2>
+            <p>यह पेज अंग्रेज़ी Wordle अनुभव पर केंद्रित है, लेकिन प्लेटफ़ॉर्म कुल 10 भाषाओं को सपोर्ट करता है, जिनमें से प्रत्येक की अपनी समर्पित शब्द सूची और पूर्ण Wordle Solver इंटीग्रेशन है। चाहे आप अपनी मातृभाषा में खेल रहे हों या विदेशी भाषा का अभ्यास कर रहे हों, वही असीमित गेमप्ले और सॉल्वर टूल्स सभी में उपलब्ध हैं:</p>
+            <ul>
+                <li><strong>अंग्रेज़ी</strong> (US, NYT स्टाइल डेली + अनलिमिटेड मोड)</li>
+                <li><strong>स्पैनिश</strong></li>
+                <li><strong>फ़्रेंच</strong></li>
+                <li><strong>जर्मन</strong></li>
+                <li><strong>पुर्तगाली</strong></li>
+                <li><strong>अरबी</strong> (पूर्ण दाएँ से बाएँ इनपुट सपोर्ट के साथ)</li>
+                <li><strong>तुर्की</strong></li>
+                <li><strong>हिंदी</strong> (देवनागरी लिपि समर्थित)</li>
+                <li><strong>उर्दू</strong> (दाएँ से बाएँ लिपि समर्थित)</li>
+                <li><strong>इंडोनेशियाई</strong></li>
+            </ul>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
+            <h2>अक्सर पूछे जाने वाले सवाल</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या Wordle Unlimited मुफ़्त है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>हाँ, बिल्कुल मुफ़्त। कोई छिपी फ़ीस नहीं, कोई प्रीमियम टियर नहीं, और कोई अकाउंट बनाने की ज़रूरत नहीं। पेज खोलें और तुरंत खेलना शुरू करें।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या मैं दिन में एक से ज़्यादा बार खेल सकता/सकती हूँ?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>यही तो पूरा मकसद है। NYT Wordle के विपरीत, जो हर 24 घंटे में रीसेट होता है, यह प्लेटफ़ॉर्म आपके अनुरोध पर तुरंत एक नई पहेली देता है। दस राउंड खेलें या सौ। कोई सीमा नहीं है।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>इन्फिनिटी मोड क्या है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>इन्फिनिटी मोड मूल असीमित अनुभव है: पाँच अक्षरों की शब्द पहेलियों की एक अंतहीन कतार जिसमें कोई दैनिक सीमा नहीं। एक पूरी करें, New Game दबाएँ, और जब तक चाहें खेलते रहें।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या यह NYT Wordle जैसा ही है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>नहीं। आधिकारिक Wordle, जो अब The New York Times के स्वामित्व में है, एक साझा दैनिक पहेली प्रदान करता है। यह प्लेटफ़ॉर्म अपनी शब्द सूची और माँग पर खेलने की स्वतंत्रता वाला एक स्वतंत्र गेम है।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>मूल Wordle किसने बनाया?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>जोश वार्डल, एक वेल्श सॉफ़्टवेयर इंजीनियर, ने 2021 में अपनी पार्टनर के लिए एक व्यक्तिगत उपहार के रूप में Wordle बनाया। कुछ ही महीनों में यह गेम वायरल हो गया और 2022 की शुरुआत में The New York Times ने इसे अधिग्रहित कर लिया।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या शुरुआती खिलाड़ी आराम से खेल सकते हैं?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>बिल्कुल। नियम सीखने में लगभग तीस सेकंड लगते हैं। स्टैंडर्ड मोड में कोई समय का दबाव नहीं है और रंग फ़ीडबैक आपको स्वाभाविक रूप से जवाब की ओर मार्गदर्शित करता है। नए खिलाड़ी आम तौर पर जल्दी सुधार करते हैं, खासकर असीमित अभ्यास राउंड उपलब्ध होने के कारण।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wordle Solver क्या है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Solver</a> एक ऐसा टूल है जो आपके पुष्ट अक्षरों, उनकी स्थितियों और बाहर किए गए अक्षरों को लेकर, फिर उन मान्य शब्दों की सूची देता है जो अभी भी फ़िट होते हैं। जब विकल्प बहुत ज़्यादा लगें तो यह आपके सबसे मजबूत अगले अनुमान की पहचान करने में मदद करता है।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या संकेत सेक्शन सीधे जवाब बता देता है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>नहीं। संकेत सेक्शन आपके तर्क का समर्थन करने के लिए बनाया गया है, उसकी जगह लेने के लिए नहीं। यह ऐसे सुराग और पैटर्न प्रस्तुत करता है जो आपको चुनौती बनाए रखते हुए अधिक कुशलता से संभावनाओं पर विचार करने में मदद करते हैं।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>वर्ड जनरेटर नई पहेलियाँ कैसे बनाता है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>बैकएंड मान्य अंग्रेज़ी पाँच अक्षरों के शब्दों के एक संकलित पूल से चुनता है और उन्हें इस तरह चुनता है कि लगातार खेलों में विविधता सुनिश्चित हो। लक्ष्य यह है कि हर सत्र वास्तव में ताज़ा रहे, बजाय एक ही छोटी सूची को बार-बार दोहराने के।</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>क्या हार्ड मोड काफ़ी ज़्यादा कठिन है?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>हाँ। हार्ड मोड में आपको हर पुष्ट सुराग को अपने अगले अनुमान में शामिल करना होता है, जो स्टैंडर्ड मोड में इस्तेमाल होने वाले एलिमिनेशन अनुमानों को रोकता है। यह मजबूत शब्दावली और अनुशासित तार्किक सोच वाले खिलाड़ियों को पुरस्कृत करता है।</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden">
+        <!-- Modals will be injected here -->
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../" class="back-button" aria-label="होम पर वापस जाएँ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>वापस</span>
+            </a>
+            <div class="footer-links">
+                <a href="../../index.php/contact/">संपर्क करें</a>
+                <a href="../../index.php/privacy-policy/">गोपनीयता नीति</a>
+                <a href="../../index.php/disclaimer/">अस्वीकरण</a>
+                <a href="../../index.php/about-us/">हमारे बारे में</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Language Page Redirect -->
+    <script>
+    (function() {
+        var PAGE_LANG = 'hi';
+        var langUrls = {
+            en: '/todaywordle/wordle-unlimited/',
+            ar: '/todaywordle/wordle-unlimited/ar/',
+            de: '/todaywordle/wordle-unlimited/de/',
+            es: '/todaywordle/wordle-unlimited/es/',
+            fr: '/todaywordle/wordle-unlimited/fr/',
+            hi: '/todaywordle/wordle-unlimited/hi/',
+            id: '/todaywordle/wordle-unlimited/id/',
+            pt: '/todaywordle/wordle-unlimited/pt/',
+            tr: '/todaywordle/wordle-unlimited/tr/',
+            ur: '/todaywordle/wordle-unlimited/ur/'
+        };
+        window.addEventListener('load', function() {
+            if (window.State) State.saveLanguage(PAGE_LANG);
+            if (window.game && game.currentLanguage !== PAGE_LANG) {
+                game.changeLanguage(PAGE_LANG);
+            }
+            var opts = document.querySelectorAll('#lang-dropdown-options li');
+            opts.forEach(function(opt) {
+                var c = opt.cloneNode(true);
+                opt.parentNode.replaceChild(c, opt);
+                c.addEventListener('click', function() {
+                    var v = c.getAttribute('data-value');
+                    if (langUrls[v]) window.location.href = langUrls[v];
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>

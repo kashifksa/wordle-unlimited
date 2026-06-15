@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wordle Unlimited — Main Teka-Teki Kata Tanpa Batas Gratis Online</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Mainkan Wordle Unlimited gratis tanpa batas harian. Nikmati teka-teki kata lima huruf tanpa akhir, gunakan Wordle Solver, temukan petunjuk, dan asah kosakata Anda dengan ritme Anda sendiri.">
+    <meta name="keywords"
+        content="Wordle Unlimited, mainkan Wordle dalam berbagai bahasa, teka-teki kata multibahasa, Wordle dalam bahasa Spanyol, Wordle dalam bahasa Prancis, Wordle dalam bahasa Arab, Wordle dalam bahasa Urdu, permainan kata untuk pembelajar bahasa, permainan tebak kata tanpa batas, permainan pembangun kosakata, permainan kata harian, Wordle dalam bahasa Jerman, Wordle dalam bahasa Hindi, permainan pembelajaran bahasa, Wordle multibahasa">
+    <meta name="author" content="Wordle Unlimited">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="/wordle-unlimited/" />
+    <link rel="alternate" hreflang="ar" href="/wordle-unlimited/ar/" />
+    <link rel="alternate" hreflang="de" href="/wordle-unlimited/de/" />
+    <link rel="alternate" hreflang="es" href="/wordle-unlimited/es/" />
+    <link rel="alternate" hreflang="fr" href="/wordle-unlimited/fr/" />
+    <link rel="alternate" hreflang="hi" href="/wordle-unlimited/hi/" />
+    <link rel="alternate" hreflang="id" href="/wordle-unlimited/id/" />
+    <link rel="alternate" hreflang="pt" href="/wordle-unlimited/pt/" />
+    <link rel="alternate" hreflang="tr" href="/wordle-unlimited/tr/" />
+    <link rel="alternate" hreflang="ur" href="/wordle-unlimited/ur/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wordle-unlimited.app">
+    <meta property="og:title" content="Wordle Unlimited — Main Teka-Teki Kata Tanpa Batas Gratis Online">
+    <meta property="og:description"
+        content="Mainkan Wordle Unlimited gratis tanpa batas harian. Nikmati teka-teki kata lima huruf tanpa akhir, gunakan Wordle Solver, temukan petunjuk, dan asah kosakata Anda dengan ritme Anda sendiri.">
+    <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+    <meta property="og:site_name" content="Wordle Unlimited">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
+    <meta property="twitter:url" content="https://wordle-unlimited.app">
+    <meta property="twitter:title" content="Wordle Unlimited — Main Teka-Teki Kata Tanpa Batas Gratis Online">
+    <meta property="twitter:description"
+        content="Mainkan Wordle Unlimited gratis tanpa batas harian. Nikmati teka-teki kata lima huruf tanpa akhir, gunakan Wordle Solver, temukan petunjuk, dan asah kosakata Anda dengan ritme Anda sendiri.">
+    <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Game Data & Scripts -->
+    <link rel="preload" href="../js/game.js?v=9" as="script">
+    <link rel="preload" href="../js/ui.js?v=8" as="script">
+
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
+
+    <!-- Critical CSS (Inlined for speed) -->
+    <style>
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css?v=2.6" fetchpriority="high">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "description": "Mainkan Wordle Unlimited gratis tanpa batas harian. Nikmati teka-teki kata lima huruf tanpa akhir, gunakan Wordle Solver, temukan petunjuk, dan asah kosakata Anda dengan ritme Anda sendiri.",
+        "genre": ["Puzzle Game", "Word Game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Apakah Wordle Unlimited gratis untuk dimainkan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ya, sepenuhnya. Tidak ada biaya tersembunyi, tidak ada tingkat premium, dan tidak ada persyaratan akun. Buka halaman dan mulai bermain segera."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bisakah saya bermain lebih dari sekali sehari?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Itulah intinya. Berbeda dengan Wordle NYT resmi, yang diatur ulang setiap 24 jam, platform ini menyajikan teka-teki baru saat Anda memintanya. Mainkan sepuluh ronde atau seratus. Tidak ada batasan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apa itu Mode Tak Terbatas (Infinity Mode)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mode Tak Terbatas adalah inti dari pengalaman tanpa batas: antrean tak berujung dari teka-teki kata lima huruf tanpa batas harian. Selesaikan satu, tekan Permainan Baru, dan terus mainkan selama yang Anda suka."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apakah ini sama dengan Wordle NYT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tidak. Wordle resmi, yang kini dimiliki oleh The New York Times, menawarkan satu teka-teki harian yang dibagikan. Platform ini adalah permainan independen dengan kumpulan katanya sendiri dan kebebasan untuk bermain sesuai permintaan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Siapa yang menciptakan Wordle asli?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Josh Wardle, seorang insinyur perangkat lunak Wales, membangun Wordle pada tahun 2021 sebagai hadiah pribadi untuk pasangannya. Permainan ini menjadi viral dalam beberapa bulan dan diakuisisi oleh The New York Times pada awal 2022."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bisakah pemula bermain dengan nyaman?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tentu saja. Aturannya hanya membutuhkan waktu sekitar tiga puluh detik untuk dipelajari. Mode standar tidak memiliki tekanan waktu dan umpan balik warna memandu Anda secara alami menuju jawaban. Pemain baru biasanya meningkat dengan cepat, terutama dengan tersedianya ronde latihan tanpa batas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apa itu Wordle Solver?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<a href=\"http://localhost/todaywordle/wordle-solver/\">Wordle Solver</a> adalah alat yang mengambil huruf yang Anda konfirmasi, posisinya, dan huruf apa pun yang dihilangkan, kemudian mengembalikan daftar kata yang valid yang masih cocok. Ini membantu Anda mengidentifikasi tebakan berikutnya yang paling kuat ketika pilihan terasa sangat banyak."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apakah bagian petunjuk memberikan jawaban secara langsung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tidak. Bagian petunjuk dirancang untuk mendukung penalaran Anda, bukan menggantikannya. Ini menyajikan petunjuk dan pola yang membantu Anda memikirkan berbagai kemungkinan secara lebih efisien sambil tetap menjaga tantangan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bagaimana pembuat kata menghasilkan teka-teki baru?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sistem di belakang layar mengambil dari kumpulan kata lima huruf yang divalidasi dan memilihnya dengan cara yang memastikan variasi di seluruh permainan berturut-turut. Tujuannya adalah agar setiap sesi benar-benar segar alih-alih mengulang daftar pendek yang sama."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Apakah Mode Sulit (Hard Mode) jauh lebih menantang?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ya. Mode Sulit mengharuskan Anda untuk memasukkan setiap petunjuk yang dikonfirmasi ke dalam tebakan Anda berikutnya, yang mencegah tebakan eliminasi yang diandalkan mode standar. Ini memberi penghargaan kepada pemain dengan kosakata yang kuat dan penalaran deduktif yang disiplin."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordle-unlimited.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wordle Unlimited App",
+        "url": "https://wordle-unlimited.app",
+        "logo": "https://wordle-unlimited.app/assets/game-preview.webp",
+        "sameAs": [
+          "https://x.com/Wordleinfo",
+          "https://www.instagram.com/wordle_unlimited.app"
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Scripts -->
+    <script src="../js/state.js?v=3" defer></script>
+    <script src="../js/game.js?v=9" defer></script>
+    <script src="../js/sounds.js?v=2" defer></script>
+    <script src="../js/ui.js?v=8" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker: Error', err));
+            });
+        }
+    </script>
+</head>
+
+<body class="theme-default">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../../" class="back-button" aria-label="Back to Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Kembali</span>
+            </a>
+            <button id="btn-help" class="icon-button" aria-label="Help">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </button>
+            <button id="btn-give-up" class="icon-button" aria-label="Restart Game">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
+        </div>
+        <div class="header-right">
+            <select id="lang-select" aria-label="Select Language" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="Select Language">
+                    <span class="flag-icon flag-id"></span>
+                    <span class="lang-text">ID</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
+            <button id="btn-stats" class="icon-button" aria-label="Statistics">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
+            </button>
+            <button id="btn-settings" class="icon-button" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">Butuh petunjuk? Dapatkan petunjuk untuk kata hari ini!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">Dapatkan Petunjuk</a>
+                <button id="btn-close-hint" aria-label="Close Hint Banner">&times;</button>
+            </div>
+        </div>
+
+        <div id="board-container">
+            <div id="board" role="grid" aria-label="Wordle Grid"></div>
+        </div>
+
+        <div id="message-container"></div>
+
+        <div id="keyboard-container">
+            <div id="keyboard" role="group" aria-label="Virtual Keyboard"></div>
+        </div>
+    </main>
+
+    <!-- Solver CTA Section -->
+    <section id="solver-cta">
+        <div class="content-container">
+            <h2>Terjebak pada suatu Kata? Coba Wordle Solver Kami</h2>
+            <p>Jika Anda terjebak pada teka-teki yang sulit, gunakan Wordle Solver gratis kami untuk langsung menemukan kemungkinan jawaban. Masukkan huruf yang Anda ketahui dan dapatkan saran cerdas dalam hitungan detik.</p>
+            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">Buka Wordle Solver</a>
+        </div>
+    </section>
+
+    <section id="game-content">
+        <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>Wordle Unlimited: Main Teka-Teki Kata Tanpa Batas Gratis Online</h2>
+            <p>Jika satu teka-teki sehari tidak pernah cukup bagi Anda, Anda telah menemukan tempat yang tepat. <strong>Wordle Unlimited</strong> menghapus dinding 24 jam dan memungkinkan Anda memecahkan teka-teki kata lima huruf sebanyak yang Anda inginkan, sepenuhnya gratis dan tidak diblokir, tanpa perlu akun. Apakah Anda menganggapnya sebagai pemanasan mental harian atau tantangan kosakata larut malam, permainan ini selalu siap kapan pun Anda siap.</p>
+            <p>Dibangun di atas mekanisme inti yang sama yang sudah Anda ketahui, platform ini menggabungkan logika yang memuaskan dari permainan kata asli dengan pengalaman yang lebih cepat dan fleksibel. Antarmuka dimuat secara instan di perangkat apa pun, desainnya tidak mengganggu Anda, dan teka-teki baru selalu hanya berjarak satu ketukan. Tidak ada reset tengah malam. Tidak perlu menunggu.</p>
+
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>Pengenalan pada Pengalaman Wordle Tanpa Batas</h2>
+            <p>Permainan asli memicu obsesi teka-teki kata global untuk alasan yang baik: aturannya bersih, tantangannya nyata, dan kepuasan memecahkan jawaban dalam tiga tebakan benar-benar membuat ketagihan. Satu-satunya rasa frustrasi selalu terletak pada batas harian. Platform ini dibangun khusus untuk memecahkan masalah itu.</p>
+            <p>Di sini Anda bisa melompat ke ronde baru saat Anda menyelesaikan satu ronde. Tema visual yang dapat disesuaikan, animasi yang halus, dan kontrol seluler yang responsif membuat pengalamannya terasa terpoles alih-alih hanya ditambal. Ini adalah format teka-teki tercinta yang sama, tanpa batasan yang sewenang-wenang.</p>
+            <p>Versi ini berfokus sepenuhnya pada pengalaman bermain tebak kata. Jika Anda ingin <strong>bermain Wordle</strong> tanpa gangguan dan tanpa batasan berbayar, ini adalah markas Anda.</p>
+
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>Rasakan Tantangan Wordle Terbaik</h2>
+            <h3>Sederhana. Adiktif. Tanpa Batas.</h3>
+            <p>Platform ini dirancang untuk semua orang mulai dari pemain pemula hingga veteran permainan kata berpengalaman. Pemula mendapatkan antarmuka yang bersih dan mudah dengan umpan balik warna yang jelas. Pemain berdedikasi mendapatkan Mode Sulit, statistik terperinci, dan kemampuan untuk menyelesaikan lusinan teka-teki dalam satu sesi. Pengatur waktu permainan langsung bahkan melacak pemecahan tercepat Anda sehingga Anda dapat bersaing dengan diri sendiri.</p>
+            <ul>
+                <li>Teka-teki tak berujung yang dihasilkan sesuai permintaan, setiap hari</li>
+                <li>100% gratis tanpa pendaftaran, tanpa langganan, tanpa jebakan</li>
+                <li>Desain responsif yang bekerja indah pada ponsel, tablet, dan desktop</li>
+                <li>Statistik pribadi lanjutan dan pelacakan kemenangan beruntun</li>
+                <li>Mode gelap, Cyber Neon, Retro, Ocean, dan lebih banyak tema visual</li>
+                <li>Timer Kemenangan Tercepat untuk melacak rekor pribadi Anda</li>
+            </ul>
+
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>Cara Bermain: Aturan dan Mekanisme</h2>
+            <p>Tujuannya mudah dipahami: identifikasi kata lima huruf yang tersembunyi dalam enam tebakan. Setiap tebakan harus berupa kata yang valid. Setelah setiap pengiriman, kotak berubah warna untuk mengungkapkan seberapa akurat tebakan Anda:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Hijau:</strong> Huruf tersebut benar dan berada di posisi yang tepat.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Kuning:</strong> Huruf tersebut muncul di kata target tetapi menempati posisi yang berbeda.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Abu-abu:</strong> Huruf tersebut sama sekali tidak ada di kata tersembunyi.</span></p>
+            <p>Membaca umpan balik ini secara akurat dan menyesuaikan setiap tebakan berikutnya adalah keseluruhan permainan. Kedengarannya sederhana. Menguasainya adalah hal yang sama sekali berbeda.</p>
+            <h3>Jelajahi Mode Permainan Lanjutan</h3>
+            <p>Di luar mode standar, <a href="javascript:void(0)" onclick="ui.showSettings()" class="content-link">Mode Sulit</a> memaksa Anda untuk menggunakan setiap petunjuk yang dikonfirmasi dalam tebakan Anda berikutnya. Tidak boleh melewatkan huruf hijau hanya karena kata yang berbeda terasa lebih nyaman. Kendala ini memisahkan pemecah masalah yang disiplin dari penebak yang beruntung. Terdapat juga mode Multi Kata untuk pemain yang ingin memecahkan beberapa teka-teki pada saat yang bersamaan dan menguji kemampuan multitasking mereka di bawah tekanan nyata.</p>
+
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>Wordle Harian vs. Mode Tanpa Batas: Apa Bedanya?</h2>
+            <p>Logika inti teka-teki sama di kedua versi. Perbedaannya ada pada hal-hal lainnya.</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fitur</th>
+                            <th>Wordle Harian (NYT Resmi)</th>
+                            <th>Mode Tanpa Batas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Teka-teki Tersedia</td>
+                            <td>Satu per hari</td>
+                            <td>Tak terbatas, sesuai permintaan</td>
+                        </tr>
+                        <tr>
+                            <td>Batas Tebakan</td>
+                            <td>Tetap di 6</td>
+                            <td>Dapat disesuaikan</td>
+                        </tr>
+                        <tr>
+                            <td>Pilihan Kesulitan</td>
+                            <td>Hanya standar</td>
+                            <td>Standar ditambah Mode Sulit</td>
+                        </tr>
+                        <tr>
+                            <td>Biaya</td>
+                            <td>Gratis</td>
+                            <td>100% Gratis</td>
+                        </tr>
+                        <tr>
+                            <td>Tema Visual</td>
+                            <td>Hanya Terang dan Gelap</td>
+                            <td>Cyber Neon, Retro, Ocean, dan lainnya</td>
+                        </tr>
+                        <tr>
+                            <td>Pelacakan Waktu</td>
+                            <td>Tidak tersedia</td>
+                            <td>Timer langsung dan rekor Kemenangan Tercepat</td>
+                        </tr>
+                        <tr>
+                            <td>Persyaratan Akun</td>
+                            <td>Butuh akun</td>
+                            <td>Main instan, tanpa login</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Satu tips praktis yang perlu diketahui: tantangan harian kami menggunakan jawaban yang sama persis dengan Wordle NYT resmi setiap hari. Itu berarti Anda bisa memainkannya di sini terlebih dahulu, mencari kata tersebut dengan kecepatan Anda sendiri tanpa tekanan, dan kemudian beralih ke versi NYT dengan sudah mengetahui jawabannya. Ini adalah cara yang sah untuk menjaga rekor Anda tetap utuh di hari teka-teki yang sulit.</p>
+            <p>Di luar teka-teki harian yang dibagikan, mode Tanpa Batas adalah pilihan yang lebih baik untuk membangun keterampilan sejati, karena pengulangan yang konsisten di banyak ronde adalah satu-satunya cara yang dapat diandalkan untuk berkembang.</p>
+
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>Kuasai Permainan: Strategi Wordle yang Terbukti</h2>
+            <p>Keberuntungan mungkin membawa Anda melewati teka-teki sesekali, tetapi strategi yang dapat diulang adalah hal yang membuat kemenangan beruntun Anda tetap hidup. Teknik-teknik ini didasarkan pada frekuensi huruf dan struktur kata, bukan sekadar tebakan.</p>
+
+
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>Strategi Wordle Ahli</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-target.png" alt="Top starting words for Wordle Unlimited strategy" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Kata Pembuka Terbaik</h3>
+                    <p>Ahli bahasa dan matematikawan teka-teki secara luas menyetujui daftar pendek pembuka optimal. Kata-kata ini memaksimalkan cakupan huruf di kelima posisi dalam satu tebakan.</p>
+                    <ul class="tag-list">
+                        <li>ADIEU</li>
+                        <li>ARISE</li>
+                        <li>STARE</li>
+                        <li>AUDIO</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-hint.png" alt="The vowel hunter strategy for Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Pemburu Vokal</h3>
+                    <p>Jika kata pembuka Anda gagal mengungkapkan vokal apa pun, gunakan tebakan kedua Anda untuk menargetkan vokal yang terlewatkan. Kata-kata lima huruf hampir selalu mengandung setidaknya dua vokal. Setelah Anda tahu vokal mana yang ada, kumpulan kandidat Anda menyusut secara dramatis. Huruf O, U, dan semi-vokal Y layak diburu jika A, E, dan I kembali berwarna abu-abu.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-pattern.png" alt="Pattern recognition strategy in Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Pengenalan Pola</h3>
+                    <p>Pemain berpengalaman mengembangkan perasaan terhadap struktur kata yang umum. Memperhatikan akhiran berulang seperti <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong>, dan <strong>EST</strong> (atau pola bahasa lainnya) bukanlah curang. Ini adalah linguistik terapan. Menemukan pola-pola ini dari petunjuk parsial sering kali memungkinkan Anda mengidentifikasi kata target satu atau dua tebakan lebih awal daripada yang dimungkinkan oleh eliminasi acak.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-double.png" alt="The double letter trap in Wordle Unlimited" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Jebakan Huruf Ganda</h3>
+                    <p>Salah satu kesalahan paling umum adalah berasumsi setiap huruf dalam kata target hanya muncul sekali. Bahasa sering menghasilkan kata lima huruf dengan huruf yang diulang, terutama vokal ganda seperti <strong>E</strong> dan <strong>O</strong>, serta konsonan umum seperti <strong>L</strong> dan <strong>S</strong>. Jika Anda terjebak dengan tiga atau empat huruf yang dikonfirmasi dan tidak dapat membentuk kata, cobalah mengulangi salah satunya.</p>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>Wordle Solver dan Petunjuk: Alat yang Benar-Benar Membantu</h2>
+            <p>Tidak setiap sesi teka-teki harus menjadi pertarungan kecerdasan solo. Platform ini mencakup <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Solver</a></strong> bawaan yang berfungsi sebagai alat bantu berpikir yang sesungguhnya daripada sekadar bocoran. Masukkan huruf-huruf yang sudah Anda ketahui, tandai posisi mana yang dikonfirmasi hijau dan mana yang meleset kuning, dan solver akan mengembalikan daftar kata valid yang disaring yang cocok dengan petunjuk Anda saat ini. Ini tidak hanya memberikan jawabannya. Ini memberi Anda kandidat terkuat sehingga keputusan akhir tetap di tangan Anda.</p>
+            <p>Solver ini sangat berguna untuk putaran Mode Sulit di mana langkah yang salah pada tebakan kelima dapat merugikan seluruh permainan Anda. Menggunakannya untuk memeriksa kembali alasan Anda sebelum mengonfirmasi tebakan adalah strategi yang sah, bukan jalan pintas. Solver ini juga mendukung berbagai bahasa, membuatnya berguna di luar permainan bahasa Anda juga.</p>
+            <p>Bersamaan dengan solver, situs ini menampilkan bagian <strong><a href="http://localhost/todaywordle/" class="content-link">Petunjuk Wordle</a></strong> khusus yang berfungsi hampir seperti permainan sekunder itu sendiri. Anda dapat menelusuri entri teka-teki harian, mempelajari bagaimana kata-kata tertentu diberi petunjuk, dan melacak jalur logis dari tebakan pembuka ke solusi. Ini adalah cara praktis untuk mengasah pengenalan pola Anda dan memahami mengapa kata-kata awal tertentu secara konsisten mengungguli yang lain. Anggap saja sebagai log pelatihan untuk komunitas Wordle.</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>Mengapa Platform Ini Layak Dicoba</h2>
+            <p>Ada puluhan varian Wordle online. Kebanyakan adalah klon dengan sedikit pemikiran yang dimasukkan ke dalam pengalaman sebenarnya. Yang ini dibangun secara berbeda.</p>
+            <ul>
+                <li>Mainkan sebanyak mungkin ronde yang Anda inginkan tanpa batas harian dan tanpa pelambatan</li>
+                <li>Statistik pribadi, kemenangan beruntun, dan waktu penyelesaian tercepat Anda dilacak secara otomatis</li>
+                <li>Banyak tema visual yang memungkinkan Anda mengatur suasana hati, dari putih bersih hingga Cyber Neon yang pekat</li>
+                <li>Halaman dimuat dalam waktu kurang dari satu detik pada koneksi seluler</li>
+                <li>Tidak ada pop-up, pendaftaran paksa, atau langganan</li>
+            </ul>
+            <p>Baik Anda berada di sini untuk menyegarkan otak selama lima menit atau sesi latihan terfokus dua jam, platform ini tetap bisa diandalkan. Format Wordle Unlimited tidak diblokir ada khusus karena peningkatan kosakata yang bermakna membutuhkan volume, dan satu teka-teki sehari tidaklah cukup.</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>Tersedia dalam 10 Bahasa</h2>
+            <p>Halaman ini berfokus pada pengalaman Wordle bahasa Indonesia, namun platform ini mendukung total 10 bahasa, masing-masing dengan daftar kata khususnya sendiri dan integrasi Wordle Solver penuh. Apakah Anda bermain dalam bahasa ibu atau berlatih bahasa asing, permainan tanpa batas dan alat bantu solver yang sama tersedia di semuanya:</p>
+            <ul>
+                <li><strong>Inggris</strong></li>
+                <li><strong>Spanyol</strong></li>
+                <li><strong>Prancis</strong></li>
+                <li><strong>Jerman</strong></li>
+                <li><strong>Portugis</strong></li>
+                <li><strong>Arab</strong></li>
+                <li><strong>Turki</strong></li>
+                <li><strong>Hindi</strong></li>
+                <li><strong>Urdu</strong></li>
+                <li><strong>Indonesia</strong></li>
+            </ul>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
+            <h2>Pertanyaan yang Sering Diajukan</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah Wordle Unlimited gratis untuk dimainkan?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, sepenuhnya. Tidak ada biaya tersembunyi, tidak ada tingkat premium, dan tidak ada persyaratan akun. Buka halaman dan mulai bermain segera.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bisakah saya bermain lebih dari sekali sehari?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Itulah intinya. Berbeda dengan Wordle NYT resmi, yang diatur ulang setiap 24 jam, platform ini menyajikan teka-teki baru saat Anda memintanya. Mainkan sepuluh ronde atau seratus. Tidak ada batasan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apa itu Mode Tak Terbatas (Infinity Mode)?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Mode Tak Terbatas adalah inti dari pengalaman tanpa batas: antrean tak berujung dari teka-teki kata lima huruf tanpa batas harian. Selesaikan satu, tekan Permainan Baru, dan terus mainkan selama yang Anda suka.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah ini sama dengan Wordle NYT?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tidak. Wordle resmi, yang kini dimiliki oleh The New York Times, menawarkan satu teka-teki harian yang dibagikan. Platform ini adalah permainan independen dengan kumpulan katanya sendiri dan kebebasan untuk bermain sesuai permintaan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Siapa yang menciptakan Wordle asli?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Josh Wardle, seorang insinyur perangkat lunak Wales, membangun Wordle pada tahun 2021 sebagai hadiah pribadi untuk pasangannya. Permainan ini menjadi viral dalam beberapa bulan dan diakuisisi oleh The New York Times pada awal 2022.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bisakah pemula bermain dengan nyaman?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tentu saja. Aturannya hanya membutuhkan waktu sekitar tiga puluh detik untuk dipelajari. Mode standar tidak memiliki tekanan waktu dan umpan balik warna memandu Anda secara alami menuju jawaban. Pemain baru biasanya meningkat dengan cepat, terutama dengan tersedianya ronde latihan tanpa batas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apa itu Wordle Solver?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><a href="http://localhost/todaywordle/wordle-solver/">Wordle Solver</a> adalah alat yang mengambil huruf yang Anda konfirmasi, posisinya, dan huruf apa pun yang dihilangkan, kemudian mengembalikan daftar kata yang valid yang masih cocok. Ini membantu Anda mengidentifikasi tebakan berikutnya yang paling kuat ketika pilihan terasa sangat banyak.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah bagian petunjuk memberikan jawaban secara langsung?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tidak. Bagian petunjuk dirancang untuk mendukung penalaran Anda, bukan menggantikannya. Ini menyajikan petunjuk dan pola yang membantu Anda memikirkan berbagai kemungkinan secara lebih efisien sambil tetap menjaga tantangan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana pembuat kata menghasilkan teka-teki baru?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sistem di belakang layar mengambil dari kumpulan kata lima huruf yang divalidasi dan memilihnya dengan cara yang memastikan variasi di seluruh permainan berturut-turut. Tujuannya adalah agar setiap sesi benar-benar segar alih-alih mengulang daftar pendek yang sama.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah Mode Sulit (Hard Mode) jauh lebih menantang?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya. Mode Sulit mengharuskan Anda untuk memasukkan setiap petunjuk yang dikonfirmasi ke dalam tebakan Anda berikutnya, yang mencegah tebakan eliminasi yang diandalkan mode standar. Ini memberi penghargaan kepada pemain dengan kosakata yang kuat dan penalaran deduktif yang disiplin.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden">
+        <!-- Modals will be injected here -->
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../" class="back-button" aria-label="Back to Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Kembali</span>
+            </a>
+            <div class="footer-links">
+                <a href="../../index.php/contact/">Kontak</a>
+                <a href="../../index.php/privacy-policy/">Kebijakan Privasi</a>
+                <a href="../../index.php/disclaimer/">Penafian</a>
+                <a href="../../index.php/about-us/">Tentang Kami</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Language Page Redirect -->
+    <script>
+    (function() {
+        var PAGE_LANG = 'id';
+        var langUrls = {
+            en: '/todaywordle/wordle-unlimited/',
+            ar: '/todaywordle/wordle-unlimited/ar/',
+            de: '/todaywordle/wordle-unlimited/de/',
+            es: '/todaywordle/wordle-unlimited/es/',
+            fr: '/todaywordle/wordle-unlimited/fr/',
+            hi: '/todaywordle/wordle-unlimited/hi/',
+            id: '/todaywordle/wordle-unlimited/id/',
+            pt: '/todaywordle/wordle-unlimited/pt/',
+            tr: '/todaywordle/wordle-unlimited/tr/',
+            ur: '/todaywordle/wordle-unlimited/ur/'
+        };
+        window.addEventListener('load', function() {
+            if (window.State) State.saveLanguage(PAGE_LANG);
+            if (window.game && game.currentLanguage !== PAGE_LANG) {
+                game.changeLanguage(PAGE_LANG);
+            }
+            var opts = document.querySelectorAll('#lang-dropdown-options li');
+            opts.forEach(function(opt) {
+                var c = opt.cloneNode(true);
+                opt.parentNode.replaceChild(c, opt);
+                c.addEventListener('click', function() {
+                    var v = c.getAttribute('data-value');
+                    if (langUrls[v]) window.location.href = langUrls[v];
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>

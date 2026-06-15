@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wordle Unlimited — Sınırsız Kelime Bulmacası Ücretsiz Oyna</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Wordle Unlimited'ı günlük limit olmadan ücretsiz oynayın. Sınırsız beş harfli kelime bulmacalarının keyfini çıkarın, Wordle Çözücüyü kullanın, ipuçlarını keşfedin ve kelime dağarcığınızı kendi hızınızda geliştirin.">
+    <meta name="keywords"
+        content="Wordle Unlimited, farklı dillerde Wordle oyna, çok dilli kelime bulmacası, İspanyolca Wordle, Fransızca Wordle, Arapça Wordle, Urduca Wordle, dil öğrenenler için kelime oyunu, sınırsız kelime tahmin oyunu, kelime dağarcığı geliştirme oyunu, günlük kelime oyunu, Almanca Wordle, Hintçe Wordle, dil öğrenme oyunları, çok dilli Wordle">
+    <meta name="author" content="Wordle Unlimited">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#121213" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="/wordle-unlimited/" />
+    <link rel="alternate" hreflang="ar" href="/wordle-unlimited/ar/" />
+    <link rel="alternate" hreflang="de" href="/wordle-unlimited/de/" />
+    <link rel="alternate" hreflang="es" href="/wordle-unlimited/es/" />
+    <link rel="alternate" hreflang="fr" href="/wordle-unlimited/fr/" />
+    <link rel="alternate" hreflang="hi" href="/wordle-unlimited/hi/" />
+    <link rel="alternate" hreflang="id" href="/wordle-unlimited/id/" />
+    <link rel="alternate" hreflang="pt" href="/wordle-unlimited/pt/" />
+    <link rel="alternate" hreflang="tr" href="/wordle-unlimited/tr/" />
+    <link rel="alternate" hreflang="ur" href="/wordle-unlimited/ur/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wordle-unlimited.app">
+    <meta property="og:title" content="Wordle Unlimited — Sınırsız Kelime Bulmacası Ücretsiz Oyna">
+    <meta property="og:description"
+        content="Wordle Unlimited'ı günlük limit olmadan ücretsiz oynayın. Sınırsız beş harfli kelime bulmacalarının keyfini çıkarın, Wordle Çözücüyü kullanın, ipuçlarını keşfedin ve kelime dağarcığınızı kendi hızınızda geliştirin.">
+    <meta property="og:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+    <meta property="og:site_name" content="Wordle Unlimited">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Wordleinfo">
+    <meta property="twitter:url" content="https://wordle-unlimited.app">
+    <meta property="twitter:title" content="Wordle Unlimited — Sınırsız Kelime Bulmacası Ücretsiz Oyna">
+    <meta property="twitter:description"
+        content="Wordle Unlimited'ı günlük limit olmadan ücretsiz oynayın. Sınırsız beş harfli kelime bulmacalarının keyfini çıkarın, Wordle Çözücüyü kullanın, ipuçlarını keşfedin ve kelime dağarcığınızı kendi hızınızda geliştirin.">
+    <meta property="twitter:image" content="https://wordle-unlimited.app/assets/game-preview.webp">
+
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload Game Data & Scripts -->
+    <link rel="preload" href="../js/game.js?v=9" as="script">
+    <link rel="preload" href="../js/ui.js?v=8" as="script">
+
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        as="style">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+    </noscript>
+
+    <!-- Critical CSS (Inlined for speed) -->
+    <style>
+        :root{--color-correct:#6aaa64;--color-present:#c9b458;--color-absent:#787c7e;--color-border:#d3d6da;--color-bg:#fff;--color-text:#000;--color-key-bg:#d3d6da;--color-key-text:#000;--color-modal-bg:rgba(255,255,255,.9);--transition-fast:.15s;--transition-med:.3s;--transition-slow:.6s;--font-primary:'Inter',sans-serif;--font-heading:'Outfit',sans-serif}body.dark-mode{--color-bg:#121213;--color-text:#fff;--color-border:#3a3a3c;--color-key-bg:#818384;--color-key-text:#fff;--color-modal-bg:rgba(18,18,19,.95);--color-absent:#3a3a3c;--color-correct:#538d4e;--color-present:#b59f3b}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background-color:var(--color-bg);color:var(--color-text);font-family:var(--font-primary);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow-x:hidden;transition:background-color var(--transition-med),color var(--transition-med)}
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 60px;
+            border-bottom: 1px solid var(--color-border)
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            letter-spacing: .05em;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        #game-container {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 10px
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 100%;
+            max-width: 330px;
+            aspect-ratio: 5/6
+        }
+
+        .row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .tile {
+            flex: 1;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.2rem, 5vh, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 2px solid var(--color-border);
+            line-height: 1;
+            padding: 0;
+            transition: transform .1s ease
+        }
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/main.css?v=2.6" fetchpriority="high">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="../../wp-content/uploads/2026/05/cropped-Todaywordlehint.comFavicon-270x270.png" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wordle Unlimited">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Wordle Unlimited — Sınırsız Kelime Bulmacaları",
+        "url": "https://wordle-unlimited.app",
+        "description": "Wordle Unlimited'ı günlük limit olmadan ücretsiz oynayın. Sınırsız beş harfli kelime bulmacalarının keyfini çıkarın, Wordle Çözücüyü kullanın, ipuçlarını keşfedin ve kelime dağarcığınızı kendi hızınızda geliştirin.",
+        "genre": ["Puzzle Game", "Word Game"],
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wordle Unlimited ücretsiz mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet, tamamen ücretsiz. Gizli ücret yok, premium katman yok, hesap oluşturma zorunluluğu yok. Sayfayı açın ve hemen oynamaya başlayın."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Günde birden fazla oynayabilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Zaten amaç tam olarak bu. Her 24 saatte bir sıfırlanan resmi NYT Wordle'ın aksine, bu platform talep ettiğiniz anda yeni bir bulmaca sunar. On tur ya da yüz tur oynayın. Limit yok."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Sonsuz Mod nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sonsuz Mod, temel sınırsız deneyimdir: günlük sınır olmadan bitmek bilmeyen beş harfli kelime bulmacaları kuyruğu. Birini bitirin, Yeni Oyun'a tıklayın ve istediğiniz kadar devam edin."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bu NYT Wordle ile aynı mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Artık The New York Times'a ait olan resmi Wordle, paylaşılan tek bir günlük bulmaca sunar. Bu platform, kendi kelime havuzuna ve istediğiniz zaman oynama özgürlüğüne sahip bağımsız bir oyundur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Orijinal Wordle'ı kim yarattı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Galli yazılım mühendisi Josh Wardle, 2021 yılında Wordle'ı eşine kişisel bir hediye olarak geliştirdi. Oyun birkaç ay içinde viral oldu ve 2022 başlarında The New York Times tarafından satın alındı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Yeni başlayanlar rahatça oynayabilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kesinlikle. Kuralları öğrenmek yaklaşık otuz saniye sürer. Standart modda zaman baskısı yoktur ve renk geri bildirimi sizi doğal olarak cevaba yönlendirir. Yeni oyuncular genellikle hızla gelişir, özellikle sınırsız pratik turları mevcut olduğunda."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wordle Çözücü nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "<a href=\"http://localhost/todaywordle/wordle-solver/\">Wordle Çözücü</a>, onaylanmış harflerinizi, konumlarını ve elenmiş harfleri alıp, hâlâ uyan geçerli kelimelerin bir listesini döndüren bir araçtır. Seçenekler bunaltıcı göründüğünde en güçlü sonraki tahmininizi belirlemenize yardımcı olur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İpuçları bölümü cevabı doğrudan veriyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. İpuçları bölümü, muhakemenizi desteklemek için tasarlanmıştır, onun yerine geçmek için değil. Meydan okumayı bozmadan olasılıkları daha verimli düşünmenize yardımcı olan ipuçları ve kalıplar sunar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kelime üreteci yeni bulmacaları nasıl oluşturuyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sistem, geçerli beş harfli kelimelerin özenle seçilmiş bir havuzundan çeker ve ardışık oyunlar arasında çeşitlilik sağlayacak şekilde seçer. Amaç, aynı kısa listeyi tekrar etmek yerine her oturumu gerçekten taze tutmaktır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Zor Mod önemli ölçüde daha zor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet. Zor Mod, onaylanmış her ipucunu bir sonraki tahmininize dahil etmenizi gerektirir; bu da standart modun dayandığı eleme tahminlerini engeller. Güçlü kelime dağarcığı ve disiplinli tümdengelimsel akıl yürütme ile oynayan oyuncuları ödüllendirir."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wordle Unlimited",
+        "url": "https://wordle-unlimited.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://wordle-unlimited.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wordle Unlimited App",
+        "url": "https://wordle-unlimited.app",
+        "logo": "https://wordle-unlimited.app/assets/game-preview.webp",
+        "sameAs": [
+          "https://x.com/Wordleinfo",
+          "https://www.instagram.com/wordle_unlimited.app"
+        ]
+      }
+    ]
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Scripts -->
+    <script src="../js/state.js?v=3" defer></script>
+    <script src="../js/game.js?v=9" defer></script>
+    <script src="../js/sounds.js?v=2" defer></script>
+    <script src="../js/ui.js?v=8" defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('../sw.js')
+                    .then(reg => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker: Error', err));
+            });
+        }
+    </script>
+</head>
+
+<body class="theme-default">
+    <header class="main-header">
+        <div class="header-left">
+            <a href="../../" class="back-button" aria-label="Ana Sayfaya Dön">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Geri</span>
+            </a>
+            <button id="btn-help" class="icon-button" aria-label="Yardım">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </button>
+            <button id="btn-give-up" class="icon-button" aria-label="Oyunu Yeniden Başlat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
+                </svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <h1 class="logo">WORDLE <span>UNLIMITED</span></h1>
+        </div>
+        <div class="header-right">
+            <select id="lang-select" aria-label="Dil Seçin" style="display: none;">
+                <option value="en">en</option>
+                <option value="es">es</option>
+                <option value="pt">pt</option>
+                <option value="de">de</option>
+                <option value="fr">fr</option>
+                <option value="hi">hi</option>
+                <option value="ur">ur</option>
+                <option value="ar">ar</option>
+                <option value="tr">tr</option>
+                <option value="id">id</option>
+            </select>
+            <div class="custom-dropdown" id="lang-dropdown">
+                <button class="dropdown-trigger" id="lang-dropdown-trigger" aria-haspopup="listbox" aria-label="Dil Seçin">
+                    <span class="flag-icon flag-tr"></span>
+                    <span class="lang-text">TR</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <ul class="dropdown-options" id="lang-dropdown-options" role="listbox">
+                    <li data-value="en" role="option"><span class="flag-icon flag-en"></span> EN</li>
+                    <li data-value="es" role="option"><span class="flag-icon flag-es"></span> ES</li>
+                    <li data-value="pt" role="option"><span class="flag-icon flag-pt"></span> PT</li>
+                    <li data-value="de" role="option"><span class="flag-icon flag-de"></span> DE</li>
+                    <li data-value="fr" role="option"><span class="flag-icon flag-fr"></span> FR</li>
+                    <li data-value="hi" role="option"><span class="flag-icon flag-hi"></span> HI</li>
+                    <li data-value="ur" role="option"><span class="flag-icon flag-ur"></span> UR</li>
+                    <li data-value="ar" role="option"><span class="flag-icon flag-ar"></span> AR</li>
+                    <li data-value="tr" role="option"><span class="flag-icon flag-tr"></span> TR</li>
+                    <li data-value="id" role="option"><span class="flag-icon flag-id"></span> ID</li>
+                </ul>
+            </div>
+            <button id="btn-stats" class="icon-button" aria-label="İstatistikler">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M16 11V3H8v6H2v12h20V11h-6zm-6-6h4v14h-4V5zm-6 6h4v8H4v-8zm16 8h-4v-6h4v6z" />
+                </svg>
+            </button>
+            <button id="btn-settings" class="icon-button" aria-label="Ayarlar">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor"
+                        d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41l-0.36,2.54c-0.59,0.24-1.13,0.57-1.62,0.94L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Hint Banner -->
+        <div id="hint-banner" class="hint-banner hidden">
+            <span class="hint-text">İpucuna mı ihtiyacınız var? Bugünün gerçek kelimesi için ipuçları alın!</span>
+            <div class="hint-actions">
+                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">İpuçlarını Gör</a>
+                <button id="btn-close-hint" aria-label="İpucu Bannerını Kapat">&times;</button>
+            </div>
+        </div>
+
+        <div id="board-container">
+            <div id="board" role="grid" aria-label="Wordle Izgarası"></div>
+        </div>
+
+        <div id="message-container"></div>
+
+        <div id="keyboard-container">
+            <div id="keyboard" role="group" aria-label="Sanal Klavye"></div>
+        </div>
+    </main>
+
+    <!-- Solver CTA Section -->
+    <section id="solver-cta">
+        <div class="content-container">
+            <h2>Bir Kelimede mi Takıldınız? Wordle Çözücümüzü Deneyin</h2>
+            <p>Zor bir bulmacada takıldıysanız, olası cevapları anında bulmak için ücretsiz Wordle Çözücümüzü kullanın. Bildiğiniz harfleri girin ve saniyeler içinde akıllı öneriler alın.</p>
+            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">Wordle Çözücüyü Aç</a>
+        </div>
+    </section>
+
+    <section id="game-content">
+        <div class="content-container">
+            <!-- ===== SECTION 1: MAIN INTRO ===== -->
+            <h2>Wordle Unlimited: Sınırsız Kelime Bulmacası Ücretsiz Oyna</h2>
+            <p>Günde bir bulmaca sizin için hiçbir zaman yeterli olmadıysa, doğru yeri buldunuz. <strong>Wordle Unlimited</strong> 24 saatlik duvarı kaldırır ve istediğiniz kadar beş harfli kelime bulmacası çözmenize olanak tanır — tamamen ücretsiz ve engelsiz, hesap gerektirmez. İster günlük zihinsel ısınma olarak kullanın, ister gece geç saatlerde kelime dağarcığı meydan okuması olarak, oyun siz hazır olduğunuzda her zaman hazırdır.</p>
+            <p>Zaten bildiğiniz temel mekanikler üzerine inşa edilen bu platform, orijinal kelime oyununun tatmin edici mantığını daha hızlı ve daha esnek bir deneyimle birleştirir. Arayüz her cihazda anında yüklenir, tasarım yolunuza çıkmaz ve yeni bir bulmaca her zaman tek bir dokunuş uzağınızdadır. Gece yarısı sıfırlaması yok. Bekleme yok.</p>
+
+            <!-- ===== SECTION 2: INTRODUCTION TO THE UNLIMITED EXPERIENCE ===== -->
+            <h2>Sınırsız Wordle Deneyimine Giriş</h2>
+            <p>Orijinal oyun, haklı nedenlerle küresel bir kelime bulmacası tutkusu başlattı: kurallar temiz, meydan okuma gerçek ve cevabı üç tahminde çözmenin verdiği tatmin gerçekten bağımlılık yapıcı. Tek hayal kırıklığı her zaman günlük limitdi. Bu platform tam olarak bu sorunu çözmek için inşa edildi.</p>
+            <p>Burada birini bitirdiğiniz anda yeni bir tura atlayabilirsiniz. Özelleştirilebilir görsel temalar, akıcı animasyonlar ve duyarlı mobil kontroller, deneyimi derme çatma değil cilalı hissettirir. Aynı sevilen bulmaca formatı, keyfi kısıtlamalar olmadan.</p>
+            <p>Bu sürüm tamamen Türkçe oyun deneyimine odaklanır. <strong>Wordle'ı Türkçe oynamak</strong> istiyorsanız, dikkat dağıtıcılar ve ücretli duvarlar olmadan, burası sizin üssünüz.</p>
+
+            <!-- ===== SECTION 3: THE ULTIMATE CHALLENGE ===== -->
+            <h2>Nihai Wordle Meydan Okumasını Yaşayın</h2>
+            <h3>Basit. Bağımlılık Yapıcı. Sınırsız.</h3>
+            <p>Platform, ilk kez oynayan oyunculardan deneyimli kelime oyunu gazilerine kadar herkes için tasarlanmıştır. Yeni başlayanlar, net renk geri bildirimi ile temiz ve hoşgörülü bir arayüz bulur. Kararlı oyuncular Zor Mod, ayrıntılı istatistikler ve tek bir oturumda düzinelerce bulmaca çözme imkânı elde eder. Canlı bir oyun zamanlayıcısı en hızlı çözümünüzü bile takip eder, böylece kendinizle yarışabilirsiniz.</p>
+            <ul>
+                <li>Her gün talep üzerine üretilen sınırsız bulmacalar</li>
+                <li>Kayıt yok, abonelik yok, gizli koşul yok — %100 ücretsiz</li>
+                <li>Telefon, tablet ve masaüstünde kusursuz çalışan duyarlı tasarım</li>
+                <li>Gelişmiş kişisel istatistikler ve kazanma serisi takibi</li>
+                <li>Karanlık mod, Cyber Neon, Retro, Ocean ve daha fazla görsel tema</li>
+                <li>Kişisel rekorunuzu takip eden En Hızlı Kazanma zamanlayıcısı</li>
+            </ul>
+
+            <!-- ===== SECTION 4: HOW TO PLAY ===== -->
+            <h2>Nasıl Oynanır: Kurallar ve Mekanikler</h2>
+            <p>Amaç basittir: gizli beş harfli kelimeyi altı tahmin içinde belirlemek. Her tahmin geçerli bir kelime olmalıdır. Her gönderimden sonra, kareler renk değiştirerek tahmininizin ne kadar doğru olduğunu gösterir:</p>
+            <p class="help-text-item"><span class="color-box correct"></span> <span><strong>Yeşil:</strong> Harf doğru ve tam olarak olması gereken yerde.</span></p>
+            <p class="help-text-item"><span class="color-box present"></span> <span><strong>Sarı:</strong> Harf hedef kelimede var ama farklı bir konumda.</span></p>
+            <p class="help-text-item"><span class="color-box absent"></span> <span><strong>Gri:</strong> Harf gizli kelimede hiç bulunmuyor.</span></p>
+            <p>Bu geri bildirimi doğru okumak ve her sonraki tahmini buna göre ayarlamak oyunun tamamıdır. Kulağa basit geliyor. Ustalaşmak bambaşka bir mesele.</p>
+            <h3>Gelişmiş Oyun Modlarını Keşfedin</h3>
+            <p>Standart modun ötesinde, <a href="javascript:void(0)" onclick="ui.showSettings()" class="content-link">Zor Mod</a> onaylanmış her ipucunu bir sonraki tahmininizde kullanmanızı zorunlu kılar. Sadece başka bir kelime daha uygun diye yeşil bir harfi atlamak yok. Bu kısıtlama, disiplinli çözücüleri şanslı tahmincilerden ayırır. Ayrıca aynı anda birden fazla bulmaca çözmek ve gerçek baskı altında çoklu görev yeteneğinizi test etmek isteyenler için Çoklu Kelime modu da mevcuttur.</p>
+
+            <!-- ===== SECTION 5: DAILY VS UNLIMITED COMPARISON ===== -->
+            <h2>Günlük Wordle vs. Sınırsız Mod: Fark Nedir?</h2>
+            <p>Temel bulmaca mantığı her iki versiyonda da aynıdır. Farklar geri kalan her şeydedir.</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Özellik</th>
+                            <th>Günlük Wordle (Resmi NYT)</th>
+                            <th>Sınırsız Mod</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mevcut Bulmacalar</td>
+                            <td>Günde bir</td>
+                            <td>Sınırsız, talep üzerine</td>
+                        </tr>
+                        <tr>
+                            <td>Tahmin Limiti</td>
+                            <td>6 ile sabit</td>
+                            <td>Özelleştirilebilir</td>
+                        </tr>
+                        <tr>
+                            <td>Zorluk Seçenekleri</td>
+                            <td>Yalnızca standart</td>
+                            <td>Standart artı Zor Mod</td>
+                        </tr>
+                        <tr>
+                            <td>Maliyet</td>
+                            <td>Ücretsiz</td>
+                            <td>%100 Ücretsiz</td>
+                        </tr>
+                        <tr>
+                            <td>Görsel Temalar</td>
+                            <td>Yalnızca Açık ve Koyu</td>
+                            <td>Cyber Neon, Retro, Ocean ve daha fazlası</td>
+                        </tr>
+                        <tr>
+                            <td>Süre Takibi</td>
+                            <td>Mevcut değil</td>
+                            <td>Canlı zamanlayıcı ve En Hızlı Kazanma rekoru</td>
+                        </tr>
+                        <tr>
+                            <td>Hesap Gereksinimi</td>
+                            <td>Hesap gerekli</td>
+                            <td>Anında oyna, giriş gerekmez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Bilmeye değer pratik bir ipucu: günlük meydan okumamız her gün resmi NYT Wordle ile tam olarak aynı cevabı kullanır. Bu, önce burada oynayabileceğiniz, baskı olmadan kendi hızınızda kelimeyi çözebileceğiniz ve ardından cevabı zaten bilerek NYT versiyonuna geçebileceğiniz anlamına gelir. Zor bir bulmaca gününde serinizi korumak için meşru bir yoldur.</p>
+            <p>Günlük paylaşılan bulmacanın ötesinde, Sınırsız mod gerçek beceri geliştirme için daha iyi bir seçenektir, çünkü birçok turda tutarlı tekrar, gelişmenin tek güvenilir yoludur.</p>
+
+            <!-- ===== SECTION 6: MASTER THE GAME ===== -->
+            <h2>Oyunda Ustalaşın: Kanıtlanmış Wordle Stratejileri</h2>
+            <p>Şans sizi zaman zaman bir bulmacada kurtarabilir, ama kazanma serinizi canlı tutan tekrarlanabilir bir stratejidir. Bu teknikler harf sıklığı ve kelime yapısına dayanır, tahmine değil.</p>
+
+
+            <!-- ===== SECTION 7: EXPERT STRATEGIES (Strategy Cards) ===== -->
+            <h2>Uzman Wordle Stratejileri</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-target.png" alt="Wordle Unlimited stratejisi için en iyi başlangıç kelimeleri" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>En İyi Başlangıç Kelimeleri</h3>
+                    <p>Dilbilimciler ve bulmaca matematikçileri, optimal açılışların kısa bir listesi üzerinde geniş ölçüde hemfikirdir. Bu kelimeler, tek bir tahminde beş pozisyondaki harf kapsamını en üst düzeye çıkarır.</p>
+                    <ul class="tag-list">
+                        <li>ADIEU</li>
+                        <li>ARISE</li>
+                        <li>STARE</li>
+                        <li>AUDIO</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-hint.png" alt="Wordle Unlimited'da sesli harf avcısı stratejisi" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Sesli Harf Avcısı</h3>
+                    <p>Açılış kelimeniz hiçbir sesli harf göstermediyse, ikinci tahmininizi kaçırdıklarınıza yönlendirin. İngilizce beş harfli kelimeler neredeyse her zaman en az iki sesli harf içerir. Hangi sesli harflerin mevcut olduğunu öğrendikten sonra aday havuzunuz dramatik şekilde daralır. A, E ve I gri döndüyse O, U ve yarı sesli Y avlanmaya değerdir.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-pattern.png" alt="Wordle Unlimited'da kalıp tanıma stratejisi" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Kalıp Tanıma</h3>
+                    <p>Deneyimli oyuncular, yaygın İngilizce kelime yapıları için bir sezgi geliştirirler. <strong>ING</strong>, <strong>ED</strong>, <strong>ER</strong> ve <strong>EST</strong> gibi tekrarlayan sonekleri izlemek hile değildir — uygulamalı dilbilimdir. Bu kalıpları kısmi ipuçlarından tespit etmek, hedef kelimeyi rastgele elemenin izin vereceğinden bir veya iki tahmin önce belirlemenizi sağlar.</p>
+                </div>
+                <div class="strategy-card">
+                    <div class="strategy-image-container">
+                        <img src="../assets/strategy-double.png" alt="Wordle Unlimited'da çift harf tuzağı" class="strategy-photo" loading="lazy">
+                    </div>
+                    <h3>Çift Harf Tuzağı</h3>
+                    <p>En yaygın hatalardan biri, hedef kelimede her harfin yalnızca bir kez göründüğünü varsaymaktır. İngilizce, özellikle <strong>E</strong> ve <strong>O</strong> gibi tekrarlanan sesli harfler ve <strong>L</strong> ile <strong>S</strong> gibi yaygın ünsüzlerle beş harfli kelimelerde sıkça tekrarlanan harfler üretir. Üç veya dört onaylanmış harfle sıkışıp kelime oluşturamıyorsanız, birini tekrarlamayı deneyin.</p>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
+            <h2>Wordle Çözücü ve İpuçları: Gerçekten İşe Yarayan Araçlar</h2>
+            <p>Her bulmaca oturumunun yalnız bir zekâ savaşı olması gerekmez. Bu platform, basit bir spoiler yerine gerçek bir düşünme yardımcısı olarak çalışan yerleşik bir <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Çözücü</a></strong> içerir. Zaten bildiğiniz harfleri girin, hangi pozisyonların onaylanmış yeşil ve hangilerinin sarı uyumsuzluk olduğunu işaretleyin; çözücü mevcut ipuçlarınıza uyan geçerli kelimelerin filtrelenmiş bir listesini döndürür. Size sadece cevabı vermez. En güçlü adayları sunar ki nihai karar hâlâ sizin olsun.</p>
+            <p>Çözücü, beşinci tahmindeki yanlış bir hamlenin tüm oyuna mal olabileceği Zor Mod turlarında özellikle faydalıdır. Onaylamadan önce muhakemenizi kontrol etmek için kullanmak meşru bir stratejidir, kestirme yol değil. Çözücü ayrıca birden fazla dili destekler, bu da onu İngilizce oyunun ötesinde de kullanışlı kılar.</p>
+            <p>Çözücünün yanı sıra, site neredeyse başlı başına ikinci bir oyun gibi işlev gören özel bir <strong><a href="http://localhost/todaywordle/" class="content-link">Wordle ipuçları</a></strong> bölümüne sahiptir. Günlük bulmaca girişlerini inceleyebilir, belirli kelimelerin nasıl ipucu verildiğini çalışabilir ve açılış tahmininden çözüme mantıksal yolu takip edebilirsiniz. Kalıp tanımanızı keskinleştirmenin ve belirli başlangıç kelimelerinin neden tutarlı bir şekilde diğerlerinden daha iyi performans gösterdiğini anlamanın pratik bir yoludur. Bunu Wordle topluluğu için bir antrenman günlüğü olarak düşünün.</p>
+
+            <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
+            <h2>Bu Platform Neden Zamanınıza Değer</h2>
+            <p>İnternette düzinelerce Wordle varyantı var. Çoğu, gerçek deneyime çok az düşünce harcanmış klonlardır. Bu farklı şekilde inşa edildi.</p>
+            <ul>
+                <li>Günlük sınır ve kısıtlama olmadan istediğiniz kadar tur oynayın</li>
+                <li>Kişisel istatistikleriniz, kazanma serileriniz ve en hızlı çözüm süreleriniz otomatik olarak takip edilir</li>
+                <li>Birden fazla görsel tema, temiz beyazdan derin Cyber Neon'a kadar ortamı belirlemenizi sağlar</li>
+                <li>Sayfalar mobil bağlantılarda bir saniyeden kısa sürede yüklenir</li>
+                <li>Pop-up yok, zorunlu kayıt yok, abonelik yok</li>
+            </ul>
+            <p>İster beş dakikalık bir beyin molası ister odaklanmış iki saatlik bir pratik oturumu için burada olun, platform dayanır. Wordle Unlimited engelsiz formatı, anlamlı kelime dağarcığı gelişiminin hacim gerektirdiği ve günde bir bulmacanın yeterli hacim olmadığı için özellikle var.</p>
+
+            <!-- ===== SECTION 10: MULTILINGUAL SUPPORT ===== -->
+            <h2>10 Dilde Mevcut</h2>
+            <p>Bu sayfa Türkçe Wordle deneyimine odaklanır, ancak platform toplamda 10 dili destekler — her biri kendi özel kelime listesi ve tam Wordle Çözücü entegrasyonuyla. İster ana dilinizde ister yabancı bir dil pratik ederek oynuyor olun, aynı sınırsız oyun ve çözücü araçları hepsinde mevcuttur:</p>
+            <ul>
+                <li><strong>İngilizce</strong> (ABD, NYT tarzı günlük + Sınırsız mod)</li>
+                <li><strong>İspanyolca</strong></li>
+                <li><strong>Fransızca</strong></li>
+                <li><strong>Almanca</strong></li>
+                <li><strong>Portekizce</strong></li>
+                <li><strong>Arapça</strong> (tam sağdan sola giriş desteğiyle)</li>
+                <li><strong>Türkçe</strong></li>
+                <li><strong>Hintçe</strong> (Devanagari yazısı desteklenir)</li>
+                <li><strong>Urduca</strong> (sağdan sola yazı desteklenir)</li>
+                <li><strong>Endonezce</strong></li>
+            </ul>
+
+            <!-- ===== SECTION 11: FAQ ===== -->
+            <h2>Sıkça Sorulan Sorular</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wordle Unlimited ücretsiz mi?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Evet, tamamen ücretsiz. Gizli ücret yok, premium katman yok, hesap oluşturma zorunluluğu yok. Sayfayı açın ve hemen oynamaya başlayın.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Günde birden fazla oynayabilir miyim?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Zaten amaç tam olarak bu. Her 24 saatte bir sıfırlanan resmi NYT Wordle'ın aksine, bu platform talep ettiğiniz anda yeni bir bulmaca sunar. On tur ya da yüz tur oynayın. Limit yok.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Sonsuz Mod nedir?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sonsuz Mod, temel sınırsız deneyimdir: günlük sınır olmadan bitmek bilmeyen beş harfli kelime bulmacaları kuyruğu. Birini bitirin, Yeni Oyun'a tıklayın ve istediğiniz kadar devam edin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bu NYT Wordle ile aynı mı?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Hayır. Artık The New York Times'a ait olan resmi Wordle, paylaşılan tek bir günlük bulmaca sunar. Bu platform, kendi kelime havuzuna ve istediğiniz zaman oynama özgürlüğüne sahip bağımsız bir oyundur.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Orijinal Wordle'ı kim yarattı?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Galli yazılım mühendisi Josh Wardle, 2021 yılında Wordle'ı eşine kişisel bir hediye olarak geliştirdi. Oyun birkaç ay içinde viral oldu ve 2022 başlarında The New York Times tarafından satın alındı.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Yeni başlayanlar rahatça oynayabilir mi?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kesinlikle. Kuralları öğrenmek yaklaşık otuz saniye sürer. Standart modda zaman baskısı yoktur ve renk geri bildirimi sizi doğal olarak cevaba yönlendirir. Yeni oyuncular genellikle hızla gelişir, özellikle sınırsız pratik turları mevcut olduğunda.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Wordle Çözücü nedir?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Çözücü</a>, onaylanmış harflerinizi, konumlarını ve elenmiş harfleri alıp, hâlâ uyan geçerli kelimelerin bir listesini döndüren bir araçtır. Seçenekler bunaltıcı göründüğünde en güçlü sonraki tahmininizi belirlemenize yardımcı olur.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>İpuçları bölümü cevabı doğrudan veriyor mu?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Hayır. İpuçları bölümü, muhakemenizi desteklemek için tasarlanmıştır, onun yerine geçmek için değil. Meydan okumayı bozmadan olasılıkları daha verimli düşünmenize yardımcı olan ipuçları ve kalıplar sunar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Kelime üreteci yeni bulmacaları nasıl oluşturuyor?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sistem, geçerli beş harfli kelimelerin özenle seçilmiş bir havuzundan çeker ve ardışık oyunlar arasında çeşitlilik sağlayacak şekilde seçer. Amaç, aynı kısa listeyi tekrar etmek yerine her oturumu gerçekten taze tutmaktır.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Zor Mod önemli ölçüde daha zor mu?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Evet. Zor Mod, onaylanmış her ipucunu bir sonraki tahmininize dahil etmenizi gerektirir; bu da standart modun dayandığı eleme tahminlerini engeller. Güçlü kelime dağarcığı ve disiplinli tümdengelimsel akıl yürütme ile oynayan oyuncuları ödüllendirir.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden">
+        <!-- Modals will be injected here -->
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <a href="../../" class="back-button" aria-label="Ana Sayfaya Dön">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Geri</span>
+            </a>
+            <div class="footer-links">
+                <a href="../../index.php/contact/">İletişim</a>
+                <a href="../../index.php/privacy-policy/">Gizlilik Politikası</a>
+                <a href="../../index.php/disclaimer/">Sorumluluk Reddi</a>
+                <a href="../../index.php/about-us/">Hakkımızda</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Language Page Redirect -->
+    <script>
+    (function() {
+        var PAGE_LANG = 'tr';
+        var langUrls = {
+            en: '/todaywordle/wordle-unlimited/',
+            ar: '/todaywordle/wordle-unlimited/ar/',
+            de: '/todaywordle/wordle-unlimited/de/',
+            es: '/todaywordle/wordle-unlimited/es/',
+            fr: '/todaywordle/wordle-unlimited/fr/',
+            hi: '/todaywordle/wordle-unlimited/hi/',
+            id: '/todaywordle/wordle-unlimited/id/',
+            pt: '/todaywordle/wordle-unlimited/pt/',
+            tr: '/todaywordle/wordle-unlimited/tr/',
+            ur: '/todaywordle/wordle-unlimited/ur/'
+        };
+        window.addEventListener('load', function() {
+            if (window.State) State.saveLanguage(PAGE_LANG);
+            if (window.game && game.currentLanguage !== PAGE_LANG) {
+                game.changeLanguage(PAGE_LANG);
+            }
+            var opts = document.querySelectorAll('#lang-dropdown-options li');
+            opts.forEach(function(opt) {
+                var c = opt.cloneNode(true);
+                opt.parentNode.replaceChild(c, opt);
+                c.addEventListener('click', function() {
+                    var v = c.getAttribute('data-value');
+                    if (langUrls[v]) window.location.href = langUrls[v];
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>
