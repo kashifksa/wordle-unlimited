@@ -891,6 +891,17 @@ body.dark-mode .setting-item select option {
     line-height: 1.6;
 }
 
+.content-link {
+    color: var(--color-correct);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity var(--transition-fast);
+}
+
+.content-link:hover {
+    opacity: 0.8;
+}
+
 #game-content h1 {
     font-family: var(--font-heading);
     font-size: 2.5rem;
