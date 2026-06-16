@@ -98,11 +98,11 @@ class WordleUI {
 
         const selectEl = document.getElementById('lang-select');
         if (selectEl) {
-            const savedLang = window.State ? State.loadLanguage() : 'en';
-            selectEl.value = savedLang;
+            const pageLang = document.documentElement.lang || 'en';
+            selectEl.value = pageLang;
             
             // Set initial state for custom dropdown
-            this.syncCustomDropdown(savedLang);
+            this.syncCustomDropdown(pageLang);
 
             selectEl.addEventListener('change', async (e) => {
                 const val = e.target.value;

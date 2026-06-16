@@ -40,7 +40,8 @@ class WordleGame {
     async init() {
         console.log("WordleGame: init() starting...");
         try {
-            const lang = window.State ? State.loadLanguage() : 'en';
+            const lang = document.documentElement.lang || 'en';
+            if (window.State) State.saveLanguage(lang);
             await this.loadLanguageData(lang);
             
             if (window.State) {
@@ -67,6 +68,7 @@ class WordleGame {
 
     async loadLanguageData(lang) {
         this.currentLanguage = lang;
+        const basePath = this.getBasePath();
         if (lang === 'en') {
             if (this.languageCache['en']) {
                 this.words = this.languageCache['en'];
@@ -74,7 +76,7 @@ class WordleGame {
                 if (window.wordList) {
                     this.words = window.wordList;
                 } else {
-                    const response = await fetch('data/words.json');
+                    const response = await fetch(`${basePath}data/words.json`);
                     if (!response.ok) throw new Error("Failed to fetch words.json");
                     this.words = await response.json();
                 }
@@ -98,7 +100,7 @@ class WordleGame {
                 }
             } else {
                 try {
-                    const response = await fetch(`languages/${lang}.json`);
+                    const response = await fetch(`${basePath}languages/${lang}.json`);
                     if (!response.ok) throw new Error(`Failed to fetch languages/${lang}.json`);
                     const data = await response.json();
                     this.languageCache[lang] = data;
@@ -149,6 +151,11 @@ class WordleGame {
         }
         await this.startNewGame();
         if (window.ui) {
+            const selectEl = document.getElementById('lang-select');
+            if (selectEl) selectEl.value = lang;
+            if (typeof ui.syncCustomDropdown === 'function') {
+                ui.syncCustomDropdown(lang);
+            }
             ui.renderBoard();
             ui.renderKeyboard(true);
             ui.resetKeyboard();
@@ -253,6 +260,17 @@ class WordleGame {
         return '/TodayWordle/wp-json/wordle/v1';
     }
 
+    getBasePath() {
+        const pathname = window.location.pathname.toLowerCase();
+        const subdirs = ['/ar/', '/de/', '/es/', '/fr/', '/hi/', '/id/', '/pt/', '/tr/', '/ur/'];
+        const hasSubdir = subdirs.some(dir => 
+            pathname.endsWith(dir) || 
+            pathname.includes(dir + 'index.html') || 
+            pathname.endsWith(dir.slice(0, -1))
+        );
+        return hasSubdir ? '../' : '';
+    }
+
     getTodayWordApiUrl(useLocal = true) {
         if (useLocal) {
             return this.getLocalWordPressApiUrl();
@@ -300,7 +318,7 @@ class WordleGame {
         }
         try {
             // 3. Try directory-relative parent path
-            return await tryFetch('../wp-json/wordle/v1');
+            return await tryFetch(`${this.getBasePath()}../wp-json/wordle/v1`);
         } catch (e) {
             // Ignore
         }
@@ -404,7 +422,7 @@ class WordleGame {
                 response = await fetch('/TodayWordle/wp-json/wordle/v1/today');
             }
             if (!response.ok) {
-                response = await fetch('../wp-json/wordle/v1/today');
+                response = await fetch(`${this.getBasePath()}../wp-json/wordle/v1/today`);
             }
             if (!response.ok) {
                 response = await fetch('https://todaywordlehint.com/wp-json/wordle/v1/today');
