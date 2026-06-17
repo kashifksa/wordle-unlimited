@@ -347,14 +347,89 @@ class WordleUI {
         console.log("WordleUI: rendering keyboard for language: " + lang);
         
         let rows;
-        if (lang === 'en') {
-            rows = [
-                'qwertyuiop'.split(''),
-                'asdfghjkl'.split(''),
-                ['enter', ...'zxcvbnm'.split(''), 'backspace']
-            ];
+        const latinLayouts = {
+            en: {
+                base: [
+                    'qwertyuiop'.split(''),
+                    'asdfghjkl'.split(''),
+                    'zxcvbnm'.split('')
+                ]
+            },
+            id: {
+                base: [
+                    'qwertyuiop'.split(''),
+                    'asdfghjkl'.split(''),
+                    'zxcvbnm'.split('')
+                ]
+            },
+            es: {
+                base: [
+                    'qwertyuiop'.split(''),
+                    'asdfghjklñ'.split(''),
+                    'zxcvbnm'.split('')
+                ]
+            },
+            pt: {
+                base: [
+                    'qwertyuiop'.split(''),
+                    'asdfghjklç'.split(''),
+                    'zxcvbnm'.split('')
+                ]
+            },
+            de: {
+                base: [
+                    'qwertzuiopü'.split(''),
+                    'asdfghjklöä'.split(''),
+                    'yxcvbnmß'.split('')
+                ]
+            },
+            fr: {
+                base: [
+                    'azertyuiop'.split(''),
+                    'qsdfghjklm'.split(''),
+                    'wxcvbn'.split('')
+                ]
+            },
+            tr: {
+                base: [
+                    'qwertyuıopğü'.split(''),
+                    'asdfghjklşi'.split(''),
+                    'zxcvbnmöç'.split('')
+                ]
+            }
+        };
+
+        const currentLang = lang.toLowerCase();
+        
+        if (latinLayouts[currentLang]) {
+            const layout = latinLayouts[currentLang];
+            const baseRows = layout.base.map(r => [...r]);
+            
+            // Extract actual characters from the active language words to find any accents/extra chars
+            const uniqueChars = new Set();
+            if (window.game && game.words && game.words.valid) {
+                game.words.valid.forEach(w => {
+                    w.split('').forEach(c => {
+                        const l = c.toLowerCase().trim();
+                        if (l) uniqueChars.add(l);
+                    });
+                });
+            }
+            
+            const baseSet = new Set(layout.base.flat());
+            const extraChars = Array.from(uniqueChars)
+                .filter(c => !baseSet.has(c))
+                .sort((a, b) => a.localeCompare(b));
+                
+            if (extraChars.length > 0) {
+                baseRows.push(extraChars);
+            }
+            
+            const lastRowIndex = baseRows.length - 1;
+            baseRows[lastRowIndex] = ['enter', ...baseRows[lastRowIndex], 'backspace'];
+            rows = baseRows;
         } else {
-            // Generate layout dynamically from the words in the active language
+            // Generate layout dynamically from the words in the active language (for non-Latin scripts)
             const uniqueChars = new Set();
             if (window.game && game.words && game.words.valid) {
                 game.words.valid.forEach(w => {

@@ -80,6 +80,9 @@ class WordleGame {
                     if (!response.ok) throw new Error("Failed to fetch words.json");
                     this.words = await response.json();
                 }
+                if (this.words && this.words.valid) {
+                    this.words.valid = this.filterLanguageWords(this.words.valid, 'en');
+                }
                 this.languageCache['en'] = this.words;
             }
             this.wordLength = 5;
@@ -103,6 +106,9 @@ class WordleGame {
                     const response = await fetch(`${basePath}languages/${lang}.json`);
                     if (!response.ok) throw new Error(`Failed to fetch languages/${lang}.json`);
                     const data = await response.json();
+                    if (data && data.words) {
+                        data.words = this.filterLanguageWords(data.words, lang);
+                    }
                     this.languageCache[lang] = data;
                     this.words = { valid: data.words || [] };
                     this.wordLength = data.wordLength || 5;
@@ -535,6 +541,29 @@ class WordleGame {
     removeLetter() {
         if (this.isGameOver || this.currentGuess.length === 0) return;
         this.currentGuess = this.currentGuess.slice(0, -1);
+    }
+
+    filterLanguageWords(words, lang) {
+        if (!words || !Array.isArray(words)) return [];
+        const regexes = {
+            en: /^[a-z]+$/,
+            id: /^[a-z]+$/,
+            de: /^[a-zäöüß]+$/,
+            es: /^[a-zñáéíóúü]+$/,
+            pt: /^[a-zçáâãàéêíóôõú]+$/,
+            fr: /^[a-zàâæçéèêëîïôœùûüÿ]+$/,
+            tr: /^[a-zçğıöşü]+$/,
+            hi: /^[\u0900-\u097F]+$/,
+            ur: /^[\u0600-\u06FF]+$/,
+            ar: /^[\u0600-\u06FF]+$/
+        };
+        const rx = regexes[lang.toLowerCase()];
+        if (!rx) return words;
+        return words.filter(w => {
+            if (typeof w !== 'string') return false;
+            const clean = w.trim().toLowerCase();
+            return clean.length > 0 && rx.test(clean);
+        });
     }
 }
 
