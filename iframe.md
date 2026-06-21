@@ -7,7 +7,7 @@ Paste this into a **Custom HTML** block in your WordPress editor (or theme page 
 ```html
 <!-- The Game Iframe -->
 <iframe id="wordle-game-frame" 
-        src="https://todaywordlehint.com/WordleUnlimited/" 
+        src="https://todaywordlehint.com/wordle-unlimited/" 
         style="width: 100%; border: none; overflow: hidden; transition: height 0.2s ease;" 
         scrolling="no">
 </iframe>

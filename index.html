@@ -226,7 +226,7 @@
             "name": "What is a Wordle Solver?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A <a href=\"http://localhost/todaywordle/wordle-solver/\">Wordle Solver</a> is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming."
+              "text": "A <a href=\"/wordle-solver/\">Wordle Solver</a> is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming."
             }
           },
           {
@@ -385,7 +385,7 @@
         <div id="hint-banner" class="hint-banner hidden">
             <span class="hint-text">Need a hint? Get clues for today's real word!</span>
             <div class="hint-actions">
-                <a href="https://todaywordlehint.com" target="_blank" class="btn-hint-link">Get Hints</a>
+                <a href="/" target="_blank" class="btn-hint-link">Get Hints</a>
                 <button id="btn-close-hint" aria-label="Close Hint Banner">&times;</button>
             </div>
         </div>
@@ -406,7 +406,7 @@
         <div class="content-container">
             <h2>Stuck on a Word? Try Our Wordle Solver</h2>
             <p>If you're stuck on a tricky puzzle, use our free Wordle Solver to instantly find possible answers. Enter your known letters and get smart suggestions in seconds.</p>
-            <a href="http://localhost/todaywordle/wordle-solver/" class="btn-primary">Open Wordle Solver</a>
+            <a href="/wordle-solver/" class="btn-primary">Open Wordle Solver</a>
         </div>
     </section>
 
@@ -546,9 +546,9 @@
 
             <!-- ===== SECTION 8: WORDLE SOLVER & HINTS ===== -->
             <h2>Wordle Solver and Hints: Tools That Actually Help</h2>
-            <p>Not every puzzle session needs to be a solo battle of wits. This platform includes a built-in <strong><a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Solver</a></strong> that works as a genuine thinking aid rather than a simple spoiler. Enter the letters you already know, mark which positions are confirmed green and which are yellow misses, and the solver returns a filtered list of valid English words that match your current clues. It does not just give you the answer. It gives you the strongest candidates so the final decision remains yours.</p>
+            <p>Not every puzzle session needs to be a solo battle of wits. This platform includes a built-in <strong><a href="/wordle-solver/" class="content-link">Wordle Solver</a></strong> that works as a genuine thinking aid rather than a simple spoiler. Enter the letters you already know, mark which positions are confirmed green and which are yellow misses, and the solver returns a filtered list of valid English words that match your current clues. It does not just give you the answer. It gives you the strongest candidates so the final decision remains yours.</p>
             <p>The solver is especially useful for Hard Mode runs where a wrong move on guess five can cost you the entire game. Using it to double check your reasoning before committing is a legitimate strategy, not a shortcut. The solver also supports multiple languages, making it useful beyond English play as well.</p>
-            <p>Alongside the solver, the site features a dedicated <strong><a href="http://localhost/todaywordle/" class="content-link">Wordle hints</a></strong> section that functions almost like a secondary game on its own. You can browse through daily puzzle entries, study how specific words were clued, and trace the logical path from opening guess to solution. It is a practical way to sharpen your pattern recognition and understand why certain starting words consistently outperform others. Think of it as a training log for the Wordle community.</p>
+            <p>Alongside the solver, the site features a dedicated <strong><a href="/" class="content-link">Wordle hints</a></strong> section that functions almost like a secondary game on its own. You can browse through daily puzzle entries, study how specific words were clued, and trace the logical path from opening guess to solution. It is a practical way to sharpen your pattern recognition and understand why certain starting words consistently outperform others. Think of it as a training log for the Wordle community.</p>
 
             <!-- ===== SECTION 9: PLATFORM STRENGTHS ===== -->
             <h2>Why This Platform Is Worth Your Time</h2>
@@ -641,7 +641,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>A <a href="http://localhost/todaywordle/wordle-solver/" class="content-link">Wordle Solver</a> is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming.</p>
+                        <p>A <a href="/wordle-solver/" class="content-link">Wordle Solver</a> is a tool that takes your confirmed letters, their positions, and any eliminated letters, then returns a list of valid words that still fit. It helps you identify your strongest next guess when the options feel overwhelming.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -691,10 +691,10 @@
                 <span>Back</span>
             </a>
             <div class="footer-links">
-                <a href="../index.php/contact/">Contact</a>
-                <a href="../index.php/privacy-policy/">Privacy Policy</a>
-                <a href="../index.php/disclaimer/">Disclaimer</a>
-                <a href="../index.php/about-us/">About Us</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy-policy/">Privacy Policy</a>
+                <a href="/disclaimer/">Disclaimer</a>
+                <a href="/about-us/">About Us</a>
             </div>
         </div>
     </footer>
@@ -703,17 +703,21 @@
     <script>
     (function() {
         var PAGE_LANG = 'en';
+        var pathname = window.location.pathname.toLowerCase();
+        var gameFolder = 'wordle-unlimited';
+        var baseIdx = pathname.indexOf(gameFolder);
+        var basePath = baseIdx !== -1 ? window.location.pathname.substring(0, baseIdx + gameFolder.length) + '/' : '/wordle-unlimited/';
         var langUrls = {
-            en: '/todaywordle/wordle-unlimited/',
-            ar: '/todaywordle/wordle-unlimited/ar/',
-            de: '/todaywordle/wordle-unlimited/de/',
-            es: '/todaywordle/wordle-unlimited/es/',
-            fr: '/todaywordle/wordle-unlimited/fr/',
-            hi: '/todaywordle/wordle-unlimited/hi/',
-            id: '/todaywordle/wordle-unlimited/id/',
-            pt: '/todaywordle/wordle-unlimited/pt/',
-            tr: '/todaywordle/wordle-unlimited/tr/',
-            ur: '/todaywordle/wordle-unlimited/ur/'
+            en: basePath,
+            ar: basePath + 'ar/',
+            de: basePath + 'de/',
+            es: basePath + 'es/',
+            fr: basePath + 'fr/',
+            hi: basePath + 'hi/',
+            id: basePath + 'id/',
+            pt: basePath + 'pt/',
+            tr: basePath + 'tr/',
+            ur: basePath + 'ur/'
         };
         window.addEventListener('load', function() {
             if (window.State) State.saveLanguage(PAGE_LANG);

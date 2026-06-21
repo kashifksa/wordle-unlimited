@@ -263,7 +263,7 @@ class WordleGame {
         if (baseIdx !== -1) {
             return pathname.substring(0, baseIdx) + 'wp-json/wordle/v1';
         }
-        return '/TodayWordle/wp-json/wordle/v1';
+        return `${this.getBasePath()}../wp-json/wordle/v1`;
     }
 
     getBasePath() {
@@ -318,7 +318,7 @@ class WordleGame {
         }
         try {
             // 2. Try default root-relative camelcase path
-            return await tryFetch('/TodayWordle/wp-json/wordle/v1');
+            return await tryFetch(`${this.getBasePath()}../wp-json/wordle/v1`);
         } catch (e) {
             // Ignore
         }
@@ -425,7 +425,7 @@ class WordleGame {
             // Try relative local paths first
             let response = await fetch(this.getLocalWordPressApiUrl() + '/today');
             if (!response.ok) {
-                response = await fetch('/TodayWordle/wp-json/wordle/v1/today');
+                response = await fetch(`${this.getBasePath()}../wp-json/wordle/v1/today`);
             }
             if (!response.ok) {
                 response = await fetch(`${this.getBasePath()}../wp-json/wordle/v1/today`);
